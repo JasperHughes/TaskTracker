@@ -12,7 +12,6 @@ namespace Task_Tracker
 {
     public partial class MainMenu : Form
     {
-        private ;
 
         public MainMenu()
         {
