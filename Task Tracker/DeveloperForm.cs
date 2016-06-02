@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Task_Tracker
 {
-    public partial class Form1 : Form
+    public partial class DeveloperForm : Form
     {
-        public Form1()
+        public DeveloperForm()
         {
             InitializeComponent();
         }
