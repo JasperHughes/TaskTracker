@@ -8,6 +8,12 @@ namespace Task_Tracker.DAO.Tables
 {
     class Task
     {
+        public enum Priority
+        {
+            LOW,
+            MEDIUM,
+            HIGH
+        }
 
     }
 }
