@@ -8,5 +8,6 @@ namespace Task_Tracker.DAO.Tables
 {
     class Project
     {
+
     }
 }

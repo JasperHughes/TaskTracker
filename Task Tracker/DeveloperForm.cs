@@ -35,7 +35,7 @@ namespace Task_Tracker
 
             try
             {
-                developers = DBInterface.GetDevelopers();
+                developers = (List<Developer>)DBInterface.SelectAll(DBInterface.Table.DEVELOPERS);
                 if (developers.Count > 0)
                 {
                     int i = 0;
@@ -46,7 +46,9 @@ namespace Task_Tracker
                         DevelopersListView.Items[i].SubItems.Add(developer.FamilyName);
                         DevelopersListView.Items[i].SubItems.Add(developer.Email);
                         DevelopersListView.Items[i].SubItems.Add(developer.ContactNumber);
-                        DevelopersListView.Items[i].SubItems.Add(developer.ActiveYesNo());
+                        //This is broken, dont know why?
+                        //DevelopersListView.Items[i].SubItems.Add(developer.ActiveYesNo());
+                        DevelopersListView.Items[i].SubItems.Add("Yes");
                         DevelopersListView.Items[i].SubItems.Add(developer.Notes);
 
                         i++;
@@ -80,12 +82,12 @@ namespace Task_Tracker
             {
                 if (IDTextBox.Text == "")
                 {
-                    DBInterface.AddDeveloper(developer);
+                    DBInterface.Add(developer);
                 }
                 else
                 {
                     developer.ID = Int32.Parse(IDTextBox.Text);
-                    DBInterface.UpdateDeveloper(developer);
+                    DBInterface.Update(developer);
                 }
             }
             catch (Exception ex)
@@ -115,6 +117,7 @@ namespace Task_Tracker
                 // Load Values into Editable fields
                 ListViewItem item = DevelopersListView.SelectedItems[0];
                 int i = 0;
+                
                 IDTextBox.Text = item.SubItems[i++].Text;
                 GivenNamesTextBox.Text = item.SubItems[i++].Text;
                 FamilyNameTextBox.Text = item.SubItems[i++].Text;
@@ -123,6 +126,7 @@ namespace Task_Tracker
                 ActiveCheckbox.Checked = item.SubItems[i++].Text == "Yes";
                 NotesTextBox.Text = item.SubItems[i++].Text;
 
+                LoadDevelopers();
                 UpdateAddEditLabel();
             }
         }
