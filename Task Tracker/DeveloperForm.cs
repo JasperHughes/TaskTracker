@@ -46,9 +46,7 @@ namespace Task_Tracker
                         DevelopersListView.Items[i].SubItems.Add(developer.FamilyName);
                         DevelopersListView.Items[i].SubItems.Add(developer.Email);
                         DevelopersListView.Items[i].SubItems.Add(developer.ContactNumber);
-                        //This is broken, dont know why?
-                        //DevelopersListView.Items[i].SubItems.Add(developer.ActiveYesNo());
-                        DevelopersListView.Items[i].SubItems.Add("Yes");
+                        DevelopersListView.Items[i].SubItems.Add(developer.Active ? "Yes" : "No");
                         DevelopersListView.Items[i].SubItems.Add(developer.Notes);
 
                         i++;
