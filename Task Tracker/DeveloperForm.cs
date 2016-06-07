@@ -71,12 +71,12 @@ namespace Task_Tracker
             // TODO Add validation to check all values entered
 
             Developer developer = new Developer();
-            developer.FamilyName = FamilyNameTextBox.Text;
-            developer.GivenNames = GivenNamesTextBox.Text;
-            developer.Email = EmailTextBox.Text;
-            developer.ContactNumber = ContactNumberTextBox.Text;
+            developer.FamilyName = ReplaceEmptyStringWithNull(FamilyNameTextBox.Text);
+            developer.GivenNames = ReplaceEmptyStringWithNull(GivenNamesTextBox.Text);
+            developer.Email = ReplaceEmptyStringWithNull(EmailTextBox.Text);
+            developer.ContactNumber = ReplaceEmptyStringWithNull(ContactNumberTextBox.Text);
             developer.Active = ActiveCheckbox.Checked;
-            developer.Notes = NotesTextBox.Text;
+            developer.Notes = ReplaceEmptyStringWithNull(NotesTextBox.Text);
 
             try
             {
@@ -146,6 +146,12 @@ namespace Task_Tracker
         private DeveloperDAO GetDeveloperDAO()
         {
             return DAOFactory.getDeveloperDAO();
+        }
+
+        // Replace empty string with null, otherwise leave it as is.
+        private string ReplaceEmptyStringWithNull(string value)
+        {
+            return value.Length == 0 ? null : value;
         }
     }
 }
