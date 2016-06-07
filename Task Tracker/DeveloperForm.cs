@@ -35,7 +35,7 @@ namespace Task_Tracker
 
             try
             {
-                developers = GetDeveloperDAO().GetDevelopers();
+                developers = (List<Developer>)DBInterface.SelectAll(DBInterface.Table.DEVELOPERS);
                 if (developers.Count > 0)
                 {
                     int i = 0;
@@ -80,12 +80,12 @@ namespace Task_Tracker
             {
                 if (IDTextBox.Text == "")
                 {
-                    GetDeveloperDAO().AddDeveloper(developer);
+                    DBInterface.Add(developer);
                 }
                 else
                 {
                     developer.ID = Int32.Parse(IDTextBox.Text);
-                    GetDeveloperDAO().UpdateDeveloper(developer);
+                    DBInterface.Update(developer);
                 }
             }
             catch (Exception ex)
@@ -141,11 +141,7 @@ namespace Task_Tracker
             }
         }
 
-        private DeveloperDAO GetDeveloperDAO()
-        {
-            return DAOFactory.getDeveloperDAO();
-        }
-
+        
         // Replace empty string with null, otherwise leave it as is.
         private string ReplaceEmptyStringWithNull(string value)
         {
