@@ -56,6 +56,7 @@
             // GivenNamesTextBox
             // 
             this.GivenNamesTextBox.Location = new System.Drawing.Point(129, 55);
+            this.GivenNamesTextBox.MaxLength = 255;
             this.GivenNamesTextBox.Name = "GivenNamesTextBox";
             this.GivenNamesTextBox.Size = new System.Drawing.Size(235, 20);
             this.GivenNamesTextBox.TabIndex = 1;
@@ -63,6 +64,7 @@
             // FamilyNameTextBox
             // 
             this.FamilyNameTextBox.Location = new System.Drawing.Point(129, 80);
+            this.FamilyNameTextBox.MaxLength = 255;
             this.FamilyNameTextBox.Name = "FamilyNameTextBox";
             this.FamilyNameTextBox.Size = new System.Drawing.Size(235, 20);
             this.FamilyNameTextBox.TabIndex = 2;
@@ -70,6 +72,7 @@
             // EmailTextBox
             // 
             this.EmailTextBox.Location = new System.Drawing.Point(129, 105);
+            this.EmailTextBox.MaxLength = 255;
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(235, 20);
             this.EmailTextBox.TabIndex = 3;
@@ -77,6 +80,7 @@
             // ContactNumberTextBox
             // 
             this.ContactNumberTextBox.Location = new System.Drawing.Point(129, 130);
+            this.ContactNumberTextBox.MaxLength = 50;
             this.ContactNumberTextBox.Name = "ContactNumberTextBox";
             this.ContactNumberTextBox.Size = new System.Drawing.Size(235, 20);
             this.ContactNumberTextBox.TabIndex = 4;
@@ -235,7 +239,7 @@
             this.AddEditLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddEditLabel.Location = new System.Drawing.Point(23, 13);
             this.AddEditLabel.Name = "AddEditLabel";
-            this.AddEditLabel.Size = new System.Drawing.Size(52, 16);
+            this.AddEditLabel.Size = new System.Drawing.Size(51, 16);
             this.AddEditLabel.TabIndex = 16;
             this.AddEditLabel.Text = "label7";
             // 
