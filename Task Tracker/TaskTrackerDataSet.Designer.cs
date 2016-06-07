@@ -1445,13 +1445,13 @@ namespace Task_Tracker {
                 this.columnID.ReadOnly = true;
                 this.columnID.Unique = true;
                 this.columnFamilyName.AllowDBNull = false;
-                this.columnFamilyName.MaxLength = 2147483647;
+                this.columnFamilyName.MaxLength = 255;
                 this.columnGivenNames.AllowDBNull = false;
-                this.columnGivenNames.MaxLength = 2147483647;
+                this.columnGivenNames.MaxLength = 255;
                 this.columnEmail.AllowDBNull = false;
-                this.columnEmail.MaxLength = 2147483647;
+                this.columnEmail.MaxLength = 255;
                 this.columnContactNumber.AllowDBNull = false;
-                this.columnContactNumber.MaxLength = 2147483647;
+                this.columnContactNumber.MaxLength = 50;
                 this.columnActive.AllowDBNull = false;
                 this.columnNotes.MaxLength = 2147483647;
             }
