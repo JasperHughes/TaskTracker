@@ -37,8 +37,6 @@ namespace Task_Tracker.DAO
             {
                 case Table.CLIENTS:
                     return GetClients();
-                case Table.DEVELOPERS:
-                    return GetDevelopers();
                 case Table.ITERATIONS:
                     return GetIterations();
                 case Table.ITERATION_TASKS:
@@ -59,8 +57,6 @@ namespace Task_Tracker.DAO
             {
                 case Table.CLIENTS:
                     return GetClient(id);
-                case Table.DEVELOPERS:
-                    return GetDeveloper(id);
                 case Table.ITERATIONS:
                     return GetIteration(id);
                 case Table.PROJECTS:
@@ -78,10 +74,6 @@ namespace Task_Tracker.DAO
             if(o is Client)
             {
                 AddClient((Client)o);
-            }
-            if(o is Developer)
-            {
-                AddDeveloper((Developer)o);
             }
             if(o is Iteration)
             {
@@ -108,11 +100,6 @@ namespace Task_Tracker.DAO
             {
                 UpdateClient((Client)o);
             }
-            if (o is Developer)
-            {
-                Console.WriteLine("DEVELOPER UPDATING");
-                UpdateDeveloper((Developer)o);
-            }
             if (o is Iteration)
             {
                 UpdateIteration((Iteration)o);
@@ -138,10 +125,6 @@ namespace Task_Tracker.DAO
             {
                 DeleteClient((Client)o);
             }
-            if (o is Developer)
-            {
-                DeleteDeveloper((Developer)o);
-            }
             if (o is Iteration)
             {
                 DeleteIteration((Iteration)o);
@@ -160,177 +143,6 @@ namespace Task_Tracker.DAO
             }
         }
 
-        //all old ocde left in as backup, linq seems to be working fine though
-        private static List<Developer> GetDevelopers()
-        {
-            TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
-            return dataContext.Developers.ToList();
-            /*List<Developer> developers = new List<Developer>();
-
-            using (SqlConnection connection = GetConnection())
-            using (SqlCommand command = new SqlCommand("SELECT * FROM Developers ORDER BY FamilyName, GivenNames", connection))
-            {
-                connection.Open();
-                try
-                {
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        Developer developer = new Developer();
-                        developer.ID = (int)reader["ID"];
-                        developer.FamilyName = reader["FamilyName"].ToString();
-                        developer.GivenNames = reader["GivenNames"].ToString();
-                        developer.Email = reader["Email"].ToString();
-                        developer.ContactNumber = reader["ContactNumber"].ToString();
-                        developer.Active = (bool)reader["Active"];
-                        developer.Notes = reader["Notes"].ToString();
-
-                        developers.Add(developer);
-                    }
-                    reader.Close();
-
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
-            }
-
-            return developers;*/
-        }
-
-        private static Developer GetDeveloper(int id)
-        {
-            TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
-            return dataContext.Developers.Single(developer => developer.ID == id);
-            /*List<Developer> developers = new List<Developer>();
-
-            using (SqlConnection connection = GetConnection())
-            using (SqlCommand command = new SqlCommand("SELECT * FROM Developers WHERE ID = " + ID + " ORDER BY FamilyName, GivenNames", connection))
-            {
-                connection.Open();
-                try
-                {
-                    SqlDataReader reader = command.ExecuteReader();
-                    Developer developer = new Developer();
-                    developer.ID = (int)reader["ID"];
-                    developer.FamilyName = reader["FamilyName"].ToString();
-                    developer.GivenNames = reader["GivenNames"].ToString();
-                    developer.Email = reader["Email"].ToString();
-                    developer.ContactNumber = reader["ContactNumber"].ToString();
-                    developer.Active = (bool)reader["Active"];
-                    developer.Notes = reader["Notes"].ToString();
-                    reader.Close();
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
-            }
-
-            return developers;*/
-        }
-
-        private static void AddDeveloper(Developer developer)
-        {
-            TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
-            dataContext.Developers.InsertOnSubmit(developer);
-
-            try
-            {
-                dataContext.SubmitChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-            }
-            /*string query = "INSERT INTO Developers(FamilyName, GivenNames, Email, ContactNumber, Active, Notes) "
-                + "VALUES(@FamilyName, @GivenNames, @Email, @ContactNumber, @Active, @Notes)";
-            using (SqlConnection connection = GetConnection())
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                connection.Open();
-
-                command.Parameters.AddWithValue("@FamilyName", developer.FamilyName);
-                command.Parameters.AddWithValue("@GivenNames", developer.GivenNames);
-                command.Parameters.AddWithValue("@Email", developer.Email);
-                command.Parameters.AddWithValue("@ContactNumber", developer.ContactNumber);
-                command.Parameters.AddWithValue("@Active", developer.Active);
-                command.Parameters.AddWithValue("@Notes", developer.Notes);
-
-                try
-                {
-                    command.ExecuteNonQuery();
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
-            }*/
-        }
-
-        private static void UpdateDeveloper(Developer toUpdate)
-        {
-            TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
-            Developer d = dataContext.Developers.Single(developer => developer.ID == toUpdate.ID);
-            d.Active = toUpdate.Active;
-            d.ContactNumber = toUpdate.ContactNumber;
-            d.DeveloperIterationTasks = toUpdate.DeveloperIterationTasks;
-            d.Email = toUpdate.Email;
-            d.FamilyName = toUpdate.FamilyName;
-            d.GivenNames = toUpdate.GivenNames;
-            d.Notes = toUpdate.Notes;
-                        
-            try
-            {
-                dataContext.SubmitChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-            }
-            /*string query = "UPDATE Developers SET FamilyName = @FamilyName, "
-                + "GivenNames = @GivenNames, Email = @Email, ContactNumber = @ContactNumber, "
-                + "Active = @Active, Notes = @Notes "
-                + "WHERE ID = @ID";
-            using (SqlConnection connection = GetConnection())
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                connection.Open();
-
-                command.Parameters.AddWithValue("@FamilyName", toUpdate.FamilyName);
-                command.Parameters.AddWithValue("@GivenNames", toUpdate.GivenNames);
-                command.Parameters.AddWithValue("@Email", toUpdate.Email);
-                command.Parameters.AddWithValue("@ContactNumber", toUpdate.ContactNumber);
-                command.Parameters.AddWithValue("@Active", toUpdate.Active);
-                command.Parameters.AddWithValue("@Notes", toUpdate.Notes);
-                command.Parameters.AddWithValue("@ID", toUpdate.ID);
-
-                try
-                {
-                    command.ExecuteNonQuery();
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
-            }*/
-        }
-
-        private static void DeleteDeveloper(Developer toDelete)
-        {
-            TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
-            dataContext.Developers.DeleteOnSubmit(toDelete);
-
-            try
-            {
-                dataContext.SubmitChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-            }
-        }
 
         private static List<Client> GetClients()
         {

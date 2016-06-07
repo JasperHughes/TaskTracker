@@ -63,7 +63,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\AbstractDAO.cs" />
+    <Compile Include="DAO\DAOFactory.cs" />
     <Compile Include="DAO\DBInterface.cs" />
+    <Compile Include="DAO\DeveloperDAO.cs" />
+    <Compile Include="DAO\SQLServerDeveloperDAO.cs" />
     <Compile Include="DAO\Tables\Client.cs" />
     <Compile Include="DAO\Tables\Developer.cs" />
     <Compile Include="DAO\Tables\Iteration.cs" />

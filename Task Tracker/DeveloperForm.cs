@@ -35,7 +35,7 @@ namespace Task_Tracker
 
             try
             {
-                developers = (List<Developer>)DBInterface.SelectAll(DBInterface.Table.DEVELOPERS);
+                developers = GetDeveloperDAO().GetDevelopers();
                 if (developers.Count > 0)
                 {
                     int i = 0;
@@ -82,12 +82,12 @@ namespace Task_Tracker
             {
                 if (IDTextBox.Text == "")
                 {
-                    DBInterface.Add(developer);
+                    GetDeveloperDAO().AddDeveloper(developer);
                 }
                 else
                 {
                     developer.ID = Int32.Parse(IDTextBox.Text);
-                    DBInterface.Update(developer);
+                    GetDeveloperDAO().UpdateDeveloper(developer);
                 }
             }
             catch (Exception ex)
@@ -141,6 +141,11 @@ namespace Task_Tracker
             {
                 AddEditLabel.Text = "Editing Developer " + IDTextBox.Text;
             }
+        }
+
+        private DeveloperDAO GetDeveloperDAO()
+        {
+            return DAOFactory.getDeveloperDAO();
         }
     }
 }
