@@ -147,5 +147,12 @@ namespace Task_Tracker
         {
             return value.Length == 0 ? null : value;
         }
+
+        private void DeveloperForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Cancel the closing of the form and hide form instead
+            e.Cancel = true;
+            this.Hide();
+        }
     }
 }

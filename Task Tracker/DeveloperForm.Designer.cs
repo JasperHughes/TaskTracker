@@ -266,6 +266,7 @@
             this.Controls.Add(this.GivenNamesTextBox);
             this.Name = "DeveloperForm";
             this.Text = "DeveloperForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeveloperForm_FormClosing);
             this.Load += new System.EventHandler(this.DeveloperForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

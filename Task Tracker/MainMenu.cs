@@ -12,17 +12,18 @@ namespace Task_Tracker
 {
     public partial class MainMenu : Form
     {
+        DeveloperForm developerForm;
 
         public MainMenu()
         {
             InitializeComponent();
+            developerForm = new DeveloperForm();
         }
 
         private void DevelopersButton_Click(object sender, EventArgs e)
         {
-            // Load the Developer Form in Modal 
-            DeveloperForm developerForm = new DeveloperForm();
-            developerForm.ShowDialog();
+            // Load the Developer Form
+            developerForm.Show();
         }
     }
 }
