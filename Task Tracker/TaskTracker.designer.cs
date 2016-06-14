@@ -386,7 +386,7 @@ namespace Task_Tracker
 		
 		private string _Description;
 		
-		private System.Nullable<int> _Priority;
+		private string _Priority;
 		
 		private System.Nullable<System.DateTime> _CompletionDate;
 		
@@ -408,7 +408,7 @@ namespace Task_Tracker
     partial void OnTaskNameChanged();
     partial void OnDescriptionChanging(string value);
     partial void OnDescriptionChanged();
-    partial void OnPriorityChanging(System.Nullable<int> value);
+    partial void OnPriorityChanging(string value);
     partial void OnPriorityChanged();
     partial void OnCompletionDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCompletionDateChanged();
@@ -484,8 +484,8 @@ namespace Task_Tracker
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Priority", DbType="Int")]
-		public System.Nullable<int> Priority
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Priority", DbType="Varchar(10)", CanBeNull=false)]
+		public string Priority
 		{
 			get
 			{
@@ -1583,7 +1583,7 @@ namespace Task_Tracker
 		
 		private System.Nullable<System.DateTime> _CompletionDate;
 		
-		private System.Nullable<int> _Status;
+		private string _Status;
 		
 		private int _ClientID;
 		
@@ -1607,7 +1607,7 @@ namespace Task_Tracker
     partial void OnStartDateChanged();
     partial void OnCompletionDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCompletionDateChanged();
-    partial void OnStatusChanging(System.Nullable<int> value);
+    partial void OnStatusChanging(string value);
     partial void OnStatusChanged();
     partial void OnClientIDChanging(int value);
     partial void OnClientIDChanged();
@@ -1721,8 +1721,8 @@ namespace Task_Tracker
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int")]
-		public System.Nullable<int> Status
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Varchar(20)", CanBeNull=false)]
+		public string Status
 		{
 			get
 			{

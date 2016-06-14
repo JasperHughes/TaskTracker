@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Task_Tracker.DAO;
-using Task_Tracker.DAO.Tables;
 
 namespace Task_Tracker
 {
