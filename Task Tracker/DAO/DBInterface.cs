@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-using Task_Tracker.DAO.Tables;
+using System.Windows.Forms;
 using System.Data;
 using System.Data.Linq;
 
@@ -31,7 +31,7 @@ namespace Task_Tracker.DAO
         }
 
         //Select All of a specific table
-        public static object SelectAll(Table table)
+        public static object SelectAll(Table table) 
         {            
             switch (table)
             {
@@ -48,6 +48,7 @@ namespace Task_Tracker.DAO
                 case Table.TASKS:
                     return GetTasks();
                 default:
+                    MessageBox.Show("Invalid Table request. Please check your code!");
                     return null;
             }
         }
@@ -68,6 +69,7 @@ namespace Task_Tracker.DAO
                 case Table.TASKS:
                     return GetTask(id);
                 default:
+                    MessageBox.Show("Invalid Table request. Please check your code!");
                     return null;
             }
         }
@@ -79,25 +81,29 @@ namespace Task_Tracker.DAO
             {
                 AddClient((Client)o);
             }
-            if(o is Developer)
+            else if(o is Developer)
             {
                 AddDeveloper((Developer)o);
             }
-            if(o is Iteration)
+            else if(o is Iteration)
             {
                 AddIteration((Iteration)o);
             }
-            if(o is IterationTask)
+            else if(o is IterationTask)
             {
                 AddIterationTask((IterationTask)o);
             }
-            if(o is Project)
+            else if(o is Project)
             {
                 AddProject((Project)o);
             }
-            if(o is Task)
+            else if(o is Task)
             {
                 AddTask((Task)o);
+            }
+            else
+            {
+                MessageBox.Show("Invalid Object. Please check your code!");
             }
         }
 
@@ -108,26 +114,30 @@ namespace Task_Tracker.DAO
             {
                 UpdateClient((Client)o);
             }
-            if (o is Developer)
+            else if (o is Developer)
             {
                 Console.WriteLine("DEVELOPER UPDATING");
                 UpdateDeveloper((Developer)o);
             }
-            if (o is Iteration)
+            else if (o is Iteration)
             {
                 UpdateIteration((Iteration)o);
             }
-            if (o is IterationTask)
+            else if (o is IterationTask)
             {
                 UpdateIterationTask((IterationTask)o);
             }
-            if (o is Project)
+            else if (o is Project)
             {
                 UpdateProject((Project)o);
             }
-            if (o is Task)
+            else if (o is Task)
             {
                 UpdateTask((Task)o);
+            }
+            else
+            {
+                MessageBox.Show("Invalid Object. Please check your code!");
             }
         }
 
@@ -138,97 +148,43 @@ namespace Task_Tracker.DAO
             {
                 DeleteClient((Client)o);
             }
-            if (o is Developer)
+            else if (o is Developer)
             {
                 DeleteDeveloper((Developer)o);
             }
-            if (o is Iteration)
+            else if (o is Iteration)
             {
                 DeleteIteration((Iteration)o);
             }
-            if (o is IterationTask)
+            else if (o is IterationTask)
             {
                 DeleteIterationTask((IterationTask)o);
             }
-            if (o is Project)
+            else if (o is Project)
             {
                 DeleteProject((Project)o);
             }
-            if (o is Task)
+            else if (o is Task)
             {
                 DeleteTask((Task)o);
             }
+            else
+            {
+                MessageBox.Show("Invalid Object. Please check your code!");
+            }
         }
 
-        //all old ocde left in as backup, linq seems to be working fine though
+        //internal methods for retrieving data
         private static List<Developer> GetDevelopers()
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
-            return dataContext.Developers.ToList();
-            /*List<Developer> developers = new List<Developer>();
-
-            using (SqlConnection connection = GetConnection())
-            using (SqlCommand command = new SqlCommand("SELECT * FROM Developers ORDER BY FamilyName, GivenNames", connection))
-            {
-                connection.Open();
-                try
-                {
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        Developer developer = new Developer();
-                        developer.ID = (int)reader["ID"];
-                        developer.FamilyName = reader["FamilyName"].ToString();
-                        developer.GivenNames = reader["GivenNames"].ToString();
-                        developer.Email = reader["Email"].ToString();
-                        developer.ContactNumber = reader["ContactNumber"].ToString();
-                        developer.Active = (bool)reader["Active"];
-                        developer.Notes = reader["Notes"].ToString();
-
-                        developers.Add(developer);
-                    }
-                    reader.Close();
-
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
-            }
-
-            return developers;*/
+            return dataContext.Developers.ToList();            
         }
 
         private static Developer GetDeveloper(int id)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
-            return dataContext.Developers.Single(developer => developer.ID == id);
-            /*List<Developer> developers = new List<Developer>();
-
-            using (SqlConnection connection = GetConnection())
-            using (SqlCommand command = new SqlCommand("SELECT * FROM Developers WHERE ID = " + ID + " ORDER BY FamilyName, GivenNames", connection))
-            {
-                connection.Open();
-                try
-                {
-                    SqlDataReader reader = command.ExecuteReader();
-                    Developer developer = new Developer();
-                    developer.ID = (int)reader["ID"];
-                    developer.FamilyName = reader["FamilyName"].ToString();
-                    developer.GivenNames = reader["GivenNames"].ToString();
-                    developer.Email = reader["Email"].ToString();
-                    developer.ContactNumber = reader["ContactNumber"].ToString();
-                    developer.Active = (bool)reader["Active"];
-                    developer.Notes = reader["Notes"].ToString();
-                    reader.Close();
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
-            }
-
-            return developers;*/
+            return dataContext.Developers.Single(developer => developer.ID == id);           
         }
 
         private static void AddDeveloper(Developer developer)
@@ -568,6 +524,7 @@ namespace Task_Tracker.DAO
             return dataContext.IterationTasks.ToList();
         }
 
+        //iteration tasks have seperate methods due to complexity of queries (not simply getting everything or one from a single ID)
         public static IterationTask GetIterationTask(int iterationID, int taskID)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());

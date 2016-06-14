@@ -68,12 +68,6 @@
     <Compile Include="DAO\DBInterface.cs" />
     <Compile Include="DAO\DeveloperDAO.cs" />
     <Compile Include="DAO\SQLServerDeveloperDAO.cs" />
-    <Compile Include="DAO\Tables\Client.cs" />
-    <Compile Include="DAO\Tables\Developer.cs" />
-    <Compile Include="DAO\Tables\Iteration.cs" />
-    <Compile Include="DAO\Tables\IterationTask.cs" />
-    <Compile Include="DAO\Tables\Project.cs" />
-    <Compile Include="DAO\Tables\Task.cs" />
     <Compile Include="DeveloperForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +82,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskTracker.cs">
+      <DependentUpon>TaskTracker.dbml</DependentUpon>
+    </Compile>
     <Compile Include="TaskTracker.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
