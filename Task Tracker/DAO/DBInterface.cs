@@ -235,8 +235,7 @@ namespace Task_Tracker.DAO
             d.Email = toUpdate.Email;
             d.FamilyName = toUpdate.FamilyName;
             d.GivenNames = toUpdate.GivenNames;
-            d.Notes = toUpdate.Notes;
-                        
+            d.Notes = toUpdate.Notes;                        
             try
             {
                 dataContext.SubmitChanges();
@@ -318,8 +317,12 @@ namespace Task_Tracker.DAO
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             Client c = dataContext.Clients.Single(client => client.ID == toUpdate.ID);
-            //TODO change appropriate values in client oject
-
+            c.FamilyName = toUpdate.FamilyName;
+            c.GivenNames = toUpdate.GivenNames;
+            c.ABN = toUpdate.ABN;
+            c.ContactNumber = toUpdate.ContactNumber;
+            c.Email = toUpdate.Email;
+            c.Created = toUpdate.Created;
             try
             {
                 dataContext.SubmitChanges();
@@ -377,8 +380,9 @@ namespace Task_Tracker.DAO
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             Iteration i = dataContext.Iterations.Single(iteration => iteration.ID == toUpdate.ID);
-            //TODO update iteration with input value;
-
+            i.StartDate = toUpdate.StartDate;
+            i.EndDate = toUpdate.EndDate;
+            i.ProjectID = toUpdate.ProjectID;
             try
             {
                 dataContext.SubmitChanges();
@@ -434,7 +438,13 @@ namespace Task_Tracker.DAO
         private static void UpdateProject(Project toUpdate)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
-            Project p = dataContext.Projects.Single(project => project.ID == toUpdate.ID);
+            Project p = dataContext.Projects.Single(project => project.ID == toUpdate.ID);            
+            p.ProjectName = toUpdate.ProjectName;
+            p.StartDate = toUpdate.StartDate;
+            p.CompletionDate = toUpdate.CompletionDate;
+            p.Status = toUpdate.Status;
+            p.Description = toUpdate.Description;
+            p.ClientID = toUpdate.ClientID;
             try
             {
                 dataContext.SubmitChanges();
@@ -491,7 +501,11 @@ namespace Task_Tracker.DAO
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             Task t = dataContext.Tasks.Single(task => task.ID == toUpdate.ID);
-            //TODO task update code
+            t.TaskName = toUpdate.TaskName;
+            t.Description = toUpdate.Description;
+            t.Priority = toUpdate.Priority;
+            t.CompletionDate = toUpdate.CompletionDate;
+            t.ProjectID = toUpdate.ProjectID;
             try
             {
                 dataContext.SubmitChanges();
@@ -528,6 +542,7 @@ namespace Task_Tracker.DAO
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             return dataContext.IterationTasks.Single(iterationTask => iterationTask.IterationID == iterationID && iterationTask.TaskID == taskID);
+
         }
                 
         public static List<IterationTask> GetTasksForIteration(int id)
@@ -555,8 +570,8 @@ namespace Task_Tracker.DAO
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             IterationTask it = dataContext.IterationTasks.Single(iterationTask => iterationTask.IterationID == toUpdate.IterationID && iterationTask.TaskID == toUpdate.TaskID);
-            //TODO update variables
-
+            it.PlannedStartDate = toUpdate.PlannedStartDate;
+            it.PlannedCompletionDate = toUpdate.PlannedCompletionDate;
             try
             {
                 dataContext.SubmitChanges();
