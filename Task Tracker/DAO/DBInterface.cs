@@ -435,7 +435,6 @@ namespace Task_Tracker.DAO
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             Project p = dataContext.Projects.Single(project => project.ID == toUpdate.ID);
-            //TODO change prject variables
             try
             {
                 dataContext.SubmitChanges();
