@@ -22,7 +22,7 @@ namespace Task_Tracker
         {
             iterationListView.Items.Clear();
 
-            // Load all the developers into the List View
+            // Load all the iterations into the List View
             List<Iteration> iterations;
 
             try
@@ -47,7 +47,7 @@ namespace Task_Tracker
                 }
                 else
                 {
-                    // TODO If there are no developers what happens?
+                    // TODO If there are no iterations what happens?
                 }
             }
             catch (Exception ex)
@@ -61,20 +61,28 @@ namespace Task_Tracker
         {
             {
                 // TODO Add validation to check all values entered
-
+                List<Project> projects;
                 Iteration iteration = new Iteration();
-                iteration.ID = Int32.Parse(ReplaceEmptyStringWithNull(IDTextBox.Text));
-                iteration.ProjectID= Int32.Parse(ReplaceEmptyStringWithNull(projectIDTextBox.Text));
-         
-                
-                // TODO Fix these values
-           
-                /*   iteration.Project= ReplaceEmptyStringWithNull(projectTextBox.Text);
-                iteration.IterationTasks= ReplaceEmptyStringWithNull(iterationTasksTextBox.Text);
-                iteration.DeveloperIterationTasks = ReplaceEmptyStringWithNull(developerIterationTasksTextBox.Text);
-                iteration.StartDate = ReplaceEmptyStringWithNull(startDatePicker.Text);
-                iteration.EndDate = ReplaceEmptyStringWithNull(endDatePicker.Text);
-            */
+                try
+                {
+                    projects = (List<Project>)DBInterface.SelectAll(DBInterface.Table.PROJECTS);
+
+               
+                    iteration.ID = Int32.Parse(IDTextBox.Text);
+                    iteration.ProjectID = Int32.Parse(projectIDTextBox.Text);
+                    iteration.StartDate = startDatePicker.Value;
+                    iteration.EndDate = endDatePicker.Value;
+                    iteration.Project = projects.Find(project => project.ID == iteration.ProjectID);
+
+                }
+                catch(Exception ex){
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                }
+        
+            //    iteration.IterationTasks= ReplaceEmptyStringWithNull(iterationTasksTextBox.Text);
+            //    iteration.DeveloperIterationTasks = ReplaceEmptyStringWithNull(developerIterationTasksTextBox.Text);
+
+            
                 try
                 {
                     if (IDTextBox.Text == "")
@@ -127,10 +135,27 @@ namespace Task_Tracker
                 //UpdateAddEditLabel();
             }
         }
-        // Replace empty string with null, otherwise leave it as is.
-        private string ReplaceEmptyStringWithNull(string value)
+
+        private void AddIterationTask_Click(object sender, EventArgs e)
         {
-            return value.Length == 0 ? null : value;
+            IterationTasksList.Items.Add(iterationTasksTextBox.Text);
+            iterationTasksTextBox.Text = "";
+        }
+
+        private void RemoveIterationTask_Click(object sender, EventArgs e)
+        {
+            IterationTasksList.Items.Remove(IterationTasksList.SelectedItem);
+        }
+
+        private void AddDevIterationTask_Click(object sender, EventArgs e)
+        {
+            DevIterationTasksList.Items.Add(developerIterationTasksTextBox.Text);
+            developerIterationTasksTextBox.Text = "";
+        }
+
+        private void RemoveDevIterationTask_Click(object sender, EventArgs e)
+        {
+            DevIterationTasksList.Items.Remove(DevIterationTasksList.SelectedItem);
         }
     }
 }

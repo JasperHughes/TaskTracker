@@ -51,39 +51,45 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SaveButton = new System.Windows.Forms.Button();
+            this.IterationTasksList = new System.Windows.Forms.ListBox();
+            this.AddIterationTask = new System.Windows.Forms.Button();
+            this.RemoveIterationTask = new System.Windows.Forms.Button();
+            this.DevIterationTasksList = new System.Windows.Forms.ListBox();
+            this.RemoveDevIterationTask = new System.Windows.Forms.Button();
+            this.AddDevIterationTask = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // IDTextBox
             // 
-            this.IDTextBox.Location = new System.Drawing.Point(164, 55);
+            this.IDTextBox.Location = new System.Drawing.Point(142, 55);
             this.IDTextBox.Name = "IDTextBox";
             this.IDTextBox.Size = new System.Drawing.Size(100, 20);
             this.IDTextBox.TabIndex = 0;
             // 
             // projectIDTextBox
             // 
-            this.projectIDTextBox.Location = new System.Drawing.Point(164, 81);
+            this.projectIDTextBox.Location = new System.Drawing.Point(142, 81);
             this.projectIDTextBox.Name = "projectIDTextBox";
             this.projectIDTextBox.Size = new System.Drawing.Size(100, 20);
             this.projectIDTextBox.TabIndex = 1;
             // 
             // projectTextBox
             // 
-            this.projectTextBox.Location = new System.Drawing.Point(164, 107);
+            this.projectTextBox.Location = new System.Drawing.Point(142, 107);
             this.projectTextBox.Name = "projectTextBox";
             this.projectTextBox.Size = new System.Drawing.Size(100, 20);
             this.projectTextBox.TabIndex = 2;
             // 
             // iterationTasksTextBox
             // 
-            this.iterationTasksTextBox.Location = new System.Drawing.Point(164, 133);
+            this.iterationTasksTextBox.Location = new System.Drawing.Point(142, 133);
             this.iterationTasksTextBox.Name = "iterationTasksTextBox";
             this.iterationTasksTextBox.Size = new System.Drawing.Size(100, 20);
             this.iterationTasksTextBox.TabIndex = 3;
             // 
             // developerIterationTasksTextBox
             // 
-            this.developerIterationTasksTextBox.Location = new System.Drawing.Point(164, 159);
+            this.developerIterationTasksTextBox.Location = new System.Drawing.Point(142, 209);
             this.developerIterationTasksTextBox.Name = "developerIterationTasksTextBox";
             this.developerIterationTasksTextBox.Size = new System.Drawing.Size(100, 20);
             this.developerIterationTasksTextBox.TabIndex = 4;
@@ -91,7 +97,7 @@
             // startDatePicker
             // 
             this.startDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.startDatePicker.Location = new System.Drawing.Point(164, 185);
+            this.startDatePicker.Location = new System.Drawing.Point(142, 284);
             this.startDatePicker.Name = "startDatePicker";
             this.startDatePicker.Size = new System.Drawing.Size(99, 20);
             this.startDatePicker.TabIndex = 5;
@@ -99,7 +105,7 @@
             // endDatePicker
             // 
             this.endDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.endDatePicker.Location = new System.Drawing.Point(164, 211);
+            this.endDatePicker.Location = new System.Drawing.Point(142, 310);
             this.endDatePicker.Name = "endDatePicker";
             this.endDatePicker.Size = new System.Drawing.Size(99, 20);
             this.endDatePicker.TabIndex = 6;
@@ -107,7 +113,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 58);
+            this.label1.Location = new System.Drawing.Point(7, 58);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 7;
@@ -116,7 +122,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 84);
+            this.label2.Location = new System.Drawing.Point(7, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 8;
@@ -125,7 +131,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 110);
+            this.label3.Location = new System.Drawing.Point(7, 110);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 9;
@@ -134,7 +140,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 136);
+            this.label4.Location = new System.Drawing.Point(7, 136);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 13);
             this.label4.TabIndex = 10;
@@ -143,7 +149,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 162);
+            this.label5.Location = new System.Drawing.Point(7, 212);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(129, 13);
             this.label5.TabIndex = 11;
@@ -152,7 +158,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(29, 188);
+            this.label6.Location = new System.Drawing.Point(7, 287);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 12;
@@ -161,7 +167,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(29, 214);
+            this.label7.Location = new System.Drawing.Point(7, 313);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 13);
             this.label7.TabIndex = 13;
@@ -177,7 +183,7 @@
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7});
-            this.iterationListView.Location = new System.Drawing.Point(270, 55);
+            this.iterationListView.Location = new System.Drawing.Point(373, 55);
             this.iterationListView.Name = "iterationListView";
             this.iterationListView.Size = new System.Drawing.Size(470, 275);
             this.iterationListView.TabIndex = 14;
@@ -220,7 +226,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(164, 263);
+            this.SaveButton.Location = new System.Drawing.Point(142, 341);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(99, 23);
             this.SaveButton.TabIndex = 15;
@@ -228,11 +234,73 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // IterationTasksList
+            // 
+            this.IterationTasksList.FormattingEnabled = true;
+            this.IterationTasksList.Location = new System.Drawing.Point(142, 160);
+            this.IterationTasksList.Name = "IterationTasksList";
+            this.IterationTasksList.Size = new System.Drawing.Size(99, 43);
+            this.IterationTasksList.TabIndex = 16;
+            // 
+            // AddIterationTask
+            // 
+            this.AddIterationTask.Location = new System.Drawing.Point(249, 133);
+            this.AddIterationTask.Name = "AddIterationTask";
+            this.AddIterationTask.Size = new System.Drawing.Size(26, 19);
+            this.AddIterationTask.TabIndex = 17;
+            this.AddIterationTask.Text = "+";
+            this.AddIterationTask.UseVisualStyleBackColor = true;
+            this.AddIterationTask.Click += new System.EventHandler(this.AddIterationTask_Click);
+            // 
+            // RemoveIterationTask
+            // 
+            this.RemoveIterationTask.Location = new System.Drawing.Point(249, 160);
+            this.RemoveIterationTask.Name = "RemoveIterationTask";
+            this.RemoveIterationTask.Size = new System.Drawing.Size(26, 19);
+            this.RemoveIterationTask.TabIndex = 18;
+            this.RemoveIterationTask.Text = "-";
+            this.RemoveIterationTask.UseVisualStyleBackColor = true;
+            this.RemoveIterationTask.Click += new System.EventHandler(this.RemoveIterationTask_Click);
+            // 
+            // DevIterationTasksList
+            // 
+            this.DevIterationTasksList.FormattingEnabled = true;
+            this.DevIterationTasksList.Location = new System.Drawing.Point(142, 235);
+            this.DevIterationTasksList.Name = "DevIterationTasksList";
+            this.DevIterationTasksList.Size = new System.Drawing.Size(99, 43);
+            this.DevIterationTasksList.TabIndex = 19;
+            // 
+            // RemoveDevIterationTask
+            // 
+            this.RemoveDevIterationTask.Location = new System.Drawing.Point(249, 235);
+            this.RemoveDevIterationTask.Name = "RemoveDevIterationTask";
+            this.RemoveDevIterationTask.Size = new System.Drawing.Size(26, 19);
+            this.RemoveDevIterationTask.TabIndex = 21;
+            this.RemoveDevIterationTask.Text = "-";
+            this.RemoveDevIterationTask.UseVisualStyleBackColor = true;
+            this.RemoveDevIterationTask.Click += new System.EventHandler(this.RemoveDevIterationTask_Click);
+            // 
+            // AddDevIterationTask
+            // 
+            this.AddDevIterationTask.Location = new System.Drawing.Point(249, 210);
+            this.AddDevIterationTask.Name = "AddDevIterationTask";
+            this.AddDevIterationTask.Size = new System.Drawing.Size(26, 19);
+            this.AddDevIterationTask.TabIndex = 20;
+            this.AddDevIterationTask.Text = "+";
+            this.AddDevIterationTask.UseVisualStyleBackColor = true;
+            this.AddDevIterationTask.Click += new System.EventHandler(this.AddDevIterationTask_Click);
+            // 
             // IterationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(756, 397);
+            this.ClientSize = new System.Drawing.Size(855, 399);
+            this.Controls.Add(this.RemoveDevIterationTask);
+            this.Controls.Add(this.AddDevIterationTask);
+            this.Controls.Add(this.DevIterationTasksList);
+            this.Controls.Add(this.RemoveIterationTask);
+            this.Controls.Add(this.AddIterationTask);
+            this.Controls.Add(this.IterationTasksList);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.iterationListView);
             this.Controls.Add(this.label7);
@@ -281,5 +349,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.ListBox IterationTasksList;
+        private System.Windows.Forms.Button AddIterationTask;
+        private System.Windows.Forms.Button RemoveIterationTask;
+        private System.Windows.Forms.ListBox DevIterationTasksList;
+        private System.Windows.Forms.Button RemoveDevIterationTask;
+        private System.Windows.Forms.Button AddDevIterationTask;
     }
 }
