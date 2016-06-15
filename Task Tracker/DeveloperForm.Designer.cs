@@ -51,6 +51,7 @@
             this.NotesTextBox = new System.Windows.Forms.TextBox();
             this.IDTextBox = new System.Windows.Forms.TextBox();
             this.AddEditLabel = new System.Windows.Forms.Label();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // GivenNamesTextBox
@@ -146,7 +147,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(289, 262);
+            this.SaveButton.Location = new System.Drawing.Point(206, 262);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 11;
@@ -243,11 +244,23 @@
             this.AddEditLabel.TabIndex = 16;
             this.AddEditLabel.Text = "label7";
             // 
+            // CancelButton
+            // 
+            this.CancelButton.Location = new System.Drawing.Point(289, 262);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(75, 23);
+            this.CancelButton.TabIndex = 17;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseMnemonic = false;
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
             // DeveloperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1035, 358);
+            this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddEditLabel);
             this.Controls.Add(this.IDTextBox);
             this.Controls.Add(this.NotesTextBox);
@@ -298,5 +311,6 @@
         private System.Windows.Forms.TextBox NotesTextBox;
         private System.Windows.Forms.TextBox IDTextBox;
         private System.Windows.Forms.Label AddEditLabel;
+        private System.Windows.Forms.Button CancelButton;
     }
 }

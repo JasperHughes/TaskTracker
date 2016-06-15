@@ -94,6 +94,15 @@ namespace Task_Tracker
             }
 
             // Reset edit fields
+            ResetFields();
+            LoadDevelopers();
+            UpdateAddEditLabel();
+
+        }
+
+        private void ResetFields()
+        {
+            // Reset Edit fields
             FamilyNameTextBox.Text = "";
             GivenNamesTextBox.Text = "";
             EmailTextBox.Text = "";
@@ -101,10 +110,6 @@ namespace Task_Tracker
             ActiveCheckbox.Checked = true;
             NotesTextBox.Text = "";
             IDTextBox.Text = "";
-
-            LoadDevelopers();
-            UpdateAddEditLabel();
-
         }
 
         private void DevelopersListView_SelectedIndexChanged(object sender, EventArgs e)
@@ -152,6 +157,13 @@ namespace Task_Tracker
             // Cancel the closing of the form and hide form instead
             e.Cancel = true;
             this.Hide();
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            // Cancel the Adding or Editing of a developer
+            ResetFields();
+            UpdateAddEditLabel();
         }
     }
 }
