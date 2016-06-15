@@ -13,15 +13,25 @@ namespace Task_Tracker
 {
     public partial class DeveloperForm : Form
     {
+        private TextBox[] requiredFields;
+
         public DeveloperForm()
         {
             InitializeComponent();
+
+            requiredFields = new TextBox[] {
+                this.FamilyNameTextBox,
+                this.GivenNamesTextBox,
+                this.ContactNumberTextBox,
+                this.EmailTextBox
+            };
         }
 
         private void DeveloperForm_Load(object sender, EventArgs e)
         {
             LoadDevelopers();
             UpdateAddEditLabel();
+            CheckEnableSaveCancelButtons();
         }
 
 
@@ -164,6 +174,40 @@ namespace Task_Tracker
             // Cancel the Adding or Editing of a developer
             ResetFields();
             UpdateAddEditLabel();
+        }
+
+        private void Input_TextChanged(object sender, EventArgs e)
+        {
+            // If any of the text boxes are changed check if the Save button is enabled
+            CheckEnableSaveCancelButtons();
+        }
+
+        private void CheckEnableSaveCancelButtons()
+        {
+            // If there is a value in all required fields then enable Save button
+            // If there is a value in any required fields or in edit mode then enable Cancel button
+            bool enableSave = true;
+
+            bool enableCancel = false;
+            
+            // If there is an ID (ie. editing a user) then always show Cancel
+            if (!string.IsNullOrWhiteSpace(this.IDTextBox.Text))
+            {
+                enableCancel = true;
+            }
+            foreach (TextBox textBox in requiredFields) {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    enableSave = false;
+                }
+                else
+                {
+                    enableCancel = true;
+                }
+            }
+
+            this.SaveButton.Enabled = enableSave;
+            this.CancelButton.Enabled = enableCancel;
         }
     }
 }

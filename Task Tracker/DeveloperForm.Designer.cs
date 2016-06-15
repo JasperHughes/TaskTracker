@@ -61,6 +61,7 @@
             this.GivenNamesTextBox.Name = "GivenNamesTextBox";
             this.GivenNamesTextBox.Size = new System.Drawing.Size(235, 20);
             this.GivenNamesTextBox.TabIndex = 1;
+            this.GivenNamesTextBox.TextChanged += new System.EventHandler(this.Input_TextChanged);
             // 
             // FamilyNameTextBox
             // 
@@ -69,6 +70,7 @@
             this.FamilyNameTextBox.Name = "FamilyNameTextBox";
             this.FamilyNameTextBox.Size = new System.Drawing.Size(235, 20);
             this.FamilyNameTextBox.TabIndex = 2;
+            this.FamilyNameTextBox.TextChanged += new System.EventHandler(this.Input_TextChanged);
             // 
             // EmailTextBox
             // 
@@ -77,6 +79,7 @@
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(235, 20);
             this.EmailTextBox.TabIndex = 3;
+            this.EmailTextBox.TextChanged += new System.EventHandler(this.Input_TextChanged);
             // 
             // ContactNumberTextBox
             // 
@@ -85,6 +88,7 @@
             this.ContactNumberTextBox.Name = "ContactNumberTextBox";
             this.ContactNumberTextBox.Size = new System.Drawing.Size(235, 20);
             this.ContactNumberTextBox.TabIndex = 4;
+            this.ContactNumberTextBox.TextChanged += new System.EventHandler(this.Input_TextChanged);
             // 
             // label1
             // 
@@ -236,6 +240,7 @@
             this.IDTextBox.Size = new System.Drawing.Size(100, 20);
             this.IDTextBox.TabIndex = 15;
             this.IDTextBox.Visible = false;
+            this.IDTextBox.TextChanged += new System.EventHandler(this.Input_TextChanged);
             // 
             // AddEditLabel
             // 
