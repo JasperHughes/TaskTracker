@@ -25,5 +25,13 @@ namespace Task_Tracker
             // Load the Developer Form
             developerForm.Show();
         }
+
+        private void graphtest_Click(object sender, EventArgs e)
+        {
+            //testing graph
+            IterationGraph ig = new IterationGraph();
+            ig.iterationID = 1;
+            ig.Show();
+        }
     }
 }

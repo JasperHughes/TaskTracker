@@ -548,7 +548,7 @@ namespace Task_Tracker.DAO
         public static List<IterationTask> GetTasksForIteration(int id)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
-            return (from it in dataContext.IterationTasks where it.IterationID == id select it).ToList();
+            return (from t in dataContext.IterationTasks where t.IterationID == id orderby t.PlannedStartDate ascending select t).ToList();
         }
 
         private static void AddIterationTask(IterationTask iterationTask)
