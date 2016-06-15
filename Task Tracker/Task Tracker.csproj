@@ -74,12 +74,6 @@
     <Compile Include="DeveloperForm.Designer.cs">
       <DependentUpon>DeveloperForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="IterationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="IterationForm.Designer.cs">
-      <DependentUpon>IterationForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,9 +98,6 @@
     <EmbeddedResource Include="DeveloperForm.resx">
       <DependentUpon>DeveloperForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IterationForm.resx">
-      <DependentUpon>IterationForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,7 +110,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ClassDiagram1.cd" />
     <None Include="TaskTracker.dbml.layout">
       <DependentUpon>TaskTracker.dbml</DependentUpon>
     </None>
