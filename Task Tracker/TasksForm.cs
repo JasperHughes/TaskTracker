@@ -14,20 +14,6 @@ namespace Task_Tracker
 {
     public partial class TasksForm : Form
     {
-        public string taskName { get; set; }
-        public string Description { get; set; }
-        public int Priority { get; set; }
-        public DateTime date { get; set; }
-        public int ProjectID { get; set; }
-        public TasksForm(string name, string description, DateTime compDate, int priority, int project)
-        {
-            InitializeComponent();
-            this.taskName = name;
-            this.Description = description;
-            this.date = compDate;
-            this.Priority = priority;
-            this.ProjectID = project;
-        }
         public TasksForm()
         {
             InitializeComponent();
@@ -45,12 +31,15 @@ namespace Task_Tracker
         private void TaskFormSaveButton_Click(object sender, EventArgs e)
 
         {
-            int intPriority = Convert.ToInt32(PriorityTextBox.Text);
             int intProjectID = Convert.ToInt32(ProjectIDTextBox.Text);
             DateTime sDate = Convert.ToDateTime(CompletetionDateTextBox.Text);
 
-            var nDate = DateTime.ParseExact(CompletetionDateTextBox.Text, "mm/dd/yyyy hh: mm:ss", null);
-            TasksForm task = new TasksForm(this.TaskNameTextBox.Text, this.DescriptionTextBox.Text, sDate, intPriority, intProjectID);
+            Task task = new Task();
+            task.TaskName = TaskNameTextBox.Text;
+            task.Description = DescriptionTextBox.Text;
+            task.CompletionDate = sDate;
+            task.Priority = PriorityTextBox.Text;
+            task.ProjectID = intProjectID;
             DBInterface.Add(task);
         }
     }
