@@ -54,7 +54,6 @@ namespace Task_Tracker.DAO
             Developer d = dataContext.Developers.Single(developer => developer.ID == toUpdate.ID);
             d.Active = toUpdate.Active;
             d.ContactNumber = toUpdate.ContactNumber;
-            d.DeveloperIterationTasks = toUpdate.DeveloperIterationTasks;
             d.Email = toUpdate.Email;
             d.FamilyName = toUpdate.FamilyName;
             d.GivenNames = toUpdate.GivenNames;
