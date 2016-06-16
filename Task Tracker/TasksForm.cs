@@ -23,49 +23,56 @@ namespace Task_Tracker
 
         private void TaksForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'taskTrackerDataSet.Projects' table. You can move, or remove it, as needed.
+            this.projectsTableAdapter.Fill(this.taskTrackerDataSet.Projects);
+            // TODO: This line of code loads data into the 'taskTrackerDataSet.Tasks' table. You can move, or remove it, as needed.
+            this.tasksTableAdapter.Fill(this.taskTrackerDataSet.Tasks);
+            // TODO: This line of code loads data into the 'taskTrackerDataSet.Projects' table. You can move, or remove it, as needed.
+            this.projectsTableAdapter.Fill(this.taskTrackerDataSet.Projects);
             // TODO: This line of code loads data into the 'taskTrackerDataSet.Tasks' table. You can move, or remove it, as needed.
             this.tasksTableAdapter.Fill(this.taskTrackerDataSet.Tasks);
 
         }
 
         private void TaskFormSaveButton_Click(object sender, EventArgs e)
-
         {
-            int intProjectID = Convert.ToInt32(ProjectIDTextBox.Text);
-            DateTime sDate = Convert.ToDateTime(CompletetionDateTextBox.Text);
-
-
-
-            Task task = new Task();
-            task.TaskName = TaskNameTextBox.Text;
-            task.Description = DescriptionTextBox.Text;
-            task.CompletionDate = sDate;
-            task.Priority = PriorityTextBox.Text;
-            task.ProjectID = intProjectID;
-            DBInterface.Add(task);
-            this.tasksTableAdapter.Fill(this.taskTrackerDataSet.Tasks);
-        }
-
-        private void ProjectIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-      (e.KeyChar != '.'))
+            bool priority = false;
+            bool project = false;
+            if(PriorityTextBox.Text.Equals("Select a Priority"))
             {
-                e.Handled = true;
+                MessageBox.Show("Please select a priority");
+                priority = false;
+            }
+            else
+            {
+                priority = true;
+            }
+            if(ProjectIDTextBox.Text.Equals("Select a Project"))
+            {
+                MessageBox.Show("Please select a project");
+                project = false;
+            }
+            else
+            {
+                project = true;
             }
 
-            
+            if (project && priority)
+            {
+                Task task = new Task();
+                task.TaskName = TaskNameTextBox.Text;
+                task.Description = DescriptionTextBox.Text;
+                task.CompletionDate = CompletetionDateTextBox.Value;
+                task.Priority = PriorityTextBox.Text;
+                task.ProjectID = (int)ProjectIDTextBox.SelectedValue;
+                DBInterface.Add(task);
+                this.tasksTableAdapter.Fill(this.taskTrackerDataSet.Tasks);
+            }
         }
 
-        private void PriorityTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-      (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
-
-    
+            Task selected = DBInterface.GetTask((int)dataGridView1.CurrentRow.Cells[0].Value);
         }
     }
 }

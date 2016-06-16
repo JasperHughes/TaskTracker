@@ -31,156 +31,61 @@
             this.components = new System.ComponentModel.Container();
             this.label3 = new System.Windows.Forms.Label();
             this.TaskNameTextBox = new System.Windows.Forms.TextBox();
-            this.PriorityTextBox = new System.Windows.Forms.TextBox();
-            this.CompletetionDateTextBox = new System.Windows.Forms.TextBox();
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
-            this.ProjectIDTextBox = new System.Windows.Forms.TextBox();
+            this.TaskFormSaveButton = new System.Windows.Forms.Button();
+            this.TaskNameLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.CompletetionDateTextBox = new System.Windows.Forms.DateTimePicker();
+            this.ProjectIDTextBox = new System.Windows.Forms.ComboBox();
+            this.PriorityTextBox = new System.Windows.Forms.ComboBox();
+            this.taskTrackerDataSet = new Task_Tracker.TaskTrackerDataSet();
+            this.tasksBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tasksTableAdapter = new Task_Tracker.TaskTrackerDataSetTableAdapters.TasksTableAdapter();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.taskNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priorityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.completionDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projectIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tasksBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.taskTrackerDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.taskTrackerDataSet = new Task_Tracker.TaskTrackerDataSet();
-            this.tasksTableAdapter = new Task_Tracker.TaskTrackerDataSetTableAdapters.TasksTableAdapter();
-            this.TaskFormSaveButton = new System.Windows.Forms.Button();
-            this.TaskNameLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.projectsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.projectsTableAdapter = new Task_Tracker.TaskTrackerDataSetTableAdapters.ProjectsTableAdapter();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 98);
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(3, 42);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.Size = new System.Drawing.Size(104, 42);
             this.label3.TabIndex = 2;
             this.label3.Text = "Description";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TaskNameTextBox
             // 
-            this.TaskNameTextBox.Location = new System.Drawing.Point(86, 35);
+            this.TaskNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TaskNameTextBox.Location = new System.Drawing.Point(115, 11);
             this.TaskNameTextBox.Name = "TaskNameTextBox";
             this.TaskNameTextBox.Size = new System.Drawing.Size(100, 20);
             this.TaskNameTextBox.TabIndex = 5;
             // 
-            // PriorityTextBox
-            // 
-            this.PriorityTextBox.Location = new System.Drawing.Point(92, 132);
-            this.PriorityTextBox.Name = "PriorityTextBox";
-            this.PriorityTextBox.Size = new System.Drawing.Size(100, 20);
-            this.PriorityTextBox.TabIndex = 6;
-            this.PriorityTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PriorityTextBox_KeyPress);
-            // 
-            // CompletetionDateTextBox
-            // 
-            this.CompletetionDateTextBox.Location = new System.Drawing.Point(92, 180);
-            this.CompletetionDateTextBox.Name = "CompletetionDateTextBox";
-            this.CompletetionDateTextBox.Size = new System.Drawing.Size(100, 20);
-            this.CompletetionDateTextBox.TabIndex = 7;
-            // 
             // DescriptionTextBox
             // 
-            this.DescriptionTextBox.Location = new System.Drawing.Point(92, 91);
+            this.DescriptionTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DescriptionTextBox.Location = new System.Drawing.Point(115, 53);
             this.DescriptionTextBox.Name = "DescriptionTextBox";
             this.DescriptionTextBox.Size = new System.Drawing.Size(100, 20);
             this.DescriptionTextBox.TabIndex = 8;
-            // 
-            // ProjectIDTextBox
-            // 
-            this.ProjectIDTextBox.Location = new System.Drawing.Point(86, 243);
-            this.ProjectIDTextBox.Name = "ProjectIDTextBox";
-            this.ProjectIDTextBox.Size = new System.Drawing.Size(100, 20);
-            this.ProjectIDTextBox.TabIndex = 9;
-            this.ProjectIDTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ProjectIDTextBox_KeyPress);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn,
-            this.taskNameDataGridViewTextBoxColumn,
-            this.descriptionDataGridViewTextBoxColumn,
-            this.priorityDataGridViewTextBoxColumn,
-            this.completionDateDataGridViewTextBoxColumn,
-            this.projectIDDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.tasksBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(376, 67);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(425, 196);
-            this.dataGridView1.TabIndex = 10;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 25;
-            // 
-            // taskNameDataGridViewTextBoxColumn
-            // 
-            this.taskNameDataGridViewTextBoxColumn.DataPropertyName = "TaskName";
-            this.taskNameDataGridViewTextBoxColumn.HeaderText = "TaskName";
-            this.taskNameDataGridViewTextBoxColumn.Name = "taskNameDataGridViewTextBoxColumn";
-            this.taskNameDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            // 
-            // priorityDataGridViewTextBoxColumn
-            // 
-            this.priorityDataGridViewTextBoxColumn.DataPropertyName = "Priority";
-            this.priorityDataGridViewTextBoxColumn.HeaderText = "Priority";
-            this.priorityDataGridViewTextBoxColumn.Name = "priorityDataGridViewTextBoxColumn";
-            this.priorityDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // completionDateDataGridViewTextBoxColumn
-            // 
-            this.completionDateDataGridViewTextBoxColumn.DataPropertyName = "CompletionDate";
-            this.completionDateDataGridViewTextBoxColumn.HeaderText = "CompletionDate";
-            this.completionDateDataGridViewTextBoxColumn.Name = "completionDateDataGridViewTextBoxColumn";
-            this.completionDateDataGridViewTextBoxColumn.Width = 65;
-            // 
-            // projectIDDataGridViewTextBoxColumn
-            // 
-            this.projectIDDataGridViewTextBoxColumn.DataPropertyName = "ProjectID";
-            this.projectIDDataGridViewTextBoxColumn.HeaderText = "ProjectID";
-            this.projectIDDataGridViewTextBoxColumn.Name = "projectIDDataGridViewTextBoxColumn";
-            this.projectIDDataGridViewTextBoxColumn.Width = 65;
-            // 
-            // tasksBindingSource
-            // 
-            this.tasksBindingSource.DataMember = "Tasks";
-            this.tasksBindingSource.DataSource = this.taskTrackerDataSetBindingSource;
-            // 
-            // taskTrackerDataSetBindingSource
-            // 
-            this.taskTrackerDataSetBindingSource.DataSource = this.taskTrackerDataSet;
-            this.taskTrackerDataSetBindingSource.Position = 0;
-            // 
-            // taskTrackerDataSet
-            // 
-            this.taskTrackerDataSet.DataSetName = "TaskTrackerDataSet";
-            this.taskTrackerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tasksTableAdapter
-            // 
-            this.tasksTableAdapter.ClearBeforeFill = true;
             // 
             // TaskFormSaveButton
             // 
@@ -195,78 +100,224 @@
             // TaskNameLabel
             // 
             this.TaskNameLabel.AutoSize = true;
-            this.TaskNameLabel.Location = new System.Drawing.Point(13, 41);
+            this.TaskNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TaskNameLabel.Location = new System.Drawing.Point(3, 0);
             this.TaskNameLabel.Name = "TaskNameLabel";
-            this.TaskNameLabel.Size = new System.Drawing.Size(62, 13);
+            this.TaskNameLabel.Size = new System.Drawing.Size(104, 42);
             this.TaskNameLabel.TabIndex = 12;
-            this.TaskNameLabel.Text = "Task Nmae";
+            this.TaskNameLabel.Text = "Task Name";
+            this.TaskNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 139);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 84);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(104, 42);
             this.label1.TabIndex = 13;
             this.label1.Text = "Pirority";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 180);
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(3, 126);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 13);
+            this.label2.Size = new System.Drawing.Size(104, 42);
             this.label2.TabIndex = 14;
-            this.label2.Text = "completedate";
+            this.label2.Text = "Completed Date";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 243);
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(3, 168);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 13);
+            this.label4.Size = new System.Drawing.Size(104, 43);
             this.label4.TabIndex = 15;
             this.label4.Text = "Project ID";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.CompletetionDateTextBox, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.TaskNameLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.TaskNameTextBox, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.DescriptionTextBox, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.ProjectIDTextBox, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.PriorityTextBox, 1, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(220, 211);
+            this.tableLayoutPanel1.TabIndex = 16;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn,
+            this.taskNameDataGridViewTextBoxColumn,
+            this.descriptionDataGridViewTextBoxColumn,
+            this.priorityDataGridViewTextBoxColumn,
+            this.completionDateDataGridViewTextBoxColumn,
+            this.projectIDDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.tasksBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(238, 12);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(594, 211);
+            this.dataGridView1.TabIndex = 17;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // CompletetionDateTextBox
+            // 
+            this.CompletetionDateTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CompletetionDateTextBox.Location = new System.Drawing.Point(113, 137);
+            this.CompletetionDateTextBox.Name = "CompletetionDateTextBox";
+            this.CompletetionDateTextBox.Size = new System.Drawing.Size(104, 20);
+            this.CompletetionDateTextBox.TabIndex = 18;
+            // 
+            // ProjectIDTextBox
+            // 
+            this.ProjectIDTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ProjectIDTextBox.DataSource = this.projectsBindingSource;
+            this.ProjectIDTextBox.DisplayMember = "ProjectName";
+            this.ProjectIDTextBox.DropDownWidth = 250;
+            this.ProjectIDTextBox.FormattingEnabled = true;
+            this.ProjectIDTextBox.Location = new System.Drawing.Point(113, 179);
+            this.ProjectIDTextBox.Name = "ProjectIDTextBox";
+            this.ProjectIDTextBox.Size = new System.Drawing.Size(104, 21);
+            this.ProjectIDTextBox.TabIndex = 19;
+            this.ProjectIDTextBox.ValueMember = "ID";
+            // 
+            // PriorityTextBox
+            // 
+            this.PriorityTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.PriorityTextBox.FormattingEnabled = true;
+            this.PriorityTextBox.Items.AddRange(new object[] {
+            "Low",
+            "Medium",
+            "High"});
+            this.PriorityTextBox.Location = new System.Drawing.Point(113, 94);
+            this.PriorityTextBox.Name = "PriorityTextBox";
+            this.PriorityTextBox.Size = new System.Drawing.Size(104, 21);
+            this.PriorityTextBox.TabIndex = 20;
+            this.PriorityTextBox.Text = "Select a Priority";
+            // 
+            // taskTrackerDataSet
+            // 
+            this.taskTrackerDataSet.DataSetName = "TaskTrackerDataSet";
+            this.taskTrackerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tasksBindingSource
+            // 
+            this.tasksBindingSource.DataMember = "Tasks";
+            this.tasksBindingSource.DataSource = this.taskTrackerDataSet;
+            // 
+            // tasksTableAdapter
+            // 
+            this.tasksTableAdapter.ClearBeforeFill = true;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // taskNameDataGridViewTextBoxColumn
+            // 
+            this.taskNameDataGridViewTextBoxColumn.DataPropertyName = "TaskName";
+            this.taskNameDataGridViewTextBoxColumn.HeaderText = "TaskName";
+            this.taskNameDataGridViewTextBoxColumn.Name = "taskNameDataGridViewTextBoxColumn";
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            // 
+            // priorityDataGridViewTextBoxColumn
+            // 
+            this.priorityDataGridViewTextBoxColumn.DataPropertyName = "Priority";
+            this.priorityDataGridViewTextBoxColumn.HeaderText = "Priority";
+            this.priorityDataGridViewTextBoxColumn.Name = "priorityDataGridViewTextBoxColumn";
+            // 
+            // completionDateDataGridViewTextBoxColumn
+            // 
+            this.completionDateDataGridViewTextBoxColumn.DataPropertyName = "CompletionDate";
+            this.completionDateDataGridViewTextBoxColumn.HeaderText = "CompletionDate";
+            this.completionDateDataGridViewTextBoxColumn.Name = "completionDateDataGridViewTextBoxColumn";
+            // 
+            // projectIDDataGridViewTextBoxColumn
+            // 
+            this.projectIDDataGridViewTextBoxColumn.DataPropertyName = "ProjectID";
+            this.projectIDDataGridViewTextBoxColumn.HeaderText = "ProjectID";
+            this.projectIDDataGridViewTextBoxColumn.Name = "projectIDDataGridViewTextBoxColumn";
+            // 
+            // projectsBindingSource
+            // 
+            this.projectsBindingSource.DataMember = "Projects";
+            this.projectsBindingSource.DataSource = this.taskTrackerDataSet;
+            // 
+            // projectsTableAdapter
+            // 
+            this.projectsTableAdapter.ClearBeforeFill = true;
             // 
             // TasksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 436);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.TaskNameLabel);
-            this.Controls.Add(this.TaskFormSaveButton);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.ProjectIDTextBox);
-            this.Controls.Add(this.DescriptionTextBox);
-            this.Controls.Add(this.CompletetionDateTextBox);
-            this.Controls.Add(this.PriorityTextBox);
-            this.Controls.Add(this.TaskNameTextBox);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.TaskFormSaveButton);
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "TasksForm";
             this.Text = "TasksForm";
             this.Load += new System.EventHandler(this.TaksForm_Load);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectsBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TaskNameTextBox;
-        private System.Windows.Forms.TextBox PriorityTextBox;
-        private System.Windows.Forms.TextBox CompletetionDateTextBox;
         private System.Windows.Forms.TextBox DescriptionTextBox;
-        private System.Windows.Forms.TextBox ProjectIDTextBox;
+        private System.Windows.Forms.Button TaskFormSaveButton;
+        private System.Windows.Forms.Label TaskNameLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource taskTrackerDataSetBindingSource;
+        private System.Windows.Forms.DateTimePicker CompletetionDateTextBox;
+        private System.Windows.Forms.ComboBox ProjectIDTextBox;
+        private System.Windows.Forms.ComboBox PriorityTextBox;
         private TaskTrackerDataSet taskTrackerDataSet;
         private System.Windows.Forms.BindingSource tasksBindingSource;
         private TaskTrackerDataSetTableAdapters.TasksTableAdapter tasksTableAdapter;
@@ -276,10 +327,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn priorityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn completionDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button TaskFormSaveButton;
-        private System.Windows.Forms.Label TaskNameLabel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.BindingSource projectsBindingSource;
+        private TaskTrackerDataSetTableAdapters.ProjectsTableAdapter projectsTableAdapter;
     }
 }

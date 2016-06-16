@@ -2343,7 +2343,7 @@ namespace Task_Tracker {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ProjectsRow AddProjectsRow(string ProjectName, string Description, System.DateTime StartDate, System.DateTime CompletionDate, int Status, ClientsRow parentClientsRowByFK_ClientID_Projects) {
+            public ProjectsRow AddProjectsRow(string ProjectName, string Description, System.DateTime StartDate, System.DateTime CompletionDate, string Status, ClientsRow parentClientsRowByFK_ClientID_Projects) {
                 ProjectsRow rowProjectsRow = ((ProjectsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2407,7 +2407,7 @@ namespace Task_Tracker {
                 base.Columns.Add(this.columnStartDate);
                 this.columnCompletionDate = new global::System.Data.DataColumn("CompletionDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCompletionDate);
-                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatus);
                 this.columnClientID = new global::System.Data.DataColumn("ClientID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnClientID);
@@ -2994,7 +2994,7 @@ namespace Task_Tracker {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TasksRow AddTasksRow(string TaskName, string Description, int Priority, System.DateTime CompletionDate, ProjectsRow parentProjectsRowByFK_ProjectID_Tasks) {
+            public TasksRow AddTasksRow(string TaskName, string Description, string Priority, System.DateTime CompletionDate, ProjectsRow parentProjectsRowByFK_ProjectID_Tasks) {
                 TasksRow rowTasksRow = ((TasksRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3052,7 +3052,7 @@ namespace Task_Tracker {
                 base.Columns.Add(this.columnTaskName);
                 this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescription);
-                this.columnPriority = new global::System.Data.DataColumn("Priority", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnPriority = new global::System.Data.DataColumn("Priority", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPriority);
                 this.columnCompletionDate = new global::System.Data.DataColumn("CompletionDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCompletionDate);
@@ -3934,10 +3934,10 @@ namespace Task_Tracker {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Status {
+            public string Status {
                 get {
                     try {
-                        return ((int)(this[this.tableProjects.StatusColumn]));
+                        return ((string)(this[this.tableProjects.StatusColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Status\' in table \'Projects\' is DBNull.", e);
@@ -4205,10 +4205,10 @@ namespace Task_Tracker {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Priority {
+            public string Priority {
                 get {
                     try {
-                        return ((int)(this[this.tableTasks.PriorityColumn]));
+                        return ((string)(this[this.tableTasks.PriorityColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Priority\' in table \'Tasks\' is DBNull.", e);
@@ -5824,8 +5824,8 @@ SELECT ID, FamilyName, GivenNames, Email, ContactNumber, Active, Notes FROM Deve
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Iterations] ([StartDate], [EndDate], [ProjectID]) VALUES (@Sta" +
-                "rtDate, @EndDate, @ProjectID);\r\nSELECT ID, StartDate, EndDate, ProjectID FROM It" +
-                "erations WHERE (ID = SCOPE_IDENTITY())";
+                "rtDate, @EndDate, @ProjectID);\nSELECT ID, StartDate, EndDate, ProjectID FROM Ite" +
+                "rations WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StartDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StartDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EndDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EndDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

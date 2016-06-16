@@ -274,8 +274,10 @@ namespace Task_Tracker.DAO
 
         public static Task GetTask(int id)
         {
+            Console.WriteLine("Current ID: " + id);
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
-            return dataContext.Tasks.Single(task => task.ID == id);
+            Task returnTask = dataContext.Tasks.Single(task => task.ID == id);
+            return returnTask;
         }
 
         public static void Add(Task task)
