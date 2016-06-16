@@ -49,7 +49,7 @@ namespace Task_Tracker
             int intProjectID = Convert.ToInt32(ProjectIDTextBox.Text);
             DateTime sDate = Convert.ToDateTime(CompletetionDateTextBox.Text);
 
-            var nDate = DateTime.ParseExact(CompletetionDateTextBox.Text, "mm/dd/yyyy hh: mm:ss", CultureInfo.InvariantCulture);
+            var nDate = DateTime.ParseExact(CompletetionDateTextBox.Text, "mm/dd/yyyy hh: mm:ss", null);
             TasksForm task = new TasksForm(this.TaskNameTextBox.Text, this.DescriptionTextBox.Text, sDate, intPriority, intProjectID);
             DBInterface.Add(task);
         }

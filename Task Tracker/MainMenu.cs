@@ -13,11 +13,12 @@ namespace Task_Tracker
     public partial class MainMenu : Form
     {
         DeveloperForm developerForm;
-
+        TasksForm taskForm;
         public MainMenu()
         {
             InitializeComponent();
             developerForm = new DeveloperForm();
+            taskForm = new TasksForm();
         }
 
         private void DevelopersButton_Click(object sender, EventArgs e)
@@ -32,6 +33,14 @@ namespace Task_Tracker
             IterationGraph ig = new IterationGraph();
             ig.iterationID = 1;
             ig.Show();
+        }
+
+        private void TasksButton_Click(object sender, EventArgs e)
+        {
+            //Load Tasks form
+            taskForm.Show();
+    
+
         }
     }
 }

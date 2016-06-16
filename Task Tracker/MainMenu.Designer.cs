@@ -62,6 +62,7 @@
             this.TasksButton.TabIndex = 2;
             this.TasksButton.Text = "Manage Tasks";
             this.TasksButton.UseVisualStyleBackColor = true;
+            this.TasksButton.Click += new System.EventHandler(this.TasksButton_Click);
             // 
             // graphtest
             // 

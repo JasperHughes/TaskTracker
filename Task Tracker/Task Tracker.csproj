@@ -75,11 +75,11 @@
     <Compile Include="DeveloperForm.Designer.cs">
       <DependentUpon>DeveloperForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditDeveloperForm.cs">
+    <Compile Include="TasksForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditDeveloperForm.Designer.cs">
-      <DependentUpon>EditDeveloperForm.cs</DependentUpon>
+    <Compile Include="TasksForm.Designer.cs">
+      <DependentUpon>TasksForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IterationForm.cs">
       <SubType>Form</SubType>
@@ -117,9 +117,6 @@
     <EmbeddedResource Include="DeveloperForm.resx">
       <DependentUpon>DeveloperForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditDeveloperForm.resx">
-      <DependentUpon>EditDeveloperForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="IterationForm.resx">
       <DependentUpon>IterationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +135,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TasksForm.resx">
+      <DependentUpon>TasksForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="TaskTracker.dbml.layout">
       <DependentUpon>TaskTracker.dbml</DependentUpon>

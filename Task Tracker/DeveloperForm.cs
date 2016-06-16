@@ -13,24 +13,27 @@ namespace Task_Tracker
 {
     public partial class DeveloperForm : Form
     {
-        // Only have 1 instance of the Edit Developer Form.
-        private EditDeveloperForm editDeveloperForm;
+        private TextBox[] requiredFields;
 
         public DeveloperForm()
         {
             InitializeComponent();
-            editDeveloperForm = new EditDeveloperForm(this);
+
+            requiredFields = new TextBox[] {
+                this.FamilyNameTextBox,
+                this.GivenNamesTextBox,
+                this.ContactNumberTextBox,
+                this.EmailTextBox
+            };
         }
 
         private void DeveloperForm_Load(object sender, EventArgs e)
         {
-            UpdateForm();
+            LoadDevelopers();
+            UpdateAddEditLabel();
+            CheckEnableSaveCancelButtons();
         }
 
-        public void UpdateForm()
-        {
-            LoadDevelopers();
-        }
 
         private void LoadDevelopers()
         {
@@ -70,50 +73,141 @@ namespace Task_Tracker
             }
         }
 
-        private void DevelopersListView_ItemActivate(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
-            // If there is a selected item show the Edit developer form for the selected developer.
+            // TODO Add validation to check all values entered
+
+            Developer developer = new Developer();
+            developer.FamilyName = ReplaceEmptyStringWithNull(FamilyNameTextBox.Text);
+            developer.GivenNames = ReplaceEmptyStringWithNull(GivenNamesTextBox.Text);
+            developer.Email = ReplaceEmptyStringWithNull(EmailTextBox.Text);
+            developer.ContactNumber = ReplaceEmptyStringWithNull(ContactNumberTextBox.Text);
+            developer.Active = ActiveCheckbox.Checked;
+            developer.Notes = ReplaceEmptyStringWithNull(NotesTextBox.Text);
+
+            try
+            {
+                if (IDTextBox.Text == "")
+                {
+                    DBInterface.Add(developer);
+                }
+                else
+                {
+                    developer.ID = Int32.Parse(IDTextBox.Text);
+                    DBInterface.Update(developer);
+                }
+            }
+            catch (Exception ex)
+            {
+                // TODO What should really happen on error?
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+
+            // Reset edit fields
+            ResetFields();
+            LoadDevelopers();
+            UpdateAddEditLabel();
+
+        }
+
+        private void ResetFields()
+        {
+            // Reset Edit fields
+            FamilyNameTextBox.Text = "";
+            GivenNamesTextBox.Text = "";
+            EmailTextBox.Text = "";
+            ContactNumberTextBox.Text = "";
+            ActiveCheckbox.Checked = true;
+            NotesTextBox.Text = "";
+            IDTextBox.Text = "";
+        }
+
+        private void DevelopersListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
             if (DevelopersListView.SelectedItems.Count > 0)
             {
+                // Load Values into Editable fields
                 ListViewItem item = DevelopersListView.SelectedItems[0];
-                int id = Int32.Parse(item.SubItems[0].Text);
+                int i = 0;
+                
+                IDTextBox.Text = item.SubItems[i++].Text;
+                GivenNamesTextBox.Text = item.SubItems[i++].Text;
+                FamilyNameTextBox.Text = item.SubItems[i++].Text;
+                EmailTextBox.Text = item.SubItems[i++].Text;
+                ContactNumberTextBox.Text = item.SubItems[i++].Text;
+                ActiveCheckbox.Checked = item.SubItems[i++].Text == "Yes";
+                NotesTextBox.Text = item.SubItems[i++].Text;
 
-                // Get the developer with this id
-                Developer developer = (Developer)DBInterface.SelectOne(DBInterface.Table.DEVELOPERS, id);
-
-                // Load the Edit Develoepr Form
-                editDeveloperForm.CurrentDeveloper = developer;
-                editDeveloperForm.Show();
+                LoadDevelopers();
+                UpdateAddEditLabel();
             }
+        }
+
+        private void UpdateAddEditLabel()
+        {
+            if (IDTextBox.Text == "")
+            {
+                AddEditLabel.Text = "Add New Developer";
+            }
+            else
+            {
+                AddEditLabel.Text = "Editing Developer " + IDTextBox.Text;
+            }
+        }
+
+        
+        // Replace empty string with null, otherwise leave it as is.
+        private string ReplaceEmptyStringWithNull(string value)
+        {
+            return value.Length == 0 ? null : value;
         }
 
         private void DeveloperForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Cancel the closing of the form and hide form instead
             e.Cancel = true;
-            HideForm();
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            HideForm();
-        }
-
-        private void HideForm()
-        {
-            // Whent the form is hidden, also hide the Edit Developer form
             this.Hide();
-            editDeveloperForm.Hide();
         }
 
-
-        private void NewDeveloperButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
-            // Load the Edit Developer form. Using a null current developer indicates
-            // this is a new developer.
-            editDeveloperForm.CurrentDeveloper = null;
-            editDeveloperForm.Show();
+            // Cancel the Adding or Editing of a developer
+            ResetFields();
+            UpdateAddEditLabel();
         }
 
+        private void Input_TextChanged(object sender, EventArgs e)
+        {
+            // If any of the text boxes are changed check if the Save button is enabled
+            CheckEnableSaveCancelButtons();
+        }
+
+        private void CheckEnableSaveCancelButtons()
+        {
+            // If there is a value in all required fields then enable Save button
+            // If there is a value in any required fields or in edit mode then enable Cancel button
+            bool enableSave = true;
+
+            bool enableCancel = false;
+            
+            // If there is an ID (ie. editing a user) then always show Cancel
+            if (!string.IsNullOrWhiteSpace(this.IDTextBox.Text))
+            {
+                enableCancel = true;
+            }
+            foreach (TextBox textBox in requiredFields) {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    enableSave = false;
+                }
+                else
+                {
+                    enableCancel = true;
+                }
+            }
+
+            this.SaveButton.Enabled = enableSave;
+            this.CancelButton.Enabled = enableCancel;
+        }
     }
 }
