@@ -74,6 +74,12 @@
     <Compile Include="DeveloperForm.Designer.cs">
       <DependentUpon>DeveloperForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditDeveloperForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditDeveloperForm.Designer.cs">
+      <DependentUpon>EditDeveloperForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="IterationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     </Compile>
     <EmbeddedResource Include="DeveloperForm.resx">
       <DependentUpon>DeveloperForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditDeveloperForm.resx">
+      <DependentUpon>EditDeveloperForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IterationForm.resx">
       <DependentUpon>IterationForm.cs</DependentUpon>
