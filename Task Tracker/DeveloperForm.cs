@@ -41,7 +41,7 @@ namespace Task_Tracker
 
             try
             {
-                developers = (List<Developer>)DBInterface.SelectAll(DBInterface.Table.DEVELOPERS);
+                developers = DBInterface.GetDevelopers();
                 if (developers.Count > 0)
                 {
                     int i = 0;
@@ -79,7 +79,7 @@ namespace Task_Tracker
                 int id = Int32.Parse(item.SubItems[0].Text);
 
                 // Get the developer with this id
-                Developer developer = (Developer)DBInterface.SelectOne(DBInterface.Table.DEVELOPERS, id);
+                Developer developer = DBInterface.GetDeveloper(id);
 
                 // Load the Edit Develoepr Form
                 editDeveloperForm.CurrentDeveloper = developer;

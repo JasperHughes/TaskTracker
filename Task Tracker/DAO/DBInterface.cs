@@ -15,179 +15,25 @@ namespace Task_Tracker.DAO
     {
         private static string connectionString = ConfigurationManager.ConnectionStrings["Task_Tracker.Properties.Settings.TaskTrackerConnectionString"].ConnectionString;
 
-        public enum Table
-        {
-            CLIENTS,
-            DEVELOPERS,
-            ITERATIONS,
-            ITERATION_TASKS,
-            PROJECTS,
-            TASKS
-        }
-
         private static SqlConnection GetConnection()
         {
             return new SqlConnection(connectionString);
         }
 
-        //Select All of a specific table
-        public static object SelectAll(Table table) 
-        {            
-            switch (table)
-            {
-                case Table.CLIENTS:
-                    return GetClients();
-                case Table.DEVELOPERS:
-                    return GetDevelopers();
-                case Table.ITERATIONS:
-                    return GetIterations();
-                case Table.ITERATION_TASKS:
-                    return GetIterationTasks();
-                case Table.PROJECTS:
-                    return GetProjects();
-                case Table.TASKS:
-                    return GetTasks();
-                default:
-                    MessageBox.Show("Invalid Table request. Please check your code!");
-                    return null;
-            }
-        }
-
-        //Select a single item from a specific table (not iteration tasks)
-        public static object SelectOne(Table table, int id)
-        {
-            switch (table)
-            {
-                case Table.CLIENTS:
-                    return GetClient(id);
-                case Table.DEVELOPERS:
-                    return GetDeveloper(id);
-                case Table.ITERATIONS:
-                    return GetIteration(id);
-                case Table.PROJECTS:
-                    return GetProject(id);
-                case Table.TASKS:
-                    return GetTask(id);
-                default:
-                    MessageBox.Show("Invalid Table request. Please check your code!");
-                    return null;
-            }
-        }
-
-        //Add an item to the database
-        public static void Add(object o)
-        {
-            if(o is Client)
-            {
-                AddClient((Client)o);
-            }
-            else if(o is Developer)
-            {
-                AddDeveloper((Developer)o);
-            }
-            else if(o is Iteration)
-            {
-                AddIteration((Iteration)o);
-            }
-            else if(o is IterationTask)
-            {
-                AddIterationTask((IterationTask)o);
-            }
-            else if(o is Project)
-            {
-                AddProject((Project)o);
-            }
-            else if(o is Task)
-            {
-                AddTask((Task)o);
-            }
-            else
-            {
-                MessageBox.Show("Invalid Object. Please check your code!");
-            }
-        }
-
-        //update an item in the database
-        public static void Update(object o)
-        {
-            if (o is Client)
-            {
-                UpdateClient((Client)o);
-            }
-            else if (o is Developer)
-            {
-                Console.WriteLine("DEVELOPER UPDATING");
-                UpdateDeveloper((Developer)o);
-            }
-            else if (o is Iteration)
-            {
-                UpdateIteration((Iteration)o);
-            }
-            else if (o is IterationTask)
-            {
-                UpdateIterationTask((IterationTask)o);
-            }
-            else if (o is Project)
-            {
-                UpdateProject((Project)o);
-            }
-            else if (o is Task)
-            {
-                UpdateTask((Task)o);
-            }
-            else
-            {
-                MessageBox.Show("Invalid Object. Please check your code!");
-            }
-        }
-
-        //delete an item in the database
-        public static void Delete(object o)
-        {
-            if (o is Client)
-            {
-                DeleteClient((Client)o);
-            }
-            else if (o is Developer)
-            {
-                DeleteDeveloper((Developer)o);
-            }
-            else if (o is Iteration)
-            {
-                DeleteIteration((Iteration)o);
-            }
-            else if (o is IterationTask)
-            {
-                DeleteIterationTask((IterationTask)o);
-            }
-            else if (o is Project)
-            {
-                DeleteProject((Project)o);
-            }
-            else if (o is Task)
-            {
-                DeleteTask((Task)o);
-            }
-            else
-            {
-                MessageBox.Show("Invalid Object. Please check your code!");
-            }
-        }
-
         //internal methods for retrieving data
-        private static List<Developer> GetDevelopers()
+        public static List<Developer> GetDevelopers()
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             return dataContext.Developers.ToList();            
         }
 
-        private static Developer GetDeveloper(int id)
+        public static Developer GetDeveloper(int id)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             return dataContext.Developers.Single(developer => developer.ID == id);           
         }
 
-        private static void AddDeveloper(Developer developer)
+        public static void Add(Developer developer)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             dataContext.Developers.InsertOnSubmit(developer);
@@ -200,32 +46,9 @@ namespace Task_Tracker.DAO
             {
                 Console.WriteLine(e.StackTrace);
             }
-            /*string query = "INSERT INTO Developers(FamilyName, GivenNames, Email, ContactNumber, Active, Notes) "
-                + "VALUES(@FamilyName, @GivenNames, @Email, @ContactNumber, @Active, @Notes)";
-            using (SqlConnection connection = GetConnection())
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                connection.Open();
-
-                command.Parameters.AddWithValue("@FamilyName", developer.FamilyName);
-                command.Parameters.AddWithValue("@GivenNames", developer.GivenNames);
-                command.Parameters.AddWithValue("@Email", developer.Email);
-                command.Parameters.AddWithValue("@ContactNumber", developer.ContactNumber);
-                command.Parameters.AddWithValue("@Active", developer.Active);
-                command.Parameters.AddWithValue("@Notes", developer.Notes);
-
-                try
-                {
-                    command.ExecuteNonQuery();
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
-            }*/
         }
 
-        private static void UpdateDeveloper(Developer toUpdate)
+        public static void Update(Developer toUpdate)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             Developer d = dataContext.Developers.Single(developer => developer.ID == toUpdate.ID);
@@ -242,37 +65,11 @@ namespace Task_Tracker.DAO
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.StackTrace);
+                throw e;
             }
-            /*string query = "UPDATE Developers SET FamilyName = @FamilyName, "
-                + "GivenNames = @GivenNames, Email = @Email, ContactNumber = @ContactNumber, "
-                + "Active = @Active, Notes = @Notes "
-                + "WHERE ID = @ID";
-            using (SqlConnection connection = GetConnection())
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                connection.Open();
-
-                command.Parameters.AddWithValue("@FamilyName", toUpdate.FamilyName);
-                command.Parameters.AddWithValue("@GivenNames", toUpdate.GivenNames);
-                command.Parameters.AddWithValue("@Email", toUpdate.Email);
-                command.Parameters.AddWithValue("@ContactNumber", toUpdate.ContactNumber);
-                command.Parameters.AddWithValue("@Active", toUpdate.Active);
-                command.Parameters.AddWithValue("@Notes", toUpdate.Notes);
-                command.Parameters.AddWithValue("@ID", toUpdate.ID);
-
-                try
-                {
-                    command.ExecuteNonQuery();
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
-            }*/
         }
 
-        private static void DeleteDeveloper(Developer toDelete)
+        public static void Delete(Developer toDelete)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             dataContext.Developers.DeleteOnSubmit(toDelete);
@@ -287,19 +84,19 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static List<Client> GetClients()
+        public static List<Client> GetClients()
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             return dataContext.Clients.ToList();
         }
 
-        private static Client GetClient(int id)
+        public static Client GetClient(int id)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             return dataContext.Clients.Single(client => client.ID == id);            
         }
 
-        private static void AddClient(Client client)
+        public static void Add(Client client)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             dataContext.Clients.InsertOnSubmit(client);
@@ -313,7 +110,7 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static void UpdateClient(Client toUpdate)
+        public static void Update(Client toUpdate)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             Client c = dataContext.Clients.Single(client => client.ID == toUpdate.ID);
@@ -333,7 +130,7 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static void DeleteClient(Client toDelete)
+        public static void Delete(Client toDelete)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             Client c = dataContext.Clients.Single(client => client.ID == toDelete.ID);
@@ -349,19 +146,19 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static List<Iteration> GetIterations()
+        public static List<Iteration> GetIterations()
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             return dataContext.Iterations.ToList();
         }
 
-        private static Iteration GetIteration(int id)
+        public static Iteration GetIteration(int id)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             return dataContext.Iterations.Single(iteration => iteration.ID == id);
         }
 
-        private static void AddIteration(Iteration iteration)
+        public static void Add(Iteration iteration)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             dataContext.Iterations.InsertOnSubmit(iteration);
@@ -376,7 +173,7 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static void UpdateIteration(Iteration toUpdate)
+        public static void Update(Iteration toUpdate)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             Iteration i = dataContext.Iterations.Single(iteration => iteration.ID == toUpdate.ID);
@@ -393,7 +190,7 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static void DeleteIteration(Iteration toDelete)
+        public static void Delete(Iteration toDelete)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             dataContext.Iterations.DeleteOnSubmit(toDelete);
@@ -408,19 +205,19 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static List<Project> GetProjects()
+        public static List<Project> GetProjects()
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             return dataContext.Projects.ToList();
         }
 
-        private static Project GetProject(int id)
+        public static Project GetProject(int id)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             return dataContext.Projects.Single(project => project.ID == id);
         }
 
-        private static void AddProject(Project project)
+        public static void Add(Project project)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             dataContext.Projects.InsertOnSubmit(project);
@@ -435,7 +232,7 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static void UpdateProject(Project toUpdate)
+        public static void Update(Project toUpdate)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             Project p = dataContext.Projects.Single(project => project.ID == toUpdate.ID);            
@@ -455,7 +252,7 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static void DeleteProject(Project toDelete)
+        public static void Delete(Project toDelete)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             dataContext.Projects.DeleteOnSubmit(toDelete);
@@ -470,19 +267,19 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static List<Task> GetTasks()
+        public static List<Task> GetTasks()
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             return dataContext.Tasks.ToList();
         }
 
-        private static Task GetTask(int id)
+        public static Task GetTask(int id)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             return dataContext.Tasks.Single(task => task.ID == id);
         }
 
-        private static void AddTask(Task task)
+        public static void Add(Task task)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             dataContext.Tasks.InsertOnSubmit(task);
@@ -497,7 +294,7 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static void UpdateTask(Task toUpdate)
+        public static void Update(Task toUpdate)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             Task t = dataContext.Tasks.Single(task => task.ID == toUpdate.ID);
@@ -516,7 +313,7 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static void DeleteTask(Task toDelete)
+        public static void Delete(Task toDelete)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             dataContext.Tasks.DeleteOnSubmit(toDelete);
@@ -531,7 +328,7 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static List<IterationTask> GetIterationTasks()
+        public static List<IterationTask> GetIterationTasks()
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             return dataContext.IterationTasks.ToList();
@@ -551,7 +348,7 @@ namespace Task_Tracker.DAO
             return (from t in dataContext.IterationTasks where t.IterationID == id orderby t.PlannedStartDate ascending select t).ToList();
         }
 
-        private static void AddIterationTask(IterationTask iterationTask)
+        public static void Add(IterationTask iterationTask)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             dataContext.IterationTasks.InsertOnSubmit(iterationTask);
@@ -566,7 +363,7 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static void UpdateIterationTask(IterationTask toUpdate)
+        public static void Update(IterationTask toUpdate)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             IterationTask it = dataContext.IterationTasks.Single(iterationTask => iterationTask.IterationID == toUpdate.IterationID && iterationTask.TaskID == toUpdate.TaskID);
@@ -582,7 +379,7 @@ namespace Task_Tracker.DAO
             }
         }
 
-        private static void DeleteIterationTask(IterationTask toDelete)
+        public static void Delete(IterationTask toDelete)
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
             dataContext.IterationTasks.DeleteOnSubmit(toDelete);

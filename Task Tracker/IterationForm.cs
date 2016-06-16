@@ -27,7 +27,7 @@ namespace Task_Tracker
 
             try
             {
-                iterations = (List<Iteration>)DBInterface.SelectAll(DBInterface.Table.ITERATIONS);
+                iterations = DBInterface.GetIterations();
                 if (iterations.Count > 0)
                 {
                     int i = 0;
@@ -65,7 +65,7 @@ namespace Task_Tracker
                 Iteration iteration = new Iteration();
                 try
                 {
-                    projects = (List<Project>)DBInterface.SelectAll(DBInterface.Table.PROJECTS);
+                    projects = DBInterface.GetProjects();
 
                
                     iteration.ID = Int32.Parse(IDTextBox.Text);
