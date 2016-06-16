@@ -82,4 +82,14 @@
       <Association Name="Client_Project" Member="Client" ThisKey="ClientID" OtherKey="ID" Type="Client" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.DeveloperIterationView" Member="DeveloperIterationViews">
+    <Type Name="DeveloperIterationView">
+      <Column Name="DeveloperID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IterationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

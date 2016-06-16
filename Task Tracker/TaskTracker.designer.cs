@@ -138,6 +138,14 @@ namespace Task_Tracker
 				return this.GetTable<Project>();
 			}
 		}
+		
+		public System.Data.Linq.Table<DeveloperIterationView> DeveloperIterationViews
+		{
+			get
+			{
+				return this.GetTable<DeveloperIterationView>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Clients")]
@@ -1867,6 +1875,123 @@ namespace Task_Tracker
 		{
 			this.SendPropertyChanging();
 			entity.Project = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeveloperIterationView")]
+	public partial class DeveloperIterationView
+	{
+		
+		private int _DeveloperID;
+		
+		private int _IterationID;
+		
+		private int _ProjectID;
+		
+		private string _ProjectName;
+		
+		private System.DateTime _StartDate;
+		
+		private System.DateTime _EndDate;
+		
+		public DeveloperIterationView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeveloperID", DbType="Int NOT NULL")]
+		public int DeveloperID
+		{
+			get
+			{
+				return this._DeveloperID;
+			}
+			set
+			{
+				if ((this._DeveloperID != value))
+				{
+					this._DeveloperID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IterationID", DbType="Int NOT NULL")]
+		public int IterationID
+		{
+			get
+			{
+				return this._IterationID;
+			}
+			set
+			{
+				if ((this._IterationID != value))
+				{
+					this._IterationID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int NOT NULL")]
+		public int ProjectID
+		{
+			get
+			{
+				return this._ProjectID;
+			}
+			set
+			{
+				if ((this._ProjectID != value))
+				{
+					this._ProjectID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectName", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string ProjectName
+		{
+			get
+			{
+				return this._ProjectName;
+			}
+			set
+			{
+				if ((this._ProjectName != value))
+				{
+					this._ProjectName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime NOT NULL")]
+		public System.DateTime StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this._StartDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime NOT NULL")]
+		public System.DateTime EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this._EndDate = value;
+				}
+			}
 		}
 	}
 }

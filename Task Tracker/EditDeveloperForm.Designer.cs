@@ -53,9 +53,15 @@
             this.taskTrackerDataSet = new Task_Tracker.TaskTrackerDataSet();
             this.developersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.developersTableAdapter = new Task_Tracker.TaskTrackerDataSetTableAdapters.DevelopersTableAdapter();
+            this.fKDeveloperIDDeveloperIterationTasksBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.developerIterationTasksTableAdapter = new Task_Tracker.TaskTrackerDataSetTableAdapters.DeveloperIterationTasksTableAdapter();
+            this.IterationsDataGridView = new System.Windows.Forms.DataGridView();
+            this.ActionColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.developersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fKDeveloperIDDeveloperIterationTasksBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.IterationsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // CancelButton
@@ -208,7 +214,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(390, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1099, 24);
             this.menuStrip1.TabIndex = 33;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -266,11 +272,45 @@
             // 
             this.developersTableAdapter.ClearBeforeFill = true;
             // 
+            // fKDeveloperIDDeveloperIterationTasksBindingSource
+            // 
+            this.fKDeveloperIDDeveloperIterationTasksBindingSource.DataMember = "FK_DeveloperID_DeveloperIterationTasks";
+            this.fKDeveloperIDDeveloperIterationTasksBindingSource.DataSource = this.developersBindingSource;
+            // 
+            // developerIterationTasksTableAdapter
+            // 
+            this.developerIterationTasksTableAdapter.ClearBeforeFill = true;
+            // 
+            // IterationsDataGridView
+            // 
+            this.IterationsDataGridView.AllowUserToAddRows = false;
+            this.IterationsDataGridView.AllowUserToDeleteRows = false;
+            this.IterationsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.IterationsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ActionColumn});
+            this.IterationsDataGridView.Location = new System.Drawing.Point(408, 49);
+            this.IterationsDataGridView.Name = "IterationsDataGridView";
+            this.IterationsDataGridView.ReadOnly = true;
+            this.IterationsDataGridView.Size = new System.Drawing.Size(527, 150);
+            this.IterationsDataGridView.TabIndex = 35;
+            this.IterationsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IterationsDataGridView_CellContentClick);
+            // 
+            // ActionColumn
+            // 
+            this.ActionColumn.FillWeight = 60F;
+            this.ActionColumn.HeaderText = "Actions";
+            this.ActionColumn.Name = "ActionColumn";
+            this.ActionColumn.ReadOnly = true;
+            this.ActionColumn.Text = "Report";
+            this.ActionColumn.ToolTipText = "Print Report";
+            this.ActionColumn.UseColumnTextForButtonValue = true;
+            // 
             // EditDeveloperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 346);
+            this.ClientSize = new System.Drawing.Size(1099, 519);
+            this.Controls.Add(this.IterationsDataGridView);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddEditLabel);
@@ -298,6 +338,8 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.developersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fKDeveloperIDDeveloperIterationTasksBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.IterationsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,6 +371,10 @@
         private TaskTrackerDataSet taskTrackerDataSet;
         private System.Windows.Forms.BindingSource developersBindingSource;
         private TaskTrackerDataSetTableAdapters.DevelopersTableAdapter developersTableAdapter;
+        private System.Windows.Forms.BindingSource fKDeveloperIDDeveloperIterationTasksBindingSource;
+        private TaskTrackerDataSetTableAdapters.DeveloperIterationTasksTableAdapter developerIterationTasksTableAdapter;
+        private System.Windows.Forms.DataGridView IterationsDataGridView;
+        private System.Windows.Forms.DataGridViewButtonColumn ActionColumn;
 
     }
 }

@@ -83,6 +83,15 @@ namespace Task_Tracker.DAO
             }
         }
 
+        public static List<DeveloperIterationView> GetDeveloperIterationView(int id)
+        {
+            // Get the list of Iterations for a developer, sorted by Iteration.StartDate
+            TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());
+            return (from developerIterationView in dataContext.DeveloperIterationViews 
+                   where developerIterationView.DeveloperID == id orderby developerIterationView.StartDate 
+                   select developerIterationView).ToList();
+        }
+
         public static List<Client> GetClients()
         {
             TaskTrackerDataContext dataContext = new TaskTrackerDataContext(GetConnection());

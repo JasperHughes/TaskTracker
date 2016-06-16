@@ -75,6 +75,29 @@ namespace Task_Tracker
                 AddEditLabel.Text = "Edit Developer ";
             }
             CheckEnableActions();
+
+            LoadIterations();
+        }
+
+        private void LoadIterations()
+        {
+            // Load the list of iterations in the DataGridView
+            if (CurrentDeveloper != null)
+            {
+                this.IterationsDataGridView.ReadOnly = true;
+                this.IterationsDataGridView.DataSource = DBInterface.GetDeveloperIterationView(CurrentDeveloper.ID);
+
+                // Hide the Developer ID, Iteration ID and Project ID columns
+                // they are only required by the query
+                this.IterationsDataGridView.Columns["DeveloperID"].Visible = false;
+                this.IterationsDataGridView.Columns["IterationID"].Visible = false;
+                this.IterationsDataGridView.Columns["ProjectID"].Visible = false;
+            }
+            else
+            {
+                // Hide the view of iterations, new developers won't have any
+                this.IterationsDataGridView.Visible = false;
+            }
         }
 
         private void Input_TextChanged(object sender, EventArgs e)
@@ -167,9 +190,25 @@ namespace Task_Tracker
 
         private void EditDeveloperForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'taskTrackerDataSet.DeveloperIterationTasks' table. You can move, or remove it, as needed.
+            this.developerIterationTasksTableAdapter.Fill(this.taskTrackerDataSet.DeveloperIterationTasks);
             // TODO: This line of code loads data into the 'taskTrackerDataSet.Developers' table. You can move, or remove it, as needed.
             this.developersTableAdapter.Fill(this.taskTrackerDataSet.Developers);
 
+        }
+
+        private void IterationsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView view = (DataGridView)sender;
+            if (view.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                // Report button clicked
+                int iteratorID = (int)view.Rows[e.RowIndex].Cells["IterationID"].Value;
+
+                MessageBox.Show("Hello " + iteratorID);
+
+                // TODO Print report
+            }
         }
     }
 }
