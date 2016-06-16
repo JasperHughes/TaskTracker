@@ -51,7 +51,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSetBindingSource)).BeginInit();
@@ -80,6 +79,7 @@
             this.PriorityTextBox.Name = "PriorityTextBox";
             this.PriorityTextBox.Size = new System.Drawing.Size(100, 20);
             this.PriorityTextBox.TabIndex = 6;
+            this.PriorityTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PriorityTextBox_KeyPress);
             // 
             // CompletetionDateTextBox
             // 
@@ -101,6 +101,7 @@
             this.ProjectIDTextBox.Name = "ProjectIDTextBox";
             this.ProjectIDTextBox.Size = new System.Drawing.Size(100, 20);
             this.ProjectIDTextBox.TabIndex = 9;
+            this.ProjectIDTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ProjectIDTextBox_KeyPress);
             // 
             // dataGridView1
             // 
@@ -117,7 +118,7 @@
             this.dataGridView1.DataSource = this.tasksBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(376, 67);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(456, 320);
+            this.dataGridView1.Size = new System.Drawing.Size(425, 196);
             this.dataGridView1.TabIndex = 10;
             // 
             // iDDataGridViewTextBoxColumn
@@ -227,21 +228,11 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "Project ID";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(48, 318);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "label5";
-            // 
             // TasksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 436);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -290,6 +281,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
     }
 }

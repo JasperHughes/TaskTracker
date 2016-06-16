@@ -34,6 +34,8 @@ namespace Task_Tracker
             int intProjectID = Convert.ToInt32(ProjectIDTextBox.Text);
             DateTime sDate = Convert.ToDateTime(CompletetionDateTextBox.Text);
 
+
+
             Task task = new Task();
             task.TaskName = TaskNameTextBox.Text;
             task.Description = DescriptionTextBox.Text;
@@ -41,6 +43,29 @@ namespace Task_Tracker
             task.Priority = PriorityTextBox.Text;
             task.ProjectID = intProjectID;
             DBInterface.Add(task);
+            this.tasksTableAdapter.Fill(this.taskTrackerDataSet.Tasks);
+        }
+
+        private void ProjectIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+      (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            
+        }
+
+        private void PriorityTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+      (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+    
         }
     }
 }
