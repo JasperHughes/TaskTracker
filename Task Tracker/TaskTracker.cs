@@ -26,5 +26,9 @@ namespace Task_Tracker
 
     partial class Developer
     {
+        public override string ToString()
+        {
+            return this.GivenNames + " " + this.FamilyName;
+        }
     }
 }

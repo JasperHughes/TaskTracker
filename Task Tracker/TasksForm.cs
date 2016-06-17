@@ -73,6 +73,8 @@ namespace Task_Tracker
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Task selected = DBInterface.GetTask((int)dataGridView1.CurrentRow.Cells[0].Value);
+            EditTaskForm etf = new EditTaskForm(selected);
+            etf.Show();
         }
     }
 }
