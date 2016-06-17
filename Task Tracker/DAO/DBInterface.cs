@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using System.Data;
 using System.Data.Linq;
 
+//hey hey hey XD
+
 namespace Task_Tracker.DAO
 {
     static class DBInterface
