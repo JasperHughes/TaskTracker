@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Task_Tracker.DAO;
+using Task_Tracker.Reporting;
 
 namespace Task_Tracker
 {
@@ -203,12 +205,35 @@ namespace Task_Tracker
             if (view.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
                 // Report button clicked
-                int iteratorID = (int)view.Rows[e.RowIndex].Cells["IterationID"].Value;
+                int iterationID = (int)view.Rows[e.RowIndex].Cells["IterationID"].Value;
 
-                MessageBox.Show("Hello " + iteratorID);
-
-                // TODO Print report
+                // Go ahead and print the report.
+                PrintReport(iterationID);
             }
         }
+
+        private void PrintReport(int iterationID)
+        {
+            Iteration iteration = DBInterface.GetIteration(iterationID);
+            if (iteration != null)
+            {
+
+                DeveloperIterationReport report = new DeveloperIterationReport(CurrentDeveloper, iteration);
+                // TODO Enable printing of report
+                //report.Print();
+
+                // During testing just show print preview of document.
+                PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
+                printPreviewDialog.Document = report;
+                printPreviewDialog.ShowDialog();
+
+            }
+            else
+            {
+                // Error finding iteration record so display error to user to try again
+                MessageBox.Show("Couldn't find Report to print. Try again.","Unable to Print", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

@@ -95,6 +95,16 @@ namespace Task_Tracker.DAO
                    select developerIterationView).ToList();
         }
 
+
+        public static List<DeveloperIterationTasksView> GetDeveloperIterationTasksView(int developerID, int iterationID)
+        {
+            // Get the list of Tasks for an iteration and developer
+            return (from developerIterationTasksView in dataContext.DeveloperIterationTasksViews
+                    where developerIterationTasksView.DeveloperID == developerID
+                    where developerIterationTasksView.IterationID == iterationID
+                    select developerIterationTasksView).ToList();
+        }
+
         public static List<Client> GetClients()
         {
             

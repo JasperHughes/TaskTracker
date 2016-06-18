@@ -65,7 +65,7 @@
         <classShapeMoniker Id="930ae37e-2bc9-4d31-a8e2-fc82445e2875" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9.125 : 4.90269328320313); (11.9947891666667 : 4.90269328320313 : JumpStart); (12.1614558333333 : 4.90269328320313 : JumpEnd); (12.28125 : 4.90269328320313); (12.28125 : 4.57859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(9.125 : 4.90269328320313); (10.1354166666667 : 4.90269328320313 : JumpStart); (10.3020833333333 : 4.90269328320313 : JumpEnd); (11.9947891666667 : 4.90269328320313 : JumpStart); (12.1614558333333 : 4.90269328320313 : JumpEnd); (12.28125 : 4.90269328320313); (12.28125 : 4.57859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TaskTrackerDataContext/Iteration/Iteration_IterationTask" />
       <nodes>
         <classShapeMoniker Id="61d3d9b5-3b5f-4b8b-946d-ceb5933d1493" />
@@ -104,6 +104,12 @@
       <DataClassMoniker Name="/TaskTrackerDataContext/DeveloperIterationView" />
       <nestedChildShapes>
         <elementListCompartment Id="ec8492e1-b5bc-44b1-ab95-b4b3f35820ae" absoluteBounds="1.3900000000000001, 1.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7a191460-3f31-46d8-897a-b86b326dd5ab" absoluteBounds="4.125, 1.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/TaskTrackerDataContext/DeveloperIterationTasksView" />
+      <nestedChildShapes>
+        <elementListCompartment Id="17cba786-86ab-4134-a4e4-5cff9daf4760" absoluteBounds="4.14, 2.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

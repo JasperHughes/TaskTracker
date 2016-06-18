@@ -146,6 +146,14 @@ namespace Task_Tracker
 				return this.GetTable<DeveloperIterationView>();
 			}
 		}
+		
+		public System.Data.Linq.Table<DeveloperIterationTasksView> DeveloperIterationTasksViews
+		{
+			get
+			{
+				return this.GetTable<DeveloperIterationTasksView>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Clients")]
@@ -1990,6 +1998,159 @@ namespace Task_Tracker
 				if ((this._EndDate != value))
 				{
 					this._EndDate = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeveloperIterationTasksView")]
+	public partial class DeveloperIterationTasksView
+	{
+		
+		private int _DeveloperID;
+		
+		private int _IterationID;
+		
+		private int _ID;
+		
+		private string _TaskName;
+		
+		private string _Description;
+		
+		private string _Priority;
+		
+		private System.Nullable<System.DateTime> _CompletionDate;
+		
+		private int _ProjectID;
+		
+		public DeveloperIterationTasksView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeveloperID", DbType="Int NOT NULL")]
+		public int DeveloperID
+		{
+			get
+			{
+				return this._DeveloperID;
+			}
+			set
+			{
+				if ((this._DeveloperID != value))
+				{
+					this._DeveloperID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IterationID", DbType="Int NOT NULL")]
+		public int IterationID
+		{
+			get
+			{
+				return this._IterationID;
+			}
+			set
+			{
+				if ((this._IterationID != value))
+				{
+					this._IterationID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskName", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string TaskName
+		{
+			get
+			{
+				return this._TaskName;
+			}
+			set
+			{
+				if ((this._TaskName != value))
+				{
+					this._TaskName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Priority", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Priority
+		{
+			get
+			{
+				return this._Priority;
+			}
+			set
+			{
+				if ((this._Priority != value))
+				{
+					this._Priority = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompletionDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CompletionDate
+		{
+			get
+			{
+				return this._CompletionDate;
+			}
+			set
+			{
+				if ((this._CompletionDate != value))
+				{
+					this._CompletionDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int NOT NULL")]
+		public int ProjectID
+		{
+			get
+			{
+				return this._ProjectID;
+			}
+			set
+			{
+				if ((this._ProjectID != value))
+				{
+					this._ProjectID = value;
 				}
 			}
 		}

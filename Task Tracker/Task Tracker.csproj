@@ -107,6 +107,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporting\DeveloperIterationReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="TasksForm.cs">
       <SubType>Form</SubType>
     </Compile>
