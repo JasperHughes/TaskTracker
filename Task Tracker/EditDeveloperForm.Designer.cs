@@ -331,7 +331,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "EditDeveloperForm";
             this.Text = "Add/Edit Developer";
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditDeveloperForm_FormClosing);
             this.Load += new System.EventHandler(this.EditDeveloperForm_Load);
             this.menuStrip1.ResumeLayout(false);
