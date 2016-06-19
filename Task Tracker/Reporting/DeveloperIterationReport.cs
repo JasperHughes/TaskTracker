@@ -40,10 +40,14 @@ namespace Task_Tracker.Reporting
 
         // The vertical gap to allow for paragraph
         private int paragraphFontOffSet = 20;
-        // The vertical gap to allow for header
-        private int headerFontOffSet = 40;
         // The horizontal gap between the header and the text when printed on one line
         private int horizontalSpaceAfterHeader = 5;
+
+        // The spaces to add after a paragraph
+        private int paragraphTrailingSpace = 5;
+
+        // The spaces to add after a report header
+        private int reportHeaderTrailingSpace = 20;
 
         // Create a pen to use for horizontal line separator
         private Pen horizontalLinePen = new Pen(Color.Black, 2);
@@ -121,24 +125,18 @@ namespace Task_Tracker.Reporting
         {
             // Add report header, centred
             string reportHeader = "Iteration Report for " + developer;
-            SizeF reportHeaderSize = graphics.MeasureString(reportHeader, headerFont);
-            // Find starting spot for header so it's in the centre
-            int headerX = xPos + ((int)maxWidth - (int)reportHeaderSize.Width) / 2;
-            graphics.DrawString(reportHeader, headerFont, Brushes.Black, headerX, yPos);
-            yPos += headerFontOffSet;
 
+            StringFormat format = new StringFormat();
+            format.LineAlignment = StringAlignment.Center;
+            format.Alignment = StringAlignment.Center;
+
+            Print(reportHeader, headerFont, reportHeaderTrailingSpace, format);
         }
 
         private void PrintParagraphWithHeader(string header, string text)
         {
-            // Calculate size of header to determine where text begins
-            SizeF headerSize = graphics.MeasureString(header, paragraphBoldFont);
-            // Print the header
-            graphics.DrawString(header, paragraphBoldFont, Brushes.Black, xPos, yPos);
-            // Print the text, offset by size of header and value in horizontalSpaceAfterHeader
-            graphics.DrawString(text, paragraphFont, Brushes.Black, xPos + headerSize.Width + horizontalSpaceAfterHeader, yPos);
-            // Increment y position
-            yPos += paragraphFontOffSet;
+            // Print header in bold and text in regular font.
+            Print(header, paragraphBoldFont, text, paragraphFont, paragraphTrailingSpace);
         }
 
         private void PrintParagraphWithHeaderAndCheckbox(string header)
@@ -158,21 +156,87 @@ namespace Task_Tracker.Reporting
 
         private void PrintParagraphHeader(string header)
         {
-            // Print a paragraph header line
-            graphics.DrawString(header, paragraphBoldFont, Brushes.Black, xPos, yPos);
-            // Increment y position
-            yPos += paragraphFontOffSet;
+            // Print a paragraph using bold font
+            Print(header, paragraphBoldFont, paragraphTrailingSpace);
         }
+
 
         private void PrintParagraph(string text)
         {
-            // Print a paragraph line
-            graphics.DrawString(text, paragraphFont, Brushes.Black, xPos, yPos);
-            // Increment y position
-            yPos += paragraphFontOffSet;
-
+            // Print paragraph using paragraphFont
+            Print(text, paragraphFont, paragraphTrailingSpace);
         }
 
+        private void Print(string text, Font font, int trailingSpace)
+        {
+            Print(text, font, trailingSpace, GetDefaultStringFormat());
+        }
+
+        private void Print(string text, Font font, int trailingSpace, StringFormat format) {
+            // Print the text
+            RectangleF paragraphRectangle = new RectangleF();
+            paragraphRectangle.Location = new Point(xPos, yPos);
+
+            SizeF textSize = graphics.MeasureString(text, font, (int)maxWidth, format);
+            paragraphRectangle.Size = new Size((int)maxWidth, (int)textSize.Height);
+            graphics.DrawString(text, font, Brushes.Black, paragraphRectangle, format);
+
+            yPos += (int)textSize.Height + trailingSpace;
+        }
+
+        private void Print(string header, Font headerFont, string text, Font textFont, int trailingSpace)
+        {
+            Print(header, headerFont, text, textFont, trailingSpace, GetDefaultStringFormat());
+        }
+
+        private void Print(string header, Font headerFont, string text, Font textFont, int trailingSpace, StringFormat format)
+        {
+            // Print header in one font, and text directly after it in another font.
+            // If header expands more than 50% of the line then text is put on next line.
+            // If header is under 50% of the line the text continues on header line, but any 
+            // text is wrapped where text begins, effectively indenting the text.
+
+            // Print header
+            RectangleF headerRectangle = new RectangleF();
+            headerRectangle.Location = new Point(xPos, yPos);
+
+            SizeF headerSize = graphics.MeasureString(header, headerFont, (int)maxWidth, format);
+            int width = (int)headerSize.Width;
+            if (width > (int)maxWidth)
+            {
+                width = (int)maxWidth;
+            }
+            headerRectangle.Size = new Size((int)maxWidth, (int)headerSize.Height);
+            graphics.DrawString(header, headerFont, Brushes.Black, headerRectangle, format);
+
+            int textXPos = xPos + (int)headerSize.Width + horizontalSpaceAfterHeader;
+            int textWidth = (int)maxWidth - (int)headerSize.Width - horizontalSpaceAfterHeader;
+
+            // If header took up at least 50% of width then start text on next line
+            if (textXPos > maxWidth / 2)
+            {
+                textXPos = xPos;
+                textWidth = (int)maxWidth;
+                yPos += (int)headerSize.Height;
+            }
+
+            // Print text.
+            RectangleF paragraphRectangle = new RectangleF();
+            paragraphRectangle.Location = new Point(textXPos, yPos);
+
+            SizeF textSize = graphics.MeasureString(text, textFont, textWidth, format);
+            paragraphRectangle.Size = new Size(textWidth, (int)textSize.Height);
+            graphics.DrawString(text, textFont, Brushes.Black, paragraphRectangle, format);
+
+            // Increment y position
+            yPos += (int)textSize.Height + trailingSpace;
+        }
+
+        private StringFormat GetDefaultStringFormat()
+        {
+            return new StringFormat();
+        }
+        
         private void PrintDeveloperTasks() {
 
             // Print all the developer tasks within an iteration
@@ -222,8 +286,6 @@ namespace Task_Tracker.Reporting
 
         private void DrawHorizontalLine()
         {
-            Console.WriteLine("lineStart = " + lineStart + ", lineEnd = " + lineEnd + ", yPos = " + yPos);
-
             // Draw the horizontal line across the usable area of the page.
             graphics.DrawLine(horizontalLinePen, new Point(lineStart, yPos), new Point(lineEnd, yPos));
             yPos += lineOffset;
