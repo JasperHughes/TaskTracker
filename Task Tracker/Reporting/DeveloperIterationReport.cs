@@ -14,6 +14,49 @@ namespace Task_Tracker.Reporting
         private Developer developer;
         private Iteration iteration;
 
+        // The format to use for dates.
+        private string dateFormat = "{0:dd/MM/yyyy}";
+
+        private Graphics graphics;
+
+        // The maximum height and width of the page
+        private double maxHeight;
+        private double maxWidth;
+
+        // The starting point of horizontal lines
+        private int lineStart;
+        // The ending point of horizontal line
+        private int lineEnd;
+        // After printing horizontal line use this value as offset before next row
+        private int lineOffset = 20;
+
+        // The size of the checkbox's width and length
+        private int checkboxSize = 15;
+        
+        // Fonts for paragraph, bold paragraph and header.
+        private Font paragraphFont = new Font("Verdana", 10);
+        private Font paragraphBoldFont = new Font("Verdana", 10, FontStyle.Bold);
+        private Font headerFont = new Font("Verdana", 14, FontStyle.Bold);
+
+        // The vertical gap to allow for paragraph
+        private int paragraphFontOffSet = 20;
+        // The vertical gap to allow for header
+        private int headerFontOffSet = 40;
+        // The horizontal gap between the header and the text when printed on one line
+        private int horizontalSpaceAfterHeader = 5;
+
+        // Create a pen to use for horizontal line separator
+        private Pen horizontalLinePen = new Pen(Color.Black, 2);
+
+        // Create pen for drawing checkbox
+        private Pen checkboxPen = new Pen(Color.Black, 1);
+        // Gap between header and checkbox
+        private int checkboxGap = 5;
+        
+        // Store current x and y positions
+        private int xPos;
+        private int yPos;
+
         public DeveloperIterationReport(Developer developer, Iteration iteration)
         {
             this.developer = developer;
@@ -25,9 +68,34 @@ namespace Task_Tracker.Reporting
             // Run base code
             base.OnPrintPage(eventArgs);
 
-            string dateFormat = "{0:dd/MM/yyyy}";
+            InitialisePrinting(eventArgs);
 
-            Graphics graphics = eventArgs.Graphics;
+            // Print the Report header at the top of the page.
+            PrintReportHeader();
+
+            // Add project name
+            PrintParagraphWithHeader("Project: ", iteration.Project.ProjectName);
+
+            // Add iteration start date
+            PrintParagraphWithHeader("Iteration Start Date: ", String.Format(dateFormat, iteration.StartDate));
+            
+            // Add Iteration end date
+            PrintParagraphWithHeader("Iteration End Date: ", String.Format(dateFormat, iteration.EndDate));
+
+            // Add some extra spacing
+            yPos += paragraphFontOffSet;
+            
+            // Draw line before displaying each of the tasks.
+            DrawHorizontalLine();
+
+            // Display all the tasks for developer and iteration
+            PrintDeveloperTasks();
+
+        }
+
+        private void InitialisePrinting(PrintPageEventArgs eventArgs)
+        {
+            graphics = eventArgs.Graphics;
 
             // Calculate the margins.
             int marginLeft = eventArgs.PageSettings.Margins.Left;
@@ -35,128 +103,130 @@ namespace Task_Tracker.Reporting
             int marginTop = eventArgs.PageSettings.Margins.Top;
             int marginBottom = eventArgs.PageSettings.Margins.Bottom;
 
-            // Calculate print area size
-            int printHeight = eventArgs.PageSettings.PaperSize.Height - marginTop - marginBottom;
-            int printWidth = eventArgs.PageSettings.PaperSize.Width - marginLeft - marginRight;
+            // Calculate usable height and width
+            maxHeight = eventArgs.PageSettings.PrintableArea.Height - marginTop - marginBottom;
+            maxWidth = eventArgs.PageSettings.PrintableArea.Width - marginLeft - marginRight;
 
+            // Set where horizontal lines will start and end
+            lineStart = marginLeft;
+            lineEnd = marginLeft + (int)maxWidth;
 
-            // Work out the usable height and width
-            double maxHeight = eventArgs.PageSettings.PrintableArea.Height - marginTop - marginBottom;
-            double maxWidth = eventArgs.PageSettings.PrintableArea.Width - marginLeft - marginRight;
+            // Initialise the x and y positions
+            xPos = marginLeft;
+            yPos = marginTop;
 
-            // Fonts for paragraph, bold paragraph and header.
-            Font paragraphFont = new Font("Verdana", 10);
-            Font paragraphBoldFont = new Font("Verdana", 10, FontStyle.Bold);
-            Font headerFont = new Font("Verdana", 14, FontStyle.Bold);
+        }
 
-            // The vertical gap to allow for paragraph
-            int paragraphFontOffSet = 20;
-            // The vertical gap to allow for header
-            int headerFontOffSet = 40;
-            // The horizontal gap between the header and the text when printed on one line
-            int lineHeaderGap = 5;
-
-            // Create a pen to use for horizontal line separator
-            Pen horizontalLinePen = new Pen(Color.Black, 2);
-
-            Pen checkboxPen = new Pen(Color.Black, 1);
-            // Gap between header and checkbox
-            int checkboxGap = 5;
-
-            int lineStart = marginLeft;
-            int lineEnd = marginLeft + (int)maxWidth;
-            // After printing line use this value as offset before next row
-            int lineOffset = 20;
-
-            int startX = marginLeft;
-            int startY = marginTop;
-            int yPos = startY;
-            
+        private void PrintReportHeader()
+        {
             // Add report header, centred
             string reportHeader = "Iteration Report for " + developer;
             SizeF reportHeaderSize = graphics.MeasureString(reportHeader, headerFont);
             // Find starting spot for header so it's in the centre
-            int headerX = startX + ((int)maxWidth - (int)reportHeaderSize.Width) / 2;
+            int headerX = xPos + ((int)maxWidth - (int)reportHeaderSize.Width) / 2;
             graphics.DrawString(reportHeader, headerFont, Brushes.Black, headerX, yPos);
             yPos += headerFontOffSet;
 
-            // Add project name
-            string projectHeader = "Project:";
-            SizeF projectHeaderSize = graphics.MeasureString(projectHeader, paragraphBoldFont);
-            graphics.DrawString(projectHeader, paragraphBoldFont, Brushes.Black, startX, yPos);
-            graphics.DrawString(iteration.Project.ProjectName, paragraphFont, Brushes.Black, startX + projectHeaderSize.Width + lineHeaderGap, yPos);
+        }
+
+        private void PrintParagraphWithHeader(string header, string text)
+        {
+            // Calculate size of header to determine where text begins
+            SizeF headerSize = graphics.MeasureString(header, paragraphBoldFont);
+            // Print the header
+            graphics.DrawString(header, paragraphBoldFont, Brushes.Black, xPos, yPos);
+            // Print the text, offset by size of header and value in horizontalSpaceAfterHeader
+            graphics.DrawString(text, paragraphFont, Brushes.Black, xPos + headerSize.Width + horizontalSpaceAfterHeader, yPos);
+            // Increment y position
+            yPos += paragraphFontOffSet;
+        }
+
+        private void PrintParagraphWithHeaderAndCheckbox(string header)
+        {
+            // Print a paragraph with a header and a checkbox.
+
+            SizeF headerSize = graphics.MeasureString(header, paragraphBoldFont);
+            graphics.DrawString(header, paragraphBoldFont, Brushes.Black, xPos, yPos);
+
+            // Draw the checkbox, it's actually a square
+            Rectangle completedRectangle = new Rectangle(xPos + (int)headerSize.Width + checkboxGap, yPos, checkboxSize, checkboxSize);
+            graphics.DrawRectangle(checkboxPen, completedRectangle);
+
+            // Increment y position
+            yPos += paragraphFontOffSet;
+        }
+
+        private void PrintParagraphHeader(string header)
+        {
+            // Print a paragraph header line
+            graphics.DrawString(header, paragraphBoldFont, Brushes.Black, xPos, yPos);
+            // Increment y position
+            yPos += paragraphFontOffSet;
+        }
+
+        private void PrintParagraph(string text)
+        {
+            // Print a paragraph line
+            graphics.DrawString(text, paragraphFont, Brushes.Black, xPos, yPos);
+            // Increment y position
             yPos += paragraphFontOffSet;
 
-            // Add iteration start date
-            string startDateHeader = "Iteration Start Date: ";
-            SizeF startDateHeaderSize = graphics.MeasureString(startDateHeader, paragraphBoldFont);
-            graphics.DrawString(startDateHeader, paragraphBoldFont, Brushes.Black, startX, yPos);
-            graphics.DrawString(String.Format(dateFormat, iteration.StartDate), paragraphFont, Brushes.Black,
-                startX + startDateHeaderSize.Width + lineHeaderGap, yPos);
-            yPos += paragraphFontOffSet;
+        }
 
-            // Add Iteration end date
-            string endDateHeader = "Iteration End Date: ";
-            SizeF endDateHeaderSize = graphics.MeasureString(startDateHeader, paragraphBoldFont);
-            graphics.DrawString(endDateHeader, paragraphBoldFont, Brushes.Black, startX, yPos);
-            graphics.DrawString(String.Format(dateFormat, iteration.EndDate), paragraphFont, Brushes.Black,
-                startX + endDateHeaderSize.Width + lineHeaderGap, yPos);
+        private void PrintDeveloperTasks() {
 
-            // Offset by 2 paragraphFontOffSet's to give some extra spacing
-            yPos += paragraphFontOffSet * 2;
-            
-            // Draw line before displaying each of the tasks.
-            graphics.DrawLine(horizontalLinePen, new Point(lineStart, yPos), new Point(lineEnd, yPos));
-            yPos += lineOffset;
-
-            // Display all the tasks for developer and iteration
+            // Print all the developer tasks within an iteration
             List<DeveloperIterationTasksView> tasks = DBInterface.GetDeveloperIterationTasksView(developer.ID, iteration.ID);
             foreach(DeveloperIterationTasksView task in tasks) {
                 // Add task name and priority
-                graphics.DrawString(task.TaskName + " (Priority: " + task.Priority + ")", paragraphBoldFont, Brushes.Black, startX, yPos);
-                yPos += paragraphFontOffSet;
+                PrintParagraphHeader(task.TaskName + " (Priority: " + task.Priority + ")");
 
                 // Add task description
-                graphics.DrawString(task.Description, paragraphFont, Brushes.Black, startX, yPos);
-                yPos += paragraphFontOffSet;
+                PrintParagraph(task.Description);
 
                 // Add Other Developers
                 List<Developer> otherDevelopers = DBInterface.GetOtherDevelopersForIterationTask(task.ID, iteration.ID, developer.ID);
                 if (otherDevelopers.Any())
                 {
-                    string others = "";
-                    foreach(Developer otherDeveloper in otherDevelopers) {
-                        if (!others.Equals(""))
-                        {
-                            others += ", ";
-                        }
-                        others += otherDeveloper;
-                    }
-                    string otherDevelopersHeader = "Other Developers: ";
-                    SizeF otherDevelopersHeaderSize = graphics.MeasureString(otherDevelopersHeader, paragraphBoldFont);
-
-                    graphics.DrawString(otherDevelopersHeader, paragraphBoldFont, Brushes.Black, startX, yPos);
-                    graphics.DrawString(others, paragraphFont, Brushes.Black, startX + otherDevelopersHeaderSize.Width + 10, yPos);
-                    yPos += paragraphFontOffSet;
+                    PrintParagraphWithHeader("Other Developers: ", GetDeveloperText(otherDevelopers));
                 }
 
-
                 // Add Completed checkbox
-                string completedHeader = "Completed: ";
-                SizeF completedHeaderSize = graphics.MeasureString(completedHeader, paragraphBoldFont);
-                graphics.DrawString(completedHeader, paragraphBoldFont, Brushes.Black, startX, yPos);
-                Rectangle completedRectangle = new Rectangle(startX + (int)completedHeaderSize.Width + checkboxGap, yPos, 15, 15);
-                graphics.DrawRectangle(checkboxPen, completedRectangle);
-                yPos += paragraphFontOffSet;
+                PrintParagraphWithHeaderAndCheckbox("Completed: ");
 
                 // Add an extra gap before horizontal line
                 yPos += paragraphFontOffSet;
 
                 // Add a horizontal line to separate tasks
-                graphics.DrawLine(horizontalLinePen, new Point(lineStart, yPos), new Point(lineEnd, yPos));
-                yPos += lineOffset;
+                DrawHorizontalLine();
             }
+        }
 
+        private string GetDeveloperText(List<Developer> developers)
+        {
+            // String all the developer names together, separated by commas
+            string text = "";
+            if (developers.Any())
+            {
+                foreach (Developer developer in developers)
+                {
+                    if (!text.Equals(""))
+                    {
+                        text += ", ";
+                    }
+                    text += developer;
+                }
+            }
+            return text;
+        }
+
+        private void DrawHorizontalLine()
+        {
+            Console.WriteLine("lineStart = " + lineStart + ", lineEnd = " + lineEnd + ", yPos = " + yPos);
+
+            // Draw the horizontal line across the usable area of the page.
+            graphics.DrawLine(horizontalLinePen, new Point(lineStart, yPos), new Point(lineEnd, yPos));
+            yPos += lineOffset;
         }
     }
 }
