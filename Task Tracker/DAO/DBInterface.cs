@@ -105,6 +105,17 @@ namespace Task_Tracker.DAO
                     select developerIterationTasksView).ToList();
         }
 
+        public static List<Developer> GetOtherDevelopersForIterationTask(int taskID, int iterationID, int excludeDeveloperID)
+        {
+            // Get list of developers for a particular task and iteration, but is not the excluded developer
+            return (from developer in dataContext.Developers
+                    join developerIterationTask in dataContext.DeveloperIterationTasks on developer.ID equals developerIterationTask.DeveloperID
+                    where developerIterationTask.DeveloperID != excludeDeveloperID
+                    where developerIterationTask.IterationID == iterationID
+                    where developerIterationTask.TaskID == taskID
+                    select developer).Distinct().ToList();
+        }
+
         public static List<Client> GetClients()
         {
             

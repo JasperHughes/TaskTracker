@@ -121,8 +121,25 @@ namespace Task_Tracker.Reporting
                 yPos += paragraphFontOffSet;
 
                 // Add Other Developers
-                graphics.DrawString("Other Developers: ", paragraphBoldFont, Brushes.Black, startX, yPos);
-                yPos += paragraphFontOffSet;
+                List<Developer> otherDevelopers = DBInterface.GetOtherDevelopersForIterationTask(task.ID, iteration.ID, developer.ID);
+                if (otherDevelopers.Any())
+                {
+                    string others = "";
+                    foreach(Developer otherDeveloper in otherDevelopers) {
+                        if (!others.Equals(""))
+                        {
+                            others += ", ";
+                        }
+                        others += otherDeveloper;
+                    }
+                    string otherDevelopersHeader = "Other Developers: ";
+                    SizeF otherDevelopersHeaderSize = graphics.MeasureString(otherDevelopersHeader, paragraphBoldFont);
+
+                    graphics.DrawString(otherDevelopersHeader, paragraphBoldFont, Brushes.Black, startX, yPos);
+                    graphics.DrawString(others, paragraphFont, Brushes.Black, startX + otherDevelopersHeaderSize.Width + 10, yPos);
+                    yPos += paragraphFontOffSet;
+                }
+
 
                 // Add Completed checkbox
                 string completedHeader = "Completed: ";
