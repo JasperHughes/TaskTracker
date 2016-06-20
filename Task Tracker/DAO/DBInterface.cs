@@ -9,8 +9,6 @@ using System.Windows.Forms;
 using System.Data;
 using System.Data.Linq;
 
-//hey hey hey XD
-
 namespace Task_Tracker.DAO
 {
     static class DBInterface
@@ -424,6 +422,11 @@ namespace Task_Tracker.DAO
             {
                 Console.WriteLine(e.StackTrace);
             }
+        }
+
+        public static List<Task> GetUnassignedTasks()
+        {
+            return (from t in dataContext.Tasks where !(from it in dataContext.IterationTasks select it.TaskID).Contains(t.ID) select t).ToList();
         }
 
         public static DeveloperIterationTask GetDeveloperIterationTask(int developerID, int iterationID, int taskID)

@@ -10,6 +10,10 @@ namespace Task_Tracker
 
     partial class Task
     {
+        public override string ToString()
+        {
+            return this.TaskName;
+        }
     }
 
     partial class DeveloperIterationTask

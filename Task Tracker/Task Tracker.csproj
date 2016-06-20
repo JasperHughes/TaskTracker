@@ -99,6 +99,12 @@
     <Compile Include="IterationGraph.Designer.cs">
       <DependentUpon>IterationGraph.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditIterationTasksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditIterationTasksForm.Designer.cs">
+      <DependentUpon>EditIterationTasksForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IterationGraph.resx">
       <DependentUpon>IterationGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditIterationTasksForm.resx">
+      <DependentUpon>EditIterationTasksForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
