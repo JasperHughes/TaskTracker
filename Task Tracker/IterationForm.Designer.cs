@@ -67,9 +67,11 @@
             this.projectIDTextBox.Name = "projectIDTextBox";
             this.projectIDTextBox.Size = new System.Drawing.Size(100, 20);
             this.projectIDTextBox.TabIndex = 1;
+            this.projectIDTextBox.TextChanged += new System.EventHandler(this.projectIDTextBox_TextChanged);
             // 
             // projectTextBox
             // 
+            this.projectTextBox.Enabled = false;
             this.projectTextBox.Location = new System.Drawing.Point(142, 107);
             this.projectTextBox.Name = "projectTextBox";
             this.projectTextBox.Size = new System.Drawing.Size(100, 20);
@@ -85,7 +87,7 @@
             // startDatePicker
             // 
             this.startDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.startDatePicker.Location = new System.Drawing.Point(142, 284);
+            this.startDatePicker.Location = new System.Drawing.Point(142, 209);
             this.startDatePicker.Name = "startDatePicker";
             this.startDatePicker.Size = new System.Drawing.Size(99, 20);
             this.startDatePicker.TabIndex = 5;
@@ -93,7 +95,7 @@
             // endDatePicker
             // 
             this.endDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.endDatePicker.Location = new System.Drawing.Point(142, 310);
+            this.endDatePicker.Location = new System.Drawing.Point(142, 235);
             this.endDatePicker.Name = "endDatePicker";
             this.endDatePicker.Size = new System.Drawing.Size(99, 20);
             this.endDatePicker.TabIndex = 6;
@@ -137,7 +139,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 287);
+            this.label6.Location = new System.Drawing.Point(7, 212);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 12;
@@ -146,7 +148,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 313);
+            this.label7.Location = new System.Drawing.Point(7, 238);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 13);
             this.label7.TabIndex = 13;
@@ -205,7 +207,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(142, 341);
+            this.SaveButton.Location = new System.Drawing.Point(142, 266);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(99, 23);
             this.SaveButton.TabIndex = 15;

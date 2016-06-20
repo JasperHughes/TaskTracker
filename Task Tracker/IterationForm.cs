@@ -13,6 +13,8 @@ namespace Task_Tracker
 {
     public partial class IterationForm : Form
     {
+        List<Project> projects;
+
         public IterationForm()
         {
             InitializeComponent();
@@ -43,19 +45,16 @@ namespace Task_Tracker
                         foreach (IterationTask it in iteration.IterationTasks) {
                             itTasks += it.TaskID.ToString()+ ",";
                         }
-                        if (itTasks != "")
-                        {
+                        if (itTasks != ""){
                             iterationListView.Items[i].SubItems.Add(itTasks.Remove(itTasks.Length - 1));
                         }
                         else {
                             iterationListView.Items[i].SubItems.Add("");
                         }
-                            foreach (DeveloperIterationTask dit in iteration.DeveloperIterationTasks)
-                        {
+                        foreach (DeveloperIterationTask dit in iteration.DeveloperIterationTasks){
                             devItTasks += dit.TaskID.ToString() + ",";
                         }
-                        if (devItTasks != "")
-                        {
+                        if (devItTasks != ""){
                             iterationListView.Items[i].SubItems.Add(devItTasks.Remove(devItTasks.Length - 1));
                         }
                         else {
@@ -84,7 +83,7 @@ namespace Task_Tracker
         {
             {
                 // TODO Add validation to check all values entered
-                List<Project> projects;
+
                 Iteration iteration = new Iteration();
                 try
                 {
@@ -93,6 +92,9 @@ namespace Task_Tracker
                
                     iteration.ID = Int32.Parse(IDTextBox.Text);
                     iteration.ProjectID = Int32.Parse(projectIDTextBox.Text);
+                    foreach (string listboxval in IterationTasksList.Items) {
+     //TODO                   iteration.IterationTasks.Add()
+                    }
                     iteration.StartDate = startDatePicker.Value;
                     iteration.EndDate = endDatePicker.Value;
                     iteration.Project = projects.Find(project => project.ID == iteration.ProjectID);
@@ -102,21 +104,14 @@ namespace Task_Tracker
                     MessageBox.Show(ex.Message, ex.GetType().ToString());
                 }
         
-            //    iteration.IterationTasks= ReplaceEmptyStringWithNull(iterationTasksTextBox.Text);
-            //    iteration.DeveloperIterationTasks = ReplaceEmptyStringWithNull(developerIterationTasksTextBox.Text);
-
+           
             
                 try
                 {
-                    if (IDTextBox.Text == "")
-                    {
-                        DBInterface.Add(iteration);
-                    }
-                    else
-                    {
+                
                         iteration.ID = Int32.Parse(IDTextBox.Text);
-                        DBInterface.Update(iteration);
-                    }
+                        DBInterface.Add(iteration);
+                    
                 }
                 catch (Exception ex)
                 {
@@ -129,7 +124,7 @@ namespace Task_Tracker
                 projectIDTextBox.Text = "";
                 projectTextBox.Text = "";
                 iterationTasksTextBox.Text = "";
- 
+                IterationTasksList.Items.Clear();
                 startDatePicker.ResetText();
                 endDatePicker.ResetText();
 
@@ -170,7 +165,19 @@ namespace Task_Tracker
             IterationTasksList.Items.Remove(IterationTasksList.SelectedItem);
         }
 
-     
-      
+        private void projectIDTextBox_TextChanged(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                projects = DBInterface.GetProjects();
+                projectTextBox.Text = projects.Find(project => project.ID == Int32.Parse(projectIDTextBox.Text)).ProjectName; 
+            }
+            catch (Exception ex)
+            {
+                projectTextBox.Text = "";
+                Console.WriteLine(ex.Message, ex.GetType().ToString());
+            }
+        }
     }
 }
