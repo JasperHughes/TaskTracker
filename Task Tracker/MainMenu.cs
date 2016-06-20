@@ -14,11 +14,13 @@ namespace Task_Tracker
     {
         DeveloperForm developerForm;
         TasksForm taskForm;
+        IterationForm iterationForm;
         public MainMenu()
         {
             InitializeComponent();
             developerForm = new DeveloperForm();
             taskForm = new TasksForm();
+            iterationForm = new IterationForm();
         }
 
         private void DevelopersButton_Click(object sender, EventArgs e)
@@ -41,6 +43,11 @@ namespace Task_Tracker
             taskForm.Show();
     
 
+        }
+
+        private void IterationsButton_Click(object sender, EventArgs e)
+        {
+            iterationForm.Show();
         }
     }
 }

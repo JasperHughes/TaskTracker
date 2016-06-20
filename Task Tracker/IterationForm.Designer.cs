@@ -32,14 +32,12 @@
             this.projectIDTextBox = new System.Windows.Forms.TextBox();
             this.projectTextBox = new System.Windows.Forms.TextBox();
             this.iterationTasksTextBox = new System.Windows.Forms.TextBox();
-            this.developerIterationTasksTextBox = new System.Windows.Forms.TextBox();
             this.startDatePicker = new System.Windows.Forms.DateTimePicker();
             this.endDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.iterationListView = new System.Windows.Forms.ListView();
@@ -54,9 +52,6 @@
             this.IterationTasksList = new System.Windows.Forms.ListBox();
             this.AddIterationTask = new System.Windows.Forms.Button();
             this.RemoveIterationTask = new System.Windows.Forms.Button();
-            this.DevIterationTasksList = new System.Windows.Forms.ListBox();
-            this.RemoveDevIterationTask = new System.Windows.Forms.Button();
-            this.AddDevIterationTask = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // IDTextBox
@@ -86,13 +81,6 @@
             this.iterationTasksTextBox.Name = "iterationTasksTextBox";
             this.iterationTasksTextBox.Size = new System.Drawing.Size(100, 20);
             this.iterationTasksTextBox.TabIndex = 3;
-            // 
-            // developerIterationTasksTextBox
-            // 
-            this.developerIterationTasksTextBox.Location = new System.Drawing.Point(142, 209);
-            this.developerIterationTasksTextBox.Name = "developerIterationTasksTextBox";
-            this.developerIterationTasksTextBox.Size = new System.Drawing.Size(100, 20);
-            this.developerIterationTasksTextBox.TabIndex = 4;
             // 
             // startDatePicker
             // 
@@ -145,15 +133,6 @@
             this.label4.Size = new System.Drawing.Size(77, 13);
             this.label4.TabIndex = 10;
             this.label4.Text = "Iteration Tasks";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 212);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(129, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Developer Iteration Tasks";
             // 
             // label6
             // 
@@ -262,42 +241,11 @@
             this.RemoveIterationTask.UseVisualStyleBackColor = true;
             this.RemoveIterationTask.Click += new System.EventHandler(this.RemoveIterationTask_Click);
             // 
-            // DevIterationTasksList
-            // 
-            this.DevIterationTasksList.FormattingEnabled = true;
-            this.DevIterationTasksList.Location = new System.Drawing.Point(142, 235);
-            this.DevIterationTasksList.Name = "DevIterationTasksList";
-            this.DevIterationTasksList.Size = new System.Drawing.Size(99, 43);
-            this.DevIterationTasksList.TabIndex = 19;
-            // 
-            // RemoveDevIterationTask
-            // 
-            this.RemoveDevIterationTask.Location = new System.Drawing.Point(249, 235);
-            this.RemoveDevIterationTask.Name = "RemoveDevIterationTask";
-            this.RemoveDevIterationTask.Size = new System.Drawing.Size(26, 19);
-            this.RemoveDevIterationTask.TabIndex = 21;
-            this.RemoveDevIterationTask.Text = "-";
-            this.RemoveDevIterationTask.UseVisualStyleBackColor = true;
-            this.RemoveDevIterationTask.Click += new System.EventHandler(this.RemoveDevIterationTask_Click);
-            // 
-            // AddDevIterationTask
-            // 
-            this.AddDevIterationTask.Location = new System.Drawing.Point(249, 210);
-            this.AddDevIterationTask.Name = "AddDevIterationTask";
-            this.AddDevIterationTask.Size = new System.Drawing.Size(26, 19);
-            this.AddDevIterationTask.TabIndex = 20;
-            this.AddDevIterationTask.Text = "+";
-            this.AddDevIterationTask.UseVisualStyleBackColor = true;
-            this.AddDevIterationTask.Click += new System.EventHandler(this.AddDevIterationTask_Click);
-            // 
             // IterationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 399);
-            this.Controls.Add(this.RemoveDevIterationTask);
-            this.Controls.Add(this.AddDevIterationTask);
-            this.Controls.Add(this.DevIterationTasksList);
             this.Controls.Add(this.RemoveIterationTask);
             this.Controls.Add(this.AddIterationTask);
             this.Controls.Add(this.IterationTasksList);
@@ -305,14 +253,12 @@
             this.Controls.Add(this.iterationListView);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.endDatePicker);
             this.Controls.Add(this.startDatePicker);
-            this.Controls.Add(this.developerIterationTasksTextBox);
             this.Controls.Add(this.iterationTasksTextBox);
             this.Controls.Add(this.projectTextBox);
             this.Controls.Add(this.projectIDTextBox);
@@ -330,14 +276,12 @@
         private System.Windows.Forms.TextBox projectIDTextBox;
         private System.Windows.Forms.TextBox projectTextBox;
         private System.Windows.Forms.TextBox iterationTasksTextBox;
-        private System.Windows.Forms.TextBox developerIterationTasksTextBox;
         private System.Windows.Forms.DateTimePicker startDatePicker;
         private System.Windows.Forms.DateTimePicker endDatePicker;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListView iterationListView;
@@ -352,8 +296,5 @@
         private System.Windows.Forms.ListBox IterationTasksList;
         private System.Windows.Forms.Button AddIterationTask;
         private System.Windows.Forms.Button RemoveIterationTask;
-        private System.Windows.Forms.ListBox DevIterationTasksList;
-        private System.Windows.Forms.Button RemoveDevIterationTask;
-        private System.Windows.Forms.Button AddDevIterationTask;
     }
 }

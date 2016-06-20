@@ -16,6 +16,7 @@ namespace Task_Tracker
         public IterationForm()
         {
             InitializeComponent();
+            LoadIterations();
         }
 
         private void LoadIterations()
@@ -31,13 +32,35 @@ namespace Task_Tracker
                 if (iterations.Count > 0)
                 {
                     int i = 0;
+                    
                     foreach (Iteration iteration in iterations)
                     {
+                        string itTasks = "";
+                        string devItTasks = "";
                         iterationListView.Items.Add(iteration.ID.ToString());
                         iterationListView.Items[i].SubItems.Add(iteration.ProjectID.ToString());
-                        iterationListView.Items[i].SubItems.Add(iteration.Project.ToString());
-                        iterationListView.Items[i].SubItems.Add(iteration.IterationTasks.ToString());
-                        iterationListView.Items[i].SubItems.Add(iteration.DeveloperIterationTasks.ToString());
+                        iterationListView.Items[i].SubItems.Add(iteration.Project.ProjectName);
+                        foreach (IterationTask it in iteration.IterationTasks) {
+                            itTasks += it.TaskID.ToString()+ ",";
+                        }
+                        if (itTasks != "")
+                        {
+                            iterationListView.Items[i].SubItems.Add(itTasks.Remove(itTasks.Length - 1));
+                        }
+                        else {
+                            iterationListView.Items[i].SubItems.Add("");
+                        }
+                            foreach (DeveloperIterationTask dit in iteration.DeveloperIterationTasks)
+                        {
+                            devItTasks += dit.TaskID.ToString() + ",";
+                        }
+                        if (devItTasks != "")
+                        {
+                            iterationListView.Items[i].SubItems.Add(devItTasks.Remove(devItTasks.Length - 1));
+                        }
+                        else {
+                            iterationListView.Items[i].SubItems.Add("");
+                        }
                         iterationListView.Items[i].SubItems.Add(iteration.StartDate.ToString());
                         iterationListView.Items[i].SubItems.Add(iteration.EndDate.ToString());
 
@@ -106,7 +129,7 @@ namespace Task_Tracker
                 projectIDTextBox.Text = "";
                 projectTextBox.Text = "";
                 iterationTasksTextBox.Text = "";
-                developerIterationTasksTextBox.Text = "";
+ 
                 startDatePicker.ResetText();
                 endDatePicker.ResetText();
 
@@ -127,7 +150,7 @@ namespace Task_Tracker
                 projectIDTextBox.Text = item.SubItems[i++].Text;
                 projectTextBox.Text = item.SubItems[i++].Text;
                 iterationTasksTextBox.Text = item.SubItems[i++].Text;
-                developerIterationTasksTextBox.Text = item.SubItems[i++].Text;
+            
                 startDatePicker.Text = item.SubItems[i++].Text;
                 endDatePicker.Text = item.SubItems[i++].Text;
 
@@ -147,15 +170,7 @@ namespace Task_Tracker
             IterationTasksList.Items.Remove(IterationTasksList.SelectedItem);
         }
 
-        private void AddDevIterationTask_Click(object sender, EventArgs e)
-        {
-            DevIterationTasksList.Items.Add(developerIterationTasksTextBox.Text);
-            developerIterationTasksTextBox.Text = "";
-        }
-
-        private void RemoveDevIterationTask_Click(object sender, EventArgs e)
-        {
-            DevIterationTasksList.Items.Remove(DevIterationTasksList.SelectedItem);
-        }
+     
+      
     }
 }

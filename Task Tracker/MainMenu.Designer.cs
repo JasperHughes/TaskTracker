@@ -53,6 +53,7 @@
             this.IterationsButton.TabIndex = 1;
             this.IterationsButton.Text = "Manage Iterations";
             this.IterationsButton.UseVisualStyleBackColor = true;
+            this.IterationsButton.Click += new System.EventHandler(this.IterationsButton_Click);
             // 
             // TasksButton
             // 
