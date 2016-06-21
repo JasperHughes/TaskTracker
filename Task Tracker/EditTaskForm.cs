@@ -16,9 +16,11 @@ namespace Task_Tracker
         private Task currentTask;
         private Iteration currentIteration;
         private List<Developer> developers;
-        public EditTaskForm(Task task)
+        private TasksForm sender;
+        public EditTaskForm(Task task, TasksForm origin)
         {
             currentTask = task;
+            sender = origin;
             try {
                 currentIteration = currentTask.IterationTasks.Single(it => it.Task.Equals(currentTask)).Iteration;
             }
@@ -27,7 +29,11 @@ namespace Task_Tracker
                 currentIteration = null;
             }
             InitializeComponent();
-            taskNameLbl.Text = currentTask.TaskName;
+            TaskNameTextBox.Text = currentTask.TaskName;
+            CompletetionDateTextBox.Value = currentTask.CompletionDate.Value;
+            PriorityTextBox.Text = currentTask.Priority;
+            ProjectIDTextBox.Text = currentTask.Project.ProjectName;
+            DescriptionTextBox.Text = currentTask.Description;
             PopulateLists();         
         }
 
@@ -115,6 +121,17 @@ namespace Task_Tracker
             {
                 removeFromTaskBtn.Enabled = false;
             }
+        }
+
+        private void saveTaskBtn_Click(object sender, EventArgs e)
+        {
+            Task toEdit = DBInterface.GetTask(currentTask.ID);
+            toEdit.TaskName = TaskNameTextBox.Text;
+            toEdit.Description = DescriptionTextBox.Text;
+            toEdit.CompletionDate = CompletetionDateTextBox.Value;
+            toEdit.Priority = PriorityTextBox.Text;
+            DBInterface.Update(toEdit);
+            this.sender.ReloadData();
         }
     }
 }
