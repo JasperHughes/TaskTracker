@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Task_Tracker.DAO;
 
 namespace Task_Tracker
 {
@@ -48,6 +49,13 @@ namespace Task_Tracker
         private void IterationsButton_Click(object sender, EventArgs e)
         {
             iterationForm.Show();
+        }
+
+        private void iterationtaskstest_Click(object sender, EventArgs e)
+        {
+            Iteration it = DBInterface.GetIteration(2);
+            EditIterationTasksForm eitf = new EditIterationTasksForm(it);
+            eitf.Show();
         }
     }
 }
