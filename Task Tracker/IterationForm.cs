@@ -90,7 +90,7 @@ namespace Task_Tracker
                     projects = DBInterface.GetProjects();
 
                
-                    iteration.ID = Int32.Parse(IDTextBox.Text);
+                   // iteration.ID = Int32.Parse(IDTextBox.Text);
                     iteration.ProjectID = Int32.Parse(projectIDTextBox.Text);
                     foreach (string listboxval in IterationTasksList.Items) {
      //TODO                   iteration.IterationTasks.Add()
@@ -109,7 +109,7 @@ namespace Task_Tracker
                 try
                 {
                 
-                        iteration.ID = Int32.Parse(IDTextBox.Text);
+                        //iteration.ID = Int32.Parse(IDTextBox.Text);
                         DBInterface.Add(iteration);
                     
                 }
@@ -149,7 +149,7 @@ namespace Task_Tracker
                 startDatePicker.Text = item.SubItems[i++].Text;
                 endDatePicker.Text = item.SubItems[i++].Text;
 
-                LoadIterations();
+               // LoadIterations();
                 //UpdateAddEditLabel();
             }
         }
