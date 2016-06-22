@@ -23,15 +23,7 @@ namespace Task_Tracker
 
         private void TaksForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'taskTrackerDataSet.Projects' table. You can move, or remove it, as needed.
-            this.projectsTableAdapter.Fill(this.taskTrackerDataSet.Projects);
-            // TODO: This line of code loads data into the 'taskTrackerDataSet.Tasks' table. You can move, or remove it, as needed.
-            this.tasksTableAdapter.Fill(this.taskTrackerDataSet.Tasks);
-            // TODO: This line of code loads data into the 'taskTrackerDataSet.Projects' table. You can move, or remove it, as needed.
-            this.projectsTableAdapter.Fill(this.taskTrackerDataSet.Projects);
-            // TODO: This line of code loads data into the 'taskTrackerDataSet.Tasks' table. You can move, or remove it, as needed.
-            this.tasksTableAdapter.Fill(this.taskTrackerDataSet.Tasks);
-
+            ReloadData();
         }
 
         private void TaskFormSaveButton_Click(object sender, EventArgs e)
@@ -62,19 +54,34 @@ namespace Task_Tracker
                 Task task = new Task();
                 task.TaskName = TaskNameTextBox.Text;
                 task.Description = DescriptionTextBox.Text;
-                task.CompletionDate = CompletetionDateTextBox.Value;
+                if (CompletetionDateTextBox.Checked)
+                {
+                    task.CompletionDate = CompletetionDateTextBox.Value;
+                }
+                else
+                {
+                    task.CompletionDate = DateTime.MinValue;
+                }
                 task.Priority = PriorityTextBox.Text;
                 task.ProjectID = (int)ProjectIDTextBox.SelectedValue;
                 DBInterface.Add(task);
-                this.tasksTableAdapter.Fill(this.taskTrackerDataSet.Tasks);
+                ReloadData();
             }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Task selected = DBInterface.GetTask((int)dataGridView1.CurrentRow.Cells[0].Value);
-            EditTaskForm etf = new EditTaskForm(selected);
+            EditTaskForm etf = new EditTaskForm(selected, this);
             etf.Show();
+        }
+
+        public void ReloadData()
+        {
+            // TODO: This line of code loads data into the 'taskTrackerDataSet.Projects' table. You can move, or remove it, as needed.
+            this.projectsTableAdapter.Fill(this.taskTrackerDataSet.Projects);
+            // TODO: This line of code loads data into the 'taskTrackerDataSet.Tasks' table. You can move, or remove it, as needed.
+            this.tasksTableAdapter.Fill(this.taskTrackerDataSet.Tasks);
         }
     }
 }
