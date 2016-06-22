@@ -30,7 +30,6 @@
         {
             this.projectIDTextBox = new System.Windows.Forms.TextBox();
             this.projectTextBox = new System.Windows.Forms.TextBox();
-            this.iterationTasksTextBox = new System.Windows.Forms.TextBox();
             this.startDatePicker = new System.Windows.Forms.DateTimePicker();
             this.endDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,8 +49,8 @@
             this.SaveButton = new System.Windows.Forms.Button();
             this.IterationTasksList = new System.Windows.Forms.ListBox();
             this.AddIterationTask = new System.Windows.Forms.Button();
-            this.RemoveIterationTask = new System.Windows.Forms.Button();
             this.IterationIDLabel = new System.Windows.Forms.Label();
+            this.ITEditButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // projectIDTextBox
@@ -69,13 +68,6 @@
             this.projectTextBox.Name = "projectTextBox";
             this.projectTextBox.Size = new System.Drawing.Size(100, 20);
             this.projectTextBox.TabIndex = 2;
-            // 
-            // iterationTasksTextBox
-            // 
-            this.iterationTasksTextBox.Location = new System.Drawing.Point(142, 133);
-            this.iterationTasksTextBox.Name = "iterationTasksTextBox";
-            this.iterationTasksTextBox.Size = new System.Drawing.Size(100, 20);
-            this.iterationTasksTextBox.TabIndex = 3;
             // 
             // startDatePicker
             // 
@@ -216,30 +208,21 @@
             // IterationTasksList
             // 
             this.IterationTasksList.FormattingEnabled = true;
-            this.IterationTasksList.Location = new System.Drawing.Point(142, 160);
+            this.IterationTasksList.Location = new System.Drawing.Point(142, 136);
             this.IterationTasksList.Name = "IterationTasksList";
-            this.IterationTasksList.Size = new System.Drawing.Size(99, 43);
+            this.IterationTasksList.Size = new System.Drawing.Size(99, 69);
             this.IterationTasksList.TabIndex = 16;
+            this.IterationTasksList.SelectedIndexChanged += new System.EventHandler(this.IterationTasksList_SelectedIndexChanged);
             // 
             // AddIterationTask
             // 
-            this.AddIterationTask.Location = new System.Drawing.Point(249, 133);
+            this.AddIterationTask.Location = new System.Drawing.Point(247, 136);
             this.AddIterationTask.Name = "AddIterationTask";
-            this.AddIterationTask.Size = new System.Drawing.Size(26, 19);
+            this.AddIterationTask.Size = new System.Drawing.Size(61, 21);
             this.AddIterationTask.TabIndex = 17;
-            this.AddIterationTask.Text = "+";
+            this.AddIterationTask.Text = "Add";
             this.AddIterationTask.UseVisualStyleBackColor = true;
             this.AddIterationTask.Click += new System.EventHandler(this.AddIterationTask_Click);
-            // 
-            // RemoveIterationTask
-            // 
-            this.RemoveIterationTask.Location = new System.Drawing.Point(249, 160);
-            this.RemoveIterationTask.Name = "RemoveIterationTask";
-            this.RemoveIterationTask.Size = new System.Drawing.Size(26, 19);
-            this.RemoveIterationTask.TabIndex = 18;
-            this.RemoveIterationTask.Text = "-";
-            this.RemoveIterationTask.UseVisualStyleBackColor = true;
-            this.RemoveIterationTask.Click += new System.EventHandler(this.RemoveIterationTask_Click);
             // 
             // IterationIDLabel
             // 
@@ -249,13 +232,24 @@
             this.IterationIDLabel.Size = new System.Drawing.Size(0, 13);
             this.IterationIDLabel.TabIndex = 0;
             // 
+            // ITEditButton
+            // 
+            this.ITEditButton.Enabled = false;
+            this.ITEditButton.Location = new System.Drawing.Point(247, 158);
+            this.ITEditButton.Name = "ITEditButton";
+            this.ITEditButton.Size = new System.Drawing.Size(61, 21);
+            this.ITEditButton.TabIndex = 18;
+            this.ITEditButton.Text = "Edit";
+            this.ITEditButton.UseVisualStyleBackColor = true;
+            this.ITEditButton.Click += new System.EventHandler(this.ITEditButton_Click);
+            // 
             // IterationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 399);
+            this.Controls.Add(this.ITEditButton);
             this.Controls.Add(this.IterationIDLabel);
-            this.Controls.Add(this.RemoveIterationTask);
             this.Controls.Add(this.AddIterationTask);
             this.Controls.Add(this.IterationTasksList);
             this.Controls.Add(this.SaveButton);
@@ -268,7 +262,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.endDatePicker);
             this.Controls.Add(this.startDatePicker);
-            this.Controls.Add(this.iterationTasksTextBox);
             this.Controls.Add(this.projectTextBox);
             this.Controls.Add(this.projectIDTextBox);
             this.Name = "IterationForm";
@@ -281,7 +274,6 @@
         #endregion
         private System.Windows.Forms.TextBox projectIDTextBox;
         private System.Windows.Forms.TextBox projectTextBox;
-        private System.Windows.Forms.TextBox iterationTasksTextBox;
         private System.Windows.Forms.DateTimePicker startDatePicker;
         private System.Windows.Forms.DateTimePicker endDatePicker;
         private System.Windows.Forms.Label label1;
@@ -301,7 +293,7 @@
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.ListBox IterationTasksList;
         private System.Windows.Forms.Button AddIterationTask;
-        private System.Windows.Forms.Button RemoveIterationTask;
         private System.Windows.Forms.Label IterationIDLabel;
+        private System.Windows.Forms.Button ITEditButton;
     }
 }

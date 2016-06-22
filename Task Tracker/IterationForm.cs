@@ -15,6 +15,7 @@ namespace Task_Tracker
     {
         List<Project> projects;
         List<Iteration> iterations;
+        List<Task> tasks;
         public IterationForm()
         {
             InitializeComponent();
@@ -89,13 +90,8 @@ namespace Task_Tracker
                 try
                 {
                     projects = DBInterface.GetProjects();
-
-               
-                   // iteration.ID = Int32.Parse(IDTextBox.Text);
+              
                     iteration.ProjectID = Int32.Parse(projectIDTextBox.Text);
-                    foreach (string listboxval in IterationTasksList.Items) {
-     //TODO                   iteration.IterationTasks.Add()
-                    }
                     iteration.StartDate = startDatePicker.Value;
                     iteration.EndDate = endDatePicker.Value;
                     iteration.Project = projects.Find(project => project.ID == iteration.ProjectID);
@@ -104,13 +100,10 @@ namespace Task_Tracker
                 catch(Exception ex){
                     MessageBox.Show(ex.Message, ex.GetType().ToString());
                 }
-        
-           
-            
+                
                 try
                 {
-                
-                        //iteration.ID = Int32.Parse(IDTextBox.Text);
+  
                         DBInterface.Add(iteration);
                     
                 }
@@ -124,7 +117,7 @@ namespace Task_Tracker
                 IterationIDLabel.Text = "";
                 projectIDTextBox.Text = "";
                 projectTextBox.Text = "";
-                iterationTasksTextBox.Text = "";
+               
                 IterationTasksList.Items.Clear();
                 startDatePicker.ResetText();
                 endDatePicker.ResetText();
@@ -154,7 +147,13 @@ namespace Task_Tracker
                 i++;
                 startDatePicker.Text = item.SubItems[i++].Text;
                 endDatePicker.Text = item.SubItems[i++].Text;
-
+                if (IterationTasksList.Items.Count != 0)
+                {
+                    IterationTasksList.SelectedIndex = 0;
+                }
+                else {
+                    ITEditButton.Enabled = false;
+                }
                // LoadIterations();
                 //UpdateAddEditLabel();
             }
@@ -162,8 +161,8 @@ namespace Task_Tracker
 
         private void AddIterationTask_Click(object sender, EventArgs e)
         {
-            IterationTasksList.Items.Add(iterationTasksTextBox.Text);
-            iterationTasksTextBox.Text = "";
+            EditIterationTasksForm eitf = new EditIterationTasksForm(iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text)));
+            eitf.Show();
         }
 
         private void RemoveIterationTask_Click(object sender, EventArgs e)
@@ -186,6 +185,28 @@ namespace Task_Tracker
             }
         }
 
- 
+        private void IterationTasksList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ITEditButton.Enabled = true;
+        }
+
+        private void ITEditButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tasks = DBInterface.GetTasks();
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message, ex.GetType().ToString());
+            }
+
+            if (IterationTasksList.SelectedItem != null)
+            {
+                EditTaskForm etf = new EditTaskForm(tasks.Find(task => task.ID == Int32.Parse(IterationTasksList.SelectedItem.ToString())), new TasksForm());
+                etf.Show();
+            }
+        }
     }
 }
