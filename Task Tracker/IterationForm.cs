@@ -85,38 +85,50 @@ namespace Task_Tracker
         private void SaveButton_Click(object sender, EventArgs e)
         {
             {
-                // TODO Add validation to check all values entered
-
-                iteration = new Iteration();
-                try
+                projects = DBInterface.GetProjects();
+                if (projectIDTextBox.Text != "" && projects.Contains(projects.Find(project => project.ID == Int32.Parse(projectIDTextBox.Text))))
                 {
-                    projects = DBInterface.GetProjects();
-                    iteration.ID = Int32.Parse(IterationIDLabel.Text);
-                    iteration.ProjectID = Int32.Parse(projectIDTextBox.Text);
-                    iteration.StartDate = startDatePicker.Value;
-                    iteration.EndDate = endDatePicker.Value;
-                    iteration.Project = projects.Find(project => project.ID == iteration.ProjectID);
 
-                }
-                catch(Exception ex){
-                    MessageBox.Show(ex.Message, ex.GetType().ToString());
-                }
-                
-                try
-                {
-  
-                        DBInterface.Add(iteration);
-                    
-                }
-                catch (Exception ex)
-                {
-                    // TODO What should really happen on error?
-                    MessageBox.Show(ex.Message, ex.GetType().ToString());
-                }
+                    if (!iterations.Contains(iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text))))
+                    {
+                        try
+                        {
+                            iteration = new Iteration();
+                            iteration.ID = Int32.Parse(IterationIDLabel.Text);
+                            iteration.ProjectID = Int32.Parse(projectIDTextBox.Text);
+                            iteration.StartDate = startDatePicker.Value;
+                            iteration.EndDate = endDatePicker.Value;
+                            iteration.Project = projects.Find(project => project.ID == iteration.ProjectID);
+                            DBInterface.Add(iteration);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, ex.GetType().ToString());
+                        }
+                    }
+                    else {
+                        try
+                        {
+                            iteration = iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text));
+                            
+                            iteration.StartDate = startDatePicker.Value;
+                            iteration.EndDate = endDatePicker.Value;
+                            DBInterface.Update(iteration);
 
-                ResetFields();
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO What should really happen on error?
+                            MessageBox.Show(ex.Message, ex.GetType().ToString());
+                        }
+                    }
+                    ResetFields();
 
-                LoadIterations();
+                    LoadIterations();
+                }
+                else {
+                    MessageBox.Show("Please enter make sure input is valid");
+                }
               //  UpdateAddEditLabel();
 
             }
