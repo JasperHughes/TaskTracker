@@ -16,6 +16,7 @@ namespace Task_Tracker
         List<Project> projects;
         List<Iteration> iterations;
         List<Task> tasks;
+        Iteration iteration;
         public IterationForm()
         {
             InitializeComponent();
@@ -86,11 +87,11 @@ namespace Task_Tracker
             {
                 // TODO Add validation to check all values entered
 
-                Iteration iteration = new Iteration();
+                iteration = new Iteration();
                 try
                 {
                     projects = DBInterface.GetProjects();
-              
+                    iteration.ID = Int32.Parse(IterationIDLabel.Text);
                     iteration.ProjectID = Int32.Parse(projectIDTextBox.Text);
                     iteration.StartDate = startDatePicker.Value;
                     iteration.EndDate = endDatePicker.Value;
@@ -113,14 +114,7 @@ namespace Task_Tracker
                     MessageBox.Show(ex.Message, ex.GetType().ToString());
                 }
 
-                // Reset edit fields
-                IterationIDLabel.Text = "";
-                projectIDTextBox.Text = "";
-                projectTextBox.Text = "";
-               
-                IterationTasksList.Items.Clear();
-                startDatePicker.ResetText();
-                endDatePicker.ResetText();
+                ResetFields();
 
                 LoadIterations();
               //  UpdateAddEditLabel();
@@ -154,6 +148,7 @@ namespace Task_Tracker
                 else {
                     ITEditButton.Enabled = false;
                 }
+                projectIDTextBox.Enabled = false;
                // LoadIterations();
                 //UpdateAddEditLabel();
             }
@@ -207,6 +202,24 @@ namespace Task_Tracker
                 EditTaskForm etf = new EditTaskForm(tasks.Find(task => task.ID == Int32.Parse(IterationTasksList.SelectedItem.ToString())), new TasksForm());
                 etf.Show();
             }
+        }
+
+        private void NewProjectButton_Click(object sender, EventArgs e)
+        {
+            ResetFields();
+            projectIDTextBox.Enabled = true;
+            IterationIDLabel.Text = (iterations[iterations.Count-1].ID + 1).ToString();
+
+        }
+        private void ResetFields() {
+            // Reset edit fields
+            IterationIDLabel.Text = "";
+            projectIDTextBox.Text = "";
+            projectTextBox.Text = "";
+
+            IterationTasksList.Items.Clear();
+            startDatePicker.ResetText();
+            endDatePicker.ResetText();
         }
     }
 }

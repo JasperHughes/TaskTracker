@@ -51,10 +51,12 @@
             this.AddIterationTask = new System.Windows.Forms.Button();
             this.IterationIDLabel = new System.Windows.Forms.Label();
             this.ITEditButton = new System.Windows.Forms.Button();
+            this.NewProjectButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // projectIDTextBox
             // 
+            this.projectIDTextBox.Enabled = false;
             this.projectIDTextBox.Location = new System.Drawing.Point(142, 81);
             this.projectIDTextBox.Name = "projectIDTextBox";
             this.projectIDTextBox.Size = new System.Drawing.Size(100, 20);
@@ -197,7 +199,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(142, 266);
+            this.SaveButton.Location = new System.Drawing.Point(142, 292);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(99, 23);
             this.SaveButton.TabIndex = 15;
@@ -243,11 +245,22 @@
             this.ITEditButton.UseVisualStyleBackColor = true;
             this.ITEditButton.Click += new System.EventHandler(this.ITEditButton_Click);
             // 
+            // NewProjectButton
+            // 
+            this.NewProjectButton.Location = new System.Drawing.Point(10, 292);
+            this.NewProjectButton.Name = "NewProjectButton";
+            this.NewProjectButton.Size = new System.Drawing.Size(99, 23);
+            this.NewProjectButton.TabIndex = 19;
+            this.NewProjectButton.Text = "New";
+            this.NewProjectButton.UseVisualStyleBackColor = true;
+            this.NewProjectButton.Click += new System.EventHandler(this.NewProjectButton_Click);
+            // 
             // IterationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 399);
+            this.Controls.Add(this.NewProjectButton);
             this.Controls.Add(this.ITEditButton);
             this.Controls.Add(this.IterationIDLabel);
             this.Controls.Add(this.AddIterationTask);
@@ -295,5 +308,6 @@
         private System.Windows.Forms.Button AddIterationTask;
         private System.Windows.Forms.Label IterationIDLabel;
         private System.Windows.Forms.Button ITEditButton;
+        private System.Windows.Forms.Button NewProjectButton;
     }
 }
