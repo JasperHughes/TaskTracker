@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.IDTextBox = new System.Windows.Forms.TextBox();
             this.projectIDTextBox = new System.Windows.Forms.TextBox();
             this.projectTextBox = new System.Windows.Forms.TextBox();
             this.iterationTasksTextBox = new System.Windows.Forms.TextBox();
@@ -52,14 +51,8 @@
             this.IterationTasksList = new System.Windows.Forms.ListBox();
             this.AddIterationTask = new System.Windows.Forms.Button();
             this.RemoveIterationTask = new System.Windows.Forms.Button();
+            this.IterationIDLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // IDTextBox
-            // 
-            this.IDTextBox.Location = new System.Drawing.Point(142, 55);
-            this.IDTextBox.Name = "IDTextBox";
-            this.IDTextBox.Size = new System.Drawing.Size(100, 20);
-            this.IDTextBox.TabIndex = 0;
             // 
             // projectIDTextBox
             // 
@@ -156,6 +149,7 @@
             // 
             // iterationListView
             // 
+            this.iterationListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.iterationListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -164,12 +158,16 @@
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7});
+            this.iterationListView.FullRowSelect = true;
+            this.iterationListView.HideSelection = false;
             this.iterationListView.Location = new System.Drawing.Point(373, 55);
+            this.iterationListView.MultiSelect = false;
             this.iterationListView.Name = "iterationListView";
             this.iterationListView.Size = new System.Drawing.Size(470, 275);
             this.iterationListView.TabIndex = 14;
             this.iterationListView.UseCompatibleStateImageBehavior = false;
             this.iterationListView.View = System.Windows.Forms.View.Details;
+            this.iterationListView.SelectedIndexChanged += new System.EventHandler(this.iterationListView_SelectedIndexChanged_1);
             // 
             // columnHeader1
             // 
@@ -243,11 +241,20 @@
             this.RemoveIterationTask.UseVisualStyleBackColor = true;
             this.RemoveIterationTask.Click += new System.EventHandler(this.RemoveIterationTask_Click);
             // 
+            // IterationIDLabel
+            // 
+            this.IterationIDLabel.AutoSize = true;
+            this.IterationIDLabel.Location = new System.Drawing.Point(139, 58);
+            this.IterationIDLabel.Name = "IterationIDLabel";
+            this.IterationIDLabel.Size = new System.Drawing.Size(0, 13);
+            this.IterationIDLabel.TabIndex = 0;
+            // 
             // IterationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 399);
+            this.Controls.Add(this.IterationIDLabel);
             this.Controls.Add(this.RemoveIterationTask);
             this.Controls.Add(this.AddIterationTask);
             this.Controls.Add(this.IterationTasksList);
@@ -264,7 +271,6 @@
             this.Controls.Add(this.iterationTasksTextBox);
             this.Controls.Add(this.projectTextBox);
             this.Controls.Add(this.projectIDTextBox);
-            this.Controls.Add(this.IDTextBox);
             this.Name = "IterationForm";
             this.Text = "IterationForm";
             this.ResumeLayout(false);
@@ -273,8 +279,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox IDTextBox;
         private System.Windows.Forms.TextBox projectIDTextBox;
         private System.Windows.Forms.TextBox projectTextBox;
         private System.Windows.Forms.TextBox iterationTasksTextBox;
@@ -298,5 +302,6 @@
         private System.Windows.Forms.ListBox IterationTasksList;
         private System.Windows.Forms.Button AddIterationTask;
         private System.Windows.Forms.Button RemoveIterationTask;
+        private System.Windows.Forms.Label IterationIDLabel;
     }
 }

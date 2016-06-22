@@ -14,11 +14,12 @@ namespace Task_Tracker
     public partial class IterationForm : Form
     {
         List<Project> projects;
-
+        List<Iteration> iterations;
         public IterationForm()
         {
             InitializeComponent();
             LoadIterations();
+
         }
 
         private void LoadIterations()
@@ -26,7 +27,7 @@ namespace Task_Tracker
             iterationListView.Items.Clear();
 
             // Load all the iterations into the List View
-            List<Iteration> iterations;
+            
 
             try
             {
@@ -120,7 +121,7 @@ namespace Task_Tracker
                 }
 
                 // Reset edit fields
-                IDTextBox.Text = "";
+                IterationIDLabel.Text = "";
                 projectIDTextBox.Text = "";
                 projectTextBox.Text = "";
                 iterationTasksTextBox.Text = "";
@@ -133,19 +134,24 @@ namespace Task_Tracker
 
             }
         }
-        private void IterationListView_SelectedIndexChanged(object sender, EventArgs e)
+        private void iterationListView_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            
             if (iterationListView.SelectedItems.Count > 0)
             {
                 // Load Values into Editable fields
+
                 ListViewItem item = iterationListView.SelectedItems[0];
                 int i = 0;
-
-                IDTextBox.Text = item.SubItems[i++].Text;
+                IterationTasksList.Items.Clear();
+                IterationIDLabel.Text = item.SubItems[i++].Text;
                 projectIDTextBox.Text = item.SubItems[i++].Text;
                 projectTextBox.Text = item.SubItems[i++].Text;
-                iterationTasksTextBox.Text = item.SubItems[i++].Text;
-            
+                foreach (IterationTask it in iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text)).IterationTasks) {
+                    IterationTasksList.Items.Add(it.TaskID);
+                }
+                i++;
+                i++;
                 startDatePicker.Text = item.SubItems[i++].Text;
                 endDatePicker.Text = item.SubItems[i++].Text;
 
@@ -179,5 +185,7 @@ namespace Task_Tracker
                 Console.WriteLine(ex.Message, ex.GetType().ToString());
             }
         }
+
+ 
     }
 }
