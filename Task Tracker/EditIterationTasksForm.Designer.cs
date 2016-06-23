@@ -109,6 +109,7 @@
             this.addToIterationBtn.TabIndex = 9;
             this.addToIterationBtn.Text = "--->";
             this.addToIterationBtn.UseVisualStyleBackColor = true;
+            this.addToIterationBtn.Click += new System.EventHandler(this.addToIterationBtn_Click);
             // 
             // EditIterationTasksForm
             // 

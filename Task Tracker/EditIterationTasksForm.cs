@@ -15,6 +15,7 @@ namespace Task_Tracker
     {
         private Iteration currentIteration;
         private List<IterationTask> tasks;
+        private List<Task> unassignedTasks;
 
         public EditIterationTasksForm(Iteration iteration)
         {
@@ -26,16 +27,17 @@ namespace Task_Tracker
             populateLists();
         }
 
-        private void populateLists()
+        public void populateLists()
         {
             unassignedToIterationLB.Items.Clear();
             assignedToIterationLB.Items.Clear();
             tasks = DBInterface.GetTasksForIteration(currentIteration.ID);
+            unassignedTasks = DBInterface.GetUnassignedTasks();
             foreach (IterationTask itTask in tasks)
             {
                 assignedToIterationLB.Items.Add(DBInterface.GetTask(itTask.TaskID));
             }
-            foreach (Task task in DBInterface.GetUnassignedTasks())
+            foreach (Task task in unassignedTasks)
             {
                 unassignedToIterationLB.Items.Add(task);
             }
@@ -74,5 +76,16 @@ namespace Task_Tracker
             populateLists();
             removeFromIterationBtn.Enabled = false;
         }
+
+        private void addToIterationBtn_Click(object sender, EventArgs e)
+        {
+            Task taskSelected = unassignedTasks[unassignedToIterationLB.SelectedIndex];
+            IterationTaskDatesForm itdf = new IterationTaskDatesForm(currentIteration, taskSelected, this);
+            itdf.Owner = this;
+            itdf.Show();
+            Enabled = false;
+            addToIterationBtn.Enabled = false;
+        }
+
     }
 }

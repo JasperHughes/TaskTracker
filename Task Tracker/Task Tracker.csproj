@@ -105,6 +105,12 @@
     <Compile Include="EditIterationTasksForm.Designer.cs">
       <DependentUpon>EditIterationTasksForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IterationTaskDatesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IterationTaskDatesForm.Designer.cs">
+      <DependentUpon>IterationTaskDatesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditIterationTasksForm.resx">
       <DependentUpon>EditIterationTasksForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IterationTaskDatesForm.resx">
+      <DependentUpon>IterationTaskDatesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>

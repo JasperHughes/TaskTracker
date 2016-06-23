@@ -34,7 +34,7 @@ namespace Task_Tracker
             PriorityTextBox.Text = currentTask.Priority;
             ProjectIDTextBox.Text = currentTask.Project.ProjectName;
             DescriptionTextBox.Text = currentTask.Description;
-            PopulateLists();         
+            PopulateLists();    
         }
 
         private void PopulateLists()
