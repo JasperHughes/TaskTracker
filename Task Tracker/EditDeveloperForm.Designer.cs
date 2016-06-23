@@ -35,7 +35,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.ActiveCheckbox = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,6 +56,8 @@
             this.developerIterationTasksTableAdapter = new Task_Tracker.TaskTrackerDataSetTableAdapters.DeveloperIterationTasksTableAdapter();
             this.IterationsDataGridView = new System.Windows.Forms.DataGridView();
             this.ActionColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ActiveStatusLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.developersBindingSource)).BeginInit();
@@ -121,20 +122,6 @@
             this.label5.Size = new System.Drawing.Size(98, 13);
             this.label5.TabIndex = 27;
             this.label5.Text = "Active Developer?:";
-            // 
-            // ActiveCheckbox
-            // 
-            this.ActiveCheckbox.AutoSize = true;
-            this.ActiveCheckbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ActiveCheckbox.Checked = true;
-            this.ActiveCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ActiveCheckbox.Location = new System.Drawing.Point(123, 171);
-            this.ActiveCheckbox.Name = "ActiveCheckbox";
-            this.ActiveCheckbox.Size = new System.Drawing.Size(15, 14);
-            this.ActiveCheckbox.TabIndex = 26;
-            this.ActiveCheckbox.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.ActiveCheckbox.UseMnemonic = false;
-            this.ActiveCheckbox.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -305,11 +292,31 @@
             this.ActionColumn.ToolTipText = "Print Report";
             this.ActionColumn.UseColumnTextForButtonValue = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(416, 57);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 36;
+            this.label7.Text = "label7";
+            // 
+            // ActiveStatusLabel
+            // 
+            this.ActiveStatusLabel.AutoSize = true;
+            this.ActiveStatusLabel.Location = new System.Drawing.Point(123, 177);
+            this.ActiveStatusLabel.Name = "ActiveStatusLabel";
+            this.ActiveStatusLabel.Size = new System.Drawing.Size(35, 13);
+            this.ActiveStatusLabel.TabIndex = 37;
+            this.ActiveStatusLabel.Text = "label8";
+            // 
             // EditDeveloperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1099, 519);
+            this.Controls.Add(this.ActiveStatusLabel);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.IterationsDataGridView);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.CancelButton);
@@ -318,7 +325,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.ActiveCheckbox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -352,7 +358,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox ActiveCheckbox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -374,6 +379,8 @@
         private TaskTrackerDataSetTableAdapters.DeveloperIterationTasksTableAdapter developerIterationTasksTableAdapter;
         private System.Windows.Forms.DataGridView IterationsDataGridView;
         private System.Windows.Forms.DataGridViewButtonColumn ActionColumn;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label ActiveStatusLabel;
 
     }
 }

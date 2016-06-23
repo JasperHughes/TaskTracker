@@ -60,7 +60,7 @@ namespace Task_Tracker
                 GivenNamesTextBox.Text = "";
                 EmailTextBox.Text = "";
                 ContactNumberTextBox.Text = "";
-                ActiveCheckbox.Checked = true;
+                ActiveStatusLabel.Text = "Yes";
                 NotesTextBox.Text = "";
 
                 AddEditLabel.Text = "Add Developer";
@@ -71,7 +71,7 @@ namespace Task_Tracker
                 FamilyNameTextBox.Text = CurrentDeveloper.FamilyName;
                 EmailTextBox.Text = CurrentDeveloper.Email;
                 ContactNumberTextBox.Text = CurrentDeveloper.ContactNumber;
-                ActiveCheckbox.Checked = CurrentDeveloper.Active;
+                ActiveStatusLabel.Text = CurrentDeveloper.Active ? "Yes" : "No";
                 NotesTextBox.Text = CurrentDeveloper.Notes;
 
                 AddEditLabel.Text = "Edit Developer ";
@@ -116,7 +116,6 @@ namespace Task_Tracker
             developer.GivenNames = GivenNamesTextBox.Text;
             developer.Email = EmailTextBox.Text;
             developer.ContactNumber = ContactNumberTextBox.Text;
-            developer.Active = ActiveCheckbox.Checked;
             developer.Notes = NotesTextBox.Text;
 
             try
@@ -124,6 +123,7 @@ namespace Task_Tracker
                 // Save the developer to the database.
                 if (CurrentDeveloper == null)
                 {
+                    developer.Active = true;
                     DBInterface.Add(developer);
                 }
                 else
