@@ -114,6 +114,17 @@ namespace Task_Tracker.DAO
                     select developer).Distinct().ToList();
         }
 
+        
+        public static List<Task> GetDeveloperIncompleteTasks(int developerID)
+        {
+            // Get list of tasks assigned to developer that don't have a CompletionDate
+            return (from tasks in dataContext.Tasks
+                    join developerIterationTask in dataContext.DeveloperIterationTasks on tasks.ID equals developerIterationTask.TaskID
+                    where developerIterationTask.DeveloperID == developerID
+                    where tasks.CompletionDate == null
+                    select tasks).ToList();
+        }
+
         public static List<Client> GetClients()
         {
             

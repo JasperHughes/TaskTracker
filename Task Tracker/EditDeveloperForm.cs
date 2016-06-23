@@ -110,8 +110,15 @@ namespace Task_Tracker
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            SaveDeveloper(new Developer());
+
+            // Hide form after saving developer
+            HideForm();
+        }
+
+        private void SaveDeveloper(Developer developer)
+        {
             // Move all the details from the textboxes to Developer object
-            Developer developer = new Developer();
             developer.FamilyName = FamilyNameTextBox.Text;
             developer.GivenNames = GivenNamesTextBox.Text;
             developer.Email = EmailTextBox.Text;
@@ -138,8 +145,6 @@ namespace Task_Tracker
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
 
-            // Hide form after saving developer
-            HideForm();
         }
 
         private void HideForm()
@@ -156,8 +161,39 @@ namespace Task_Tracker
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            // TODO Delete functionality
-            // TODO Cannot delete a developer that is assigned to an incomplete task
+            // Deleting the developer actually marks Active as False in order to retain the record for 
+            // future purposes.
+
+            // Only take action when developer is active
+            if (currentDeveloper.Active)
+            {
+                // Cannot delete a developer that is assigned to an incomplete task
+                int incompleteTasks = DBInterface.GetDeveloperIncompleteTasks(currentDeveloper.ID).Count;
+                if (incompleteTasks > 0)
+                {
+                    MessageBox.Show("Developer cannot be deleted, they have "
+                        + incompleteTasks + " incomplete tasks. " + Environment.NewLine
+                        + "Either complete those tasks or remove them from this developer.", 
+                        "Delete Developer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    // Mark current developer as inactive, save to the database (along with other changes
+                    // to textfields) and update the form
+                    currentDeveloper.Active = false;
+                    SaveDeveloper(currentDeveloper);
+                    UpdateForm();
+                    MessageBox.Show(currentDeveloper + " has been made inactive. " + Environment.NewLine
+                        + "They have not been deleted so that all previous work can be referenced.",
+                        "Delete Developer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                // Developer is inactive so no need to do anything
+                MessageBox.Show("Developer has already been deleted.", "Delete Developer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
 
 
@@ -178,7 +214,7 @@ namespace Task_Tracker
             this.saveToolStripMenuItem.Enabled = enableSave;
 
             // Delete button only enabled when editing a developer
-            bool enableDelete = (currentDeveloper != null);
+            bool enableDelete = (currentDeveloper != null && CurrentDeveloper.Active);
             this.DeleteButton.Enabled = enableDelete;
             this.deleteToolStripMenuItem.Enabled = enableDelete;
         }
