@@ -56,7 +56,6 @@
             this.developerIterationTasksTableAdapter = new Task_Tracker.TaskTrackerDataSetTableAdapters.DeveloperIterationTasksTableAdapter();
             this.IterationsDataGridView = new System.Windows.Forms.DataGridView();
             this.ActionColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.label7 = new System.Windows.Forms.Label();
             this.ActiveStatusLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSet)).BeginInit();
@@ -292,15 +291,6 @@
             this.ActionColumn.ToolTipText = "Print Report";
             this.ActionColumn.UseColumnTextForButtonValue = true;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(416, 57);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 36;
-            this.label7.Text = "label7";
-            // 
             // ActiveStatusLabel
             // 
             this.ActiveStatusLabel.AutoSize = true;
@@ -316,7 +306,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1099, 519);
             this.Controls.Add(this.ActiveStatusLabel);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.IterationsDataGridView);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.CancelButton);
@@ -379,7 +368,6 @@
         private TaskTrackerDataSetTableAdapters.DeveloperIterationTasksTableAdapter developerIterationTasksTableAdapter;
         private System.Windows.Forms.DataGridView IterationsDataGridView;
         private System.Windows.Forms.DataGridViewButtonColumn ActionColumn;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label ActiveStatusLabel;
 
     }
