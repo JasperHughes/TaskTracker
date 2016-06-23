@@ -109,7 +109,7 @@ namespace Task_Tracker
                     else {
                         try
                         {
-                            iteration = iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text));
+                            iteration = iterations.Find(iter => iter.ID == Int32.Parse(IterationIDLabel.Text));
                             
                             iteration.StartDate = startDatePicker.Value;
                             iteration.EndDate = endDatePicker.Value;
