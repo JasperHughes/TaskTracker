@@ -153,7 +153,13 @@ namespace Task_Tracker
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            SaveDeveloper(new Developer());
+            // Use current developer, but if null create a new object.
+            Developer developer = CurrentDeveloper;
+            if (developer == null)
+            {
+                developer = new Developer();
+            }
+            SaveDeveloper(developer);
 
             // Hide form after saving developer
             HideForm();
