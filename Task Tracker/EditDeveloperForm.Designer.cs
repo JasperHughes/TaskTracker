@@ -57,11 +57,13 @@
             this.IterationsDataGridView = new System.Windows.Forms.DataGridView();
             this.ActionColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ActiveStatusLabel = new System.Windows.Forms.Label();
+            this.TasksDataGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.developersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fKDeveloperIDDeveloperIterationTasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IterationsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TasksDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // CancelButton
@@ -280,6 +282,7 @@
             this.IterationsDataGridView.Size = new System.Drawing.Size(527, 150);
             this.IterationsDataGridView.TabIndex = 35;
             this.IterationsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IterationsDataGridView_CellContentClick);
+            this.IterationsDataGridView.SelectionChanged += new System.EventHandler(this.IterationsDataGridView_SelectionChanged);
             // 
             // ActionColumn
             // 
@@ -300,11 +303,23 @@
             this.ActiveStatusLabel.TabIndex = 37;
             this.ActiveStatusLabel.Text = "label8";
             // 
+            // TasksDataGridView
+            // 
+            this.TasksDataGridView.AllowUserToAddRows = false;
+            this.TasksDataGridView.AllowUserToDeleteRows = false;
+            this.TasksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TasksDataGridView.Location = new System.Drawing.Point(408, 218);
+            this.TasksDataGridView.Name = "TasksDataGridView";
+            this.TasksDataGridView.ReadOnly = true;
+            this.TasksDataGridView.Size = new System.Drawing.Size(527, 150);
+            this.TasksDataGridView.TabIndex = 38;
+            // 
             // EditDeveloperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1099, 519);
+            this.Controls.Add(this.TasksDataGridView);
             this.Controls.Add(this.ActiveStatusLabel);
             this.Controls.Add(this.IterationsDataGridView);
             this.Controls.Add(this.DeleteButton);
@@ -334,6 +349,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.developersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fKDeveloperIDDeveloperIterationTasksBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IterationsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TasksDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,6 +385,7 @@
         private System.Windows.Forms.DataGridView IterationsDataGridView;
         private System.Windows.Forms.DataGridViewButtonColumn ActionColumn;
         private System.Windows.Forms.Label ActiveStatusLabel;
+        private System.Windows.Forms.DataGridView TasksDataGridView;
 
     }
 }

@@ -125,6 +125,16 @@ namespace Task_Tracker.DAO
                     select tasks).ToList();
         }
 
+        public static List<Task> GetDeveloperTasksByIteration(int developerID, int iterationID)
+        {
+            // Get list of tasks assigned to developer that don't have a CompletionDate
+            return (from tasks in dataContext.Tasks
+                    join developerIterationTask in dataContext.DeveloperIterationTasks on tasks.ID equals developerIterationTask.TaskID
+                    where developerIterationTask.DeveloperID == developerID
+                    where developerIterationTask.IterationID == iterationID
+                    select tasks).ToList();
+        }
+
         public static List<Client> GetClients()
         {
             

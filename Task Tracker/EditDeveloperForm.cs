@@ -52,6 +52,8 @@ namespace Task_Tracker
             };
         }
 
+
+
         public void UpdateForm() {
             // Update the textboxes and page label with appropriate values
             if (CurrentDeveloper == null)
@@ -94,11 +96,52 @@ namespace Task_Tracker
                 this.IterationsDataGridView.Columns["DeveloperID"].Visible = false;
                 this.IterationsDataGridView.Columns["IterationID"].Visible = false;
                 this.IterationsDataGridView.Columns["ProjectID"].Visible = false;
+
+                // Select first iteration so tasks are loaded
+                if (this.IterationsDataGridView.RowCount > 0)
+                {
+                    this.IterationsDataGridView.Visible = true;
+                    this.IterationsDataGridView.Rows[0].Selected = true;
+                    LoadTasks();
+                }
+                else
+                {
+                    // Hide the view of iterations and tasks, when there are none
+                    this.IterationsDataGridView.Visible = false;
+                    this.TasksDataGridView.Visible = false;
+
+                }
             }
             else
             {
-                // Hide the view of iterations, new developers won't have any
+                // Hide the view of iterations and tasks, new developers won't have any
                 this.IterationsDataGridView.Visible = false;
+                this.TasksDataGridView.Visible = false;
+            }
+        }
+
+        private void LoadTasks()
+        {
+            // Load the list of tasks for the selected iteration that developer is assigned to
+
+            // If iteration is selected
+            if (this.IterationsDataGridView.SelectedRows.Count > 0)
+            {
+                // Set up the TasksDataGridView
+                int iterationID = (int)this.IterationsDataGridView.SelectedRows[0].Cells["IterationID"].Value;
+                this.TasksDataGridView.ReadOnly = true;
+                this.TasksDataGridView.DataSource = DBInterface.GetDeveloperTasksByIteration(CurrentDeveloper.ID, iterationID);
+                this.TasksDataGridView.Visible = true;
+
+                // Hide columns user doesn't need to see
+                this.TasksDataGridView.Columns["ID"].Visible = false;
+                this.TasksDataGridView.Columns["ProjectID"].Visible = false;
+                this.TasksDataGridView.Columns["Project"].Visible = false;
+            }
+            else
+            {
+                // When no selected row hide TasksDataGridView
+                this.TasksDataGridView.Visible = false;
             }
         }
 
@@ -233,6 +276,8 @@ namespace Task_Tracker
             // TODO: This line of code loads data into the 'taskTrackerDataSet.Developers' table. You can move, or remove it, as needed.
             this.developersTableAdapter.Fill(this.taskTrackerDataSet.Developers);
 
+            UpdateForm();
+
         }
 
         private void IterationsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -269,6 +314,11 @@ namespace Task_Tracker
                 // Error finding iteration record so display error to user to try again
                 MessageBox.Show("Couldn't find Report to print. Try again.","Unable to Print", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void IterationsDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            LoadTasks();
         }
 
     }
