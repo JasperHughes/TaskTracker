@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.AddEditLabel = new System.Windows.Forms.Label();
             this.NotesTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
@@ -83,16 +82,6 @@
             this.CancelButton.UseMnemonic = false;
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
-            // AddEditLabel
-            // 
-            this.AddEditLabel.AutoSize = true;
-            this.AddEditLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddEditLabel.Location = new System.Drawing.Point(14, 29);
-            this.AddEditLabel.Name = "AddEditLabel";
-            this.AddEditLabel.Size = new System.Drawing.Size(51, 16);
-            this.AddEditLabel.TabIndex = 31;
-            this.AddEditLabel.Text = "label7";
             // 
             // NotesTextBox
             // 
@@ -383,7 +372,6 @@
             this.Controls.Add(this.ActiveStatusLabel);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.AddEditLabel);
             this.Controls.Add(this.NotesTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.SaveButton);
@@ -421,7 +409,6 @@
         #endregion
 
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.Label AddEditLabel;
         private System.Windows.Forms.TextBox NotesTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button SaveButton;

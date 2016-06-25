@@ -68,7 +68,8 @@ namespace Task_Tracker
                 ActiveStatusLabel.Text = "Yes";
                 NotesTextBox.Text = "";
 
-                AddEditLabel.Text = "Add Developer";
+                // Update the form's label
+                this.Text = "Add Developer";
             }
             else
             {
@@ -79,7 +80,8 @@ namespace Task_Tracker
                 ActiveStatusLabel.Text = CurrentDeveloper.Active ? "Yes" : "No";
                 NotesTextBox.Text = CurrentDeveloper.Notes;
 
-                AddEditLabel.Text = "Edit Developer ";
+                // Update the form's label
+                this.Text = "Edit Developer";
             }
             CheckEnableActions();
 
