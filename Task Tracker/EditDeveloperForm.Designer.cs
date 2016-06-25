@@ -58,6 +58,8 @@
             this.ActionColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ActiveStatusLabel = new System.Windows.Forms.Label();
             this.TasksDataGridView = new System.Windows.Forms.DataGridView();
+            this.IterationHeaderLabel = new System.Windows.Forms.Label();
+            this.IterationTaskHeaderLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.developersBindingSource)).BeginInit();
@@ -68,7 +70,8 @@
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(283, 278);
+            this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.CancelButton.Location = new System.Drawing.Point(285, 352);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 32;
@@ -93,7 +96,7 @@
             this.NotesTextBox.Multiline = true;
             this.NotesTextBox.Name = "NotesTextBox";
             this.NotesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.NotesTextBox.Size = new System.Drawing.Size(235, 80);
+            this.NotesTextBox.Size = new System.Drawing.Size(235, 149);
             this.NotesTextBox.TabIndex = 30;
             // 
             // label6
@@ -107,7 +110,8 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(200, 278);
+            this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SaveButton.Location = new System.Drawing.Point(204, 352);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 28;
@@ -202,7 +206,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1099, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(946, 24);
             this.menuStrip1.TabIndex = 33;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -226,7 +230,7 @@
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
@@ -239,7 +243,8 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(13, 278);
+            this.DeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DeleteButton.Location = new System.Drawing.Point(13, 351);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 34;
@@ -274,13 +279,15 @@
             // 
             this.IterationsDataGridView.AllowUserToAddRows = false;
             this.IterationsDataGridView.AllowUserToDeleteRows = false;
+            this.IterationsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.IterationsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.IterationsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ActionColumn});
-            this.IterationsDataGridView.Location = new System.Drawing.Point(408, 49);
+            this.IterationsDataGridView.Location = new System.Drawing.Point(366, 49);
             this.IterationsDataGridView.Name = "IterationsDataGridView";
             this.IterationsDataGridView.ReadOnly = true;
-            this.IterationsDataGridView.Size = new System.Drawing.Size(527, 150);
+            this.IterationsDataGridView.Size = new System.Drawing.Size(569, 150);
             this.IterationsDataGridView.TabIndex = 35;
             this.IterationsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IterationsDataGridView_CellContentClick);
             this.IterationsDataGridView.SelectionChanged += new System.EventHandler(this.IterationsDataGridView_SelectionChanged);
@@ -308,18 +315,43 @@
             // 
             this.TasksDataGridView.AllowUserToAddRows = false;
             this.TasksDataGridView.AllowUserToDeleteRows = false;
+            this.TasksDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TasksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TasksDataGridView.Location = new System.Drawing.Point(408, 218);
+            this.TasksDataGridView.Location = new System.Drawing.Point(366, 225);
             this.TasksDataGridView.Name = "TasksDataGridView";
             this.TasksDataGridView.ReadOnly = true;
-            this.TasksDataGridView.Size = new System.Drawing.Size(527, 150);
+            this.TasksDataGridView.Size = new System.Drawing.Size(569, 150);
             this.TasksDataGridView.TabIndex = 38;
+            // 
+            // IterationHeaderLabel
+            // 
+            this.IterationHeaderLabel.AutoSize = true;
+            this.IterationHeaderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IterationHeaderLabel.Location = new System.Drawing.Point(364, 30);
+            this.IterationHeaderLabel.Name = "IterationHeaderLabel";
+            this.IterationHeaderLabel.Size = new System.Drawing.Size(72, 16);
+            this.IterationHeaderLabel.TabIndex = 39;
+            this.IterationHeaderLabel.Text = "Iterations";
+            // 
+            // IterationTaskHeaderLabel
+            // 
+            this.IterationTaskHeaderLabel.AutoSize = true;
+            this.IterationTaskHeaderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IterationTaskHeaderLabel.Location = new System.Drawing.Point(364, 206);
+            this.IterationTaskHeaderLabel.Name = "IterationTaskHeaderLabel";
+            this.IterationTaskHeaderLabel.Size = new System.Drawing.Size(199, 16);
+            this.IterationTaskHeaderLabel.TabIndex = 40;
+            this.IterationTaskHeaderLabel.Text = "Tasks for Selected Iteration";
             // 
             // EditDeveloperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1099, 519);
+            this.ClientSize = new System.Drawing.Size(946, 386);
+            this.Controls.Add(this.IterationTaskHeaderLabel);
+            this.Controls.Add(this.IterationHeaderLabel);
             this.Controls.Add(this.TasksDataGridView);
             this.Controls.Add(this.ActiveStatusLabel);
             this.Controls.Add(this.IterationsDataGridView);
@@ -387,6 +419,8 @@
         private System.Windows.Forms.DataGridViewButtonColumn ActionColumn;
         private System.Windows.Forms.Label ActiveStatusLabel;
         private System.Windows.Forms.DataGridView TasksDataGridView;
+        private System.Windows.Forms.Label IterationHeaderLabel;
+        private System.Windows.Forms.Label IterationTaskHeaderLabel;
 
     }
 }
