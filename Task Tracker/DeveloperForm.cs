@@ -81,7 +81,7 @@ namespace Task_Tracker
                 // Get the developer with this id
                 Developer developer = DBInterface.GetDeveloper(id);
 
-                // Load the Edit Develoepr Form
+                // Load the Edit Developer Form
                 editDeveloperForm.CurrentDeveloper = developer;
                 editDeveloperForm.Show();
             }
