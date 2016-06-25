@@ -24,8 +24,10 @@ namespace Task_Tracker.DAO
         //internal methods for retrieving data
         public static List<Developer> GetDevelopers()
         {
-            
-            return dataContext.Developers.ToList();            
+            // Get all developers sorted by Family Name, Given Names
+            return (from developer in dataContext.Developers
+                    orderby developer.FamilyName, developer.GivenNames
+                    select developer).ToList();
         }
 
         public static Developer GetDeveloper(int id)
