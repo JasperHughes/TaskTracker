@@ -22,6 +22,10 @@ namespace Task_Tracker
         // in order for Save button to be enabled
         private TextBox[] requiredFields;
 
+        // The ideal width of this form. The form is being resized when
+        // iterations panel is hidden so this is used as a baseline.
+        private static readonly int IDEAL_FORM_WIDTH = 850;
+
         // The current developer that is being edited. If it's null then
         // adding a new developer
         private Developer currentDeveloper;
@@ -53,7 +57,6 @@ namespace Task_Tracker
         }
 
 
-
         public void UpdateForm() {
             // Update the textboxes and page label with appropriate values
             if (CurrentDeveloper == null)
@@ -81,6 +84,10 @@ namespace Task_Tracker
             CheckEnableActions();
 
             LoadIterations();
+
+            // Reset size of form as it may need to be changed due to 
+            // iterations panel being shown or hidden.
+            ResetFormDimensions();
         }
 
         private void LoadIterations()
@@ -141,6 +148,21 @@ namespace Task_Tracker
             {
                 // When no selected row hide Tasks panel
                 this.TasksPanel.Visible = false;
+            }
+        }
+
+        private void ResetFormDimensions()
+        {
+            // If there are no iterations resize form to exclude blank panel area.
+            // Note. Do not use visibility status of IterationsPanel, as it will
+            // always return false when form in hidden state.
+            if (this.IterationsDataGridView.RowCount == 0)
+            {
+                this.Width = this.Width - this.IterationsPanel.Width;
+            }
+            else
+            {
+                this.Width = IDEAL_FORM_WIDTH;
             }
         }
 

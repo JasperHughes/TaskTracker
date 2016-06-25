@@ -210,7 +210,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(798, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(794, 24);
             this.menuStrip1.TabIndex = 33;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -291,7 +291,7 @@
             this.IterationsDataGridView.Location = new System.Drawing.Point(6, 19);
             this.IterationsDataGridView.Name = "IterationsDataGridView";
             this.IterationsDataGridView.ReadOnly = true;
-            this.IterationsDataGridView.Size = new System.Drawing.Size(403, 150);
+            this.IterationsDataGridView.Size = new System.Drawing.Size(407, 150);
             this.IterationsDataGridView.TabIndex = 35;
             this.IterationsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IterationsDataGridView_CellContentClick);
             this.IterationsDataGridView.SelectionChanged += new System.EventHandler(this.IterationsDataGridView_SelectionChanged);
@@ -326,7 +326,7 @@
             this.TasksDataGridView.Location = new System.Drawing.Point(6, 29);
             this.TasksDataGridView.Name = "TasksDataGridView";
             this.TasksDataGridView.ReadOnly = true;
-            this.TasksDataGridView.Size = new System.Drawing.Size(405, 129);
+            this.TasksDataGridView.Size = new System.Drawing.Size(409, 129);
             this.TasksDataGridView.TabIndex = 38;
             // 
             // IterationHeaderLabel
@@ -359,7 +359,7 @@
             this.IterationsPanel.Controls.Add(this.IterationHeaderLabel);
             this.IterationsPanel.Location = new System.Drawing.Point(366, 38);
             this.IterationsPanel.Name = "IterationsPanel";
-            this.IterationsPanel.Size = new System.Drawing.Size(412, 339);
+            this.IterationsPanel.Size = new System.Drawing.Size(416, 339);
             this.IterationsPanel.TabIndex = 41;
             // 
             // TasksPanel
@@ -371,14 +371,14 @@
             this.TasksPanel.Controls.Add(this.TasksDataGridView);
             this.TasksPanel.Location = new System.Drawing.Point(-2, 175);
             this.TasksPanel.Name = "TasksPanel";
-            this.TasksPanel.Size = new System.Drawing.Size(416, 161);
+            this.TasksPanel.Size = new System.Drawing.Size(420, 161);
             this.TasksPanel.TabIndex = 41;
             // 
             // EditDeveloperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 388);
+            this.ClientSize = new System.Drawing.Size(794, 388);
             this.Controls.Add(this.IterationsPanel);
             this.Controls.Add(this.ActiveStatusLabel);
             this.Controls.Add(this.DeleteButton);
