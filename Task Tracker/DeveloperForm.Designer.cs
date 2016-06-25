@@ -65,6 +65,7 @@
             this.DevelopersListView.TabIndex = 12;
             this.DevelopersListView.UseCompatibleStateImageBehavior = false;
             this.DevelopersListView.View = System.Windows.Forms.View.Details;
+            this.DevelopersListView.ItemActivate += new System.EventHandler(this.DevelopersListView_ItemActivate);
             // 
             // columnHeader1
             // 
