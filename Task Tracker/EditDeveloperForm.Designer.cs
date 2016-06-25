@@ -61,6 +61,9 @@
             this.IterationTaskHeaderLabel = new System.Windows.Forms.Label();
             this.IterationsPanel = new System.Windows.Forms.Panel();
             this.TasksPanel = new System.Windows.Forms.Panel();
+            this.InactiveDeveloperMessageLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.developersBindingSource)).BeginInit();
@@ -69,12 +72,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.TasksDataGridView)).BeginInit();
             this.IterationsPanel.SuspendLayout();
             this.TasksPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // CancelButton
             // 
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CancelButton.Location = new System.Drawing.Point(285, 353);
+            this.CancelButton.Location = new System.Drawing.Point(285, 487);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 32;
@@ -85,7 +90,7 @@
             // 
             // NotesTextBox
             // 
-            this.NotesTextBox.Location = new System.Drawing.Point(123, 195);
+            this.NotesTextBox.Location = new System.Drawing.Point(109, 133);
             this.NotesTextBox.Multiline = true;
             this.NotesTextBox.Name = "NotesTextBox";
             this.NotesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -95,7 +100,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(14, 195);
+            this.label6.Location = new System.Drawing.Point(0, 133);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 29;
@@ -104,7 +109,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SaveButton.Location = new System.Drawing.Point(204, 353);
+            this.SaveButton.Location = new System.Drawing.Point(204, 487);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 28;
@@ -115,7 +120,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 170);
+            this.label5.Location = new System.Drawing.Point(0, 108);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 13);
             this.label5.TabIndex = 27;
@@ -124,7 +129,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 145);
+            this.label4.Location = new System.Drawing.Point(0, 83);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 13);
             this.label4.TabIndex = 25;
@@ -133,7 +138,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 120);
+            this.label3.Location = new System.Drawing.Point(0, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 24;
@@ -142,7 +147,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 95);
+            this.label2.Location = new System.Drawing.Point(0, 33);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 23;
@@ -151,7 +156,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 70);
+            this.label1.Location = new System.Drawing.Point(0, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 22;
@@ -159,7 +164,7 @@
             // 
             // ContactNumberTextBox
             // 
-            this.ContactNumberTextBox.Location = new System.Drawing.Point(123, 145);
+            this.ContactNumberTextBox.Location = new System.Drawing.Point(109, 83);
             this.ContactNumberTextBox.MaxLength = 50;
             this.ContactNumberTextBox.Name = "ContactNumberTextBox";
             this.ContactNumberTextBox.Size = new System.Drawing.Size(235, 20);
@@ -168,7 +173,7 @@
             // 
             // EmailTextBox
             // 
-            this.EmailTextBox.Location = new System.Drawing.Point(123, 120);
+            this.EmailTextBox.Location = new System.Drawing.Point(109, 58);
             this.EmailTextBox.MaxLength = 255;
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(235, 20);
@@ -177,7 +182,7 @@
             // 
             // FamilyNameTextBox
             // 
-            this.FamilyNameTextBox.Location = new System.Drawing.Point(123, 95);
+            this.FamilyNameTextBox.Location = new System.Drawing.Point(109, 33);
             this.FamilyNameTextBox.MaxLength = 255;
             this.FamilyNameTextBox.Name = "FamilyNameTextBox";
             this.FamilyNameTextBox.Size = new System.Drawing.Size(235, 20);
@@ -186,7 +191,7 @@
             // 
             // GivenNamesTextBox
             // 
-            this.GivenNamesTextBox.Location = new System.Drawing.Point(123, 70);
+            this.GivenNamesTextBox.Location = new System.Drawing.Point(109, 8);
             this.GivenNamesTextBox.MaxLength = 255;
             this.GivenNamesTextBox.Name = "GivenNamesTextBox";
             this.GivenNamesTextBox.Size = new System.Drawing.Size(235, 20);
@@ -216,28 +221,28 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // cancelToolStripMenuItem
             // 
             this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
-            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cancelToolStripMenuItem.Text = "Cancel";
             this.cancelToolStripMenuItem.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // DeleteButton
             // 
             this.DeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DeleteButton.Location = new System.Drawing.Point(14, 353);
+            this.DeleteButton.Location = new System.Drawing.Point(14, 487);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 34;
@@ -298,7 +303,7 @@
             // ActiveStatusLabel
             // 
             this.ActiveStatusLabel.AutoSize = true;
-            this.ActiveStatusLabel.Location = new System.Drawing.Point(123, 170);
+            this.ActiveStatusLabel.Location = new System.Drawing.Point(109, 108);
             this.ActiveStatusLabel.Name = "ActiveStatusLabel";
             this.ActiveStatusLabel.Size = new System.Drawing.Size(35, 13);
             this.ActiveStatusLabel.TabIndex = 37;
@@ -315,7 +320,7 @@
             this.TasksDataGridView.Location = new System.Drawing.Point(6, 29);
             this.TasksDataGridView.Name = "TasksDataGridView";
             this.TasksDataGridView.ReadOnly = true;
-            this.TasksDataGridView.Size = new System.Drawing.Size(409, 134);
+            this.TasksDataGridView.Size = new System.Drawing.Size(409, 265);
             this.TasksDataGridView.TabIndex = 38;
             // 
             // IterationHeaderLabel
@@ -348,7 +353,7 @@
             this.IterationsPanel.Controls.Add(this.IterationHeaderLabel);
             this.IterationsPanel.Location = new System.Drawing.Point(366, 38);
             this.IterationsPanel.Name = "IterationsPanel";
-            this.IterationsPanel.Size = new System.Drawing.Size(416, 339);
+            this.IterationsPanel.Size = new System.Drawing.Size(416, 472);
             this.IterationsPanel.TabIndex = 41;
             // 
             // TasksPanel
@@ -360,30 +365,70 @@
             this.TasksPanel.Controls.Add(this.TasksDataGridView);
             this.TasksPanel.Location = new System.Drawing.Point(-2, 175);
             this.TasksPanel.Name = "TasksPanel";
-            this.TasksPanel.Size = new System.Drawing.Size(420, 161);
+            this.TasksPanel.Size = new System.Drawing.Size(420, 294);
             this.TasksPanel.TabIndex = 41;
+            // 
+            // InactiveDeveloperMessageLabel
+            // 
+            this.InactiveDeveloperMessageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.InactiveDeveloperMessageLabel.AutoSize = true;
+            this.InactiveDeveloperMessageLabel.BackColor = System.Drawing.Color.MistyRose;
+            this.InactiveDeveloperMessageLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.InactiveDeveloperMessageLabel.Font = new System.Drawing.Font("Century", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InactiveDeveloperMessageLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.InactiveDeveloperMessageLabel.Location = new System.Drawing.Point(3, 3);
+            this.InactiveDeveloperMessageLabel.Margin = new System.Windows.Forms.Padding(3);
+            this.InactiveDeveloperMessageLabel.Name = "InactiveDeveloperMessageLabel";
+            this.InactiveDeveloperMessageLabel.Padding = new System.Windows.Forms.Padding(5);
+            this.InactiveDeveloperMessageLabel.Size = new System.Drawing.Size(348, 28);
+            this.InactiveDeveloperMessageLabel.TabIndex = 42;
+            this.InactiveDeveloperMessageLabel.Text = "INACTIVE DEVELOPER - Cannot be Used";
+            this.InactiveDeveloperMessageLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.InactiveDeveloperMessageLabel.Paint += new System.Windows.Forms.PaintEventHandler(this.InactiveDeveloperMessageLabel_Paint);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.FamilyNameTextBox);
+            this.panel1.Controls.Add(this.GivenNamesTextBox);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.ActiveStatusLabel);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.EmailTextBox);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.ContactNumberTextBox);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.NotesTextBox);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(3, 37);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(348, 361);
+            this.panel1.TabIndex = 41;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.InactiveDeveloperMessageLabel, 0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 27);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(354, 439);
+            this.tableLayoutPanel1.TabIndex = 42;
             // 
             // EditDeveloperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 388);
+            this.ClientSize = new System.Drawing.Size(794, 522);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.IterationsPanel);
-            this.Controls.Add(this.ActiveStatusLabel);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.NotesTextBox);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.SaveButton);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.ContactNumberTextBox);
-            this.Controls.Add(this.EmailTextBox);
-            this.Controls.Add(this.FamilyNameTextBox);
-            this.Controls.Add(this.GivenNamesTextBox);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "EditDeveloperForm";
@@ -401,6 +446,10 @@
             this.IterationsPanel.PerformLayout();
             this.TasksPanel.ResumeLayout(false);
             this.TasksPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,6 +489,9 @@
         private System.Windows.Forms.Label IterationTaskHeaderLabel;
         private System.Windows.Forms.Panel IterationsPanel;
         private System.Windows.Forms.Panel TasksPanel;
+        private System.Windows.Forms.Label InactiveDeveloperMessageLabel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 
     }
 }

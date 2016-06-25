@@ -83,6 +83,10 @@ namespace Task_Tracker
                 // Update the form's label
                 this.Text = "Edit Developer";
             }
+
+            // Show Inactive Developer label at appropriate time
+            this.InactiveDeveloperMessageLabel.Visible = CurrentDeveloper != null ? !CurrentDeveloper.Active : false;
+
             CheckEnableActions();
 
             LoadIterations();
@@ -348,6 +352,12 @@ namespace Task_Tracker
         private void IterationsDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             LoadTasks();
+        }
+
+        private void InactiveDeveloperMessageLabel_Paint(object sender, PaintEventArgs e)
+        {
+            // Paint border red, cannot be done with properties on form design
+            ControlPaint.DrawBorder(e.Graphics, InactiveDeveloperMessageLabel.DisplayRectangle, Color.FromArgb(192, 0, 0), ButtonBorderStyle.Solid);
         }
 
     }
