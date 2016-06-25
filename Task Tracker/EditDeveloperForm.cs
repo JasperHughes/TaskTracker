@@ -126,6 +126,9 @@ namespace Task_Tracker
             }
             else
             {
+                // Reset iterations data source
+                this.IterationsDataGridView.DataSource = null;
+
                 // Hide the view of iterations and tasks, new developers won't have any
                 this.IterationsPanel.Visible = false;
                 this.TasksPanel.Visible = false;
