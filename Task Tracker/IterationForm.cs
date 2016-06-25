@@ -24,12 +24,12 @@ namespace Task_Tracker
 
         }
 
-        private void LoadIterations()
+        public void LoadIterations()
         {
             iterationListView.Items.Clear();
 
             // Load all the iterations into the List View
-            
+
 
             try
             {
@@ -37,7 +37,7 @@ namespace Task_Tracker
                 if (iterations.Count > 0)
                 {
                     int i = 0;
-                    
+
                     foreach (Iteration iteration in iterations)
                     {
                         string itTasks = "";
@@ -45,22 +45,28 @@ namespace Task_Tracker
                         iterationListView.Items.Add(iteration.ID.ToString());
                         iterationListView.Items[i].SubItems.Add(iteration.ProjectID.ToString());
                         iterationListView.Items[i].SubItems.Add(iteration.Project.ProjectName);
-                        foreach (IterationTask it in iteration.IterationTasks) {
-                            itTasks += it.TaskID.ToString()+ ",";
+                        foreach (IterationTask it in iteration.IterationTasks)
+                        {
+                            itTasks += it.TaskID.ToString() + ",";
                         }
-                        if (itTasks != ""){
+                        if (itTasks != "")
+                        {
                             iterationListView.Items[i].SubItems.Add(itTasks.Remove(itTasks.Length - 1));
                         }
-                        else {
+                        else
+                        {
                             iterationListView.Items[i].SubItems.Add("");
                         }
-                        foreach (DeveloperIterationTask dit in iteration.DeveloperIterationTasks){
+                        foreach (DeveloperIterationTask dit in iteration.DeveloperIterationTasks)
+                        {
                             devItTasks += dit.TaskID.ToString() + ",";
                         }
-                        if (devItTasks != ""){
+                        if (devItTasks != "")
+                        {
                             iterationListView.Items[i].SubItems.Add(devItTasks.Remove(devItTasks.Length - 1));
                         }
-                        else {
+                        else
+                        {
                             iterationListView.Items[i].SubItems.Add("");
                         }
                         iterationListView.Items[i].SubItems.Add(iteration.StartDate.ToString());
@@ -106,11 +112,12 @@ namespace Task_Tracker
                             MessageBox.Show(ex.Message, ex.GetType().ToString());
                         }
                     }
-                    else {
+                    else
+                    {
                         try
                         {
                             iteration = iterations.Find(iter => iter.ID == Int32.Parse(IterationIDLabel.Text));
-                            
+
                             iteration.StartDate = startDatePicker.Value;
                             iteration.EndDate = endDatePicker.Value;
                             DBInterface.Update(iteration);
@@ -126,19 +133,21 @@ namespace Task_Tracker
 
                     LoadIterations();
                 }
-                else {
+                else
+                {
                     MessageBox.Show("Please enter make sure input is valid");
                 }
-              //  UpdateAddEditLabel();
+                //  UpdateAddEditLabel();
 
             }
         }
         private void iterationListView_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            
+
             if (iterationListView.SelectedItems.Count > 0)
             {
                 // Load Values into Editable fields
+                AddIterationTask.Enabled = true;
 
                 ListViewItem item = iterationListView.SelectedItems[0];
                 int i = 0;
@@ -146,7 +155,8 @@ namespace Task_Tracker
                 IterationIDLabel.Text = item.SubItems[i++].Text;
                 projectIDTextBox.Text = item.SubItems[i++].Text;
                 projectTextBox.Text = item.SubItems[i++].Text;
-                foreach (IterationTask it in iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text)).IterationTasks) {
+                foreach (IterationTask it in iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text)).IterationTasks)
+                {
                     IterationTasksList.Items.Add(it.TaskID);
                 }
                 i++;
@@ -157,19 +167,27 @@ namespace Task_Tracker
                 {
                     IterationTasksList.SelectedIndex = 0;
                 }
-                else {
+                else
+                {
                     ITEditButton.Enabled = false;
                 }
                 projectIDTextBox.Enabled = false;
-               // LoadIterations();
+                // LoadIterations();
                 //UpdateAddEditLabel();
             }
         }
 
         private void AddIterationTask_Click(object sender, EventArgs e)
         {
-            EditIterationTasksForm eitf = new EditIterationTasksForm(iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text)));
-            eitf.Show();
+            try
+            {
+                EditIterationTasksForm eitf = new EditIterationTasksForm(iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text)), this);
+                eitf.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Please save iteration before assigning tasks to it.");
+            }
         }
 
         private void RemoveIterationTask_Click(object sender, EventArgs e)
@@ -179,11 +197,11 @@ namespace Task_Tracker
 
         private void projectIDTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+
             try
             {
                 projects = DBInterface.GetProjects();
-                projectTextBox.Text = projects.Find(project => project.ID == Int32.Parse(projectIDTextBox.Text)).ProjectName; 
+                projectTextBox.Text = projects.Find(project => project.ID == Int32.Parse(projectIDTextBox.Text)).ProjectName;
             }
             catch (Exception ex)
             {
@@ -219,19 +237,40 @@ namespace Task_Tracker
         private void NewProjectButton_Click(object sender, EventArgs e)
         {
             ResetFields();
+            AddIterationTask.Enabled = true;
+            ITEditButton.Enabled = false;
             projectIDTextBox.Enabled = true;
-            IterationIDLabel.Text = (iterations[iterations.Count-1].ID + 1).ToString();
+            IterationIDLabel.Text = (iterations[iterations.Count - 1].ID + 1).ToString();
 
         }
-        private void ResetFields() {
+        private void ResetFields()
+        {
             // Reset edit fields
             IterationIDLabel.Text = "";
             projectIDTextBox.Text = "";
             projectTextBox.Text = "";
+            AddIterationTask.Enabled = false;
+            ITEditButton.Enabled = false;
 
             IterationTasksList.Items.Clear();
             startDatePicker.ResetText();
             endDatePicker.ResetText();
+        }
+
+        private void IterationIDLabel_TextChanged(object sender, EventArgs e)
+        {
+            if (IterationIDLabel.Text.Equals(""))
+            {
+                SaveButton.Enabled = false;
+                startDatePicker.Enabled = false;
+                endDatePicker.Enabled = false;
+            }
+            else
+            {
+                SaveButton.Enabled = true;
+                startDatePicker.Enabled = true;
+                endDatePicker.Enabled = true;
+            }
         }
     }
 }

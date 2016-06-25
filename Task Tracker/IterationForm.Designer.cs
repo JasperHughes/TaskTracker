@@ -73,6 +73,7 @@
             // 
             // startDatePicker
             // 
+            this.startDatePicker.Enabled = false;
             this.startDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.startDatePicker.Location = new System.Drawing.Point(142, 209);
             this.startDatePicker.Name = "startDatePicker";
@@ -81,6 +82,7 @@
             // 
             // endDatePicker
             // 
+            this.endDatePicker.Enabled = false;
             this.endDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.endDatePicker.Location = new System.Drawing.Point(142, 235);
             this.endDatePicker.Name = "endDatePicker";
@@ -199,6 +201,7 @@
             // 
             // SaveButton
             // 
+            this.SaveButton.Enabled = false;
             this.SaveButton.Location = new System.Drawing.Point(142, 292);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(99, 23);
@@ -218,6 +221,7 @@
             // 
             // AddIterationTask
             // 
+            this.AddIterationTask.Enabled = false;
             this.AddIterationTask.Location = new System.Drawing.Point(247, 136);
             this.AddIterationTask.Name = "AddIterationTask";
             this.AddIterationTask.Size = new System.Drawing.Size(61, 21);
@@ -233,6 +237,7 @@
             this.IterationIDLabel.Name = "IterationIDLabel";
             this.IterationIDLabel.Size = new System.Drawing.Size(0, 13);
             this.IterationIDLabel.TabIndex = 0;
+            this.IterationIDLabel.TextChanged += new System.EventHandler(this.IterationIDLabel_TextChanged);
             // 
             // ITEditButton
             // 

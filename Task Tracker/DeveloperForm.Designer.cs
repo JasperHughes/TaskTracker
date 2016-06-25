@@ -39,9 +39,9 @@
             this.CloseButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newDeveloperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NewDeveloperButton = new System.Windows.Forms.Button();
-            this.newDeveloperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +65,6 @@
             this.DevelopersListView.TabIndex = 12;
             this.DevelopersListView.UseCompatibleStateImageBehavior = false;
             this.DevelopersListView.View = System.Windows.Forms.View.Details;
-            this.DevelopersListView.ItemActivate += new System.EventHandler(this.DevelopersListView_ItemActivate);
             // 
             // columnHeader1
             // 
@@ -133,6 +132,13 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // newDeveloperToolStripMenuItem
+            // 
+            this.newDeveloperToolStripMenuItem.Name = "newDeveloperToolStripMenuItem";
+            this.newDeveloperToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.newDeveloperToolStripMenuItem.Text = "New Developer";
+            this.newDeveloperToolStripMenuItem.Click += new System.EventHandler(this.NewDeveloperButton_Click);
+            // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
@@ -150,13 +156,6 @@
             this.NewDeveloperButton.Text = "New Developer";
             this.NewDeveloperButton.UseVisualStyleBackColor = true;
             this.NewDeveloperButton.Click += new System.EventHandler(this.NewDeveloperButton_Click);
-            // 
-            // newDeveloperToolStripMenuItem
-            // 
-            this.newDeveloperToolStripMenuItem.Name = "newDeveloperToolStripMenuItem";
-            this.newDeveloperToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.newDeveloperToolStripMenuItem.Text = "New Developer";
-            this.newDeveloperToolStripMenuItem.Click += new System.EventHandler(this.NewDeveloperButton_Click);
             // 
             // DeveloperForm
             // 

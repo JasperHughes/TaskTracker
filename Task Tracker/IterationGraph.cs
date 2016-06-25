@@ -27,36 +27,36 @@ namespace Task_Tracker
 
 
             completedTasks = new List<GraphPoint>();
-            //foreach (IterationTask t in tasks)
-            //{
-            //    if (!t.Task.CompletionDate.ToString().Equals(""))
-            //    {
-            //        if (!completedTasks.Contains(new GraphPoint(DateTime.Parse(t.Task.CompletionDate.ToString()), 0)))
-            //        {
-            //            completedTasks.Add(new GraphPoint(DateTime.Parse(t.Task.CompletionDate.ToString()), 0));
-            //        }
-            //    }
-            //}
+            foreach (IterationTask t in tasks)
+            {
+                if (!t.Task.CompletionDate.ToString().Equals(""))
+                {
+                    if (!completedTasks.Contains(new GraphPoint(DateTime.Parse(t.Task.CompletionDate.ToString()), 0)))
+                    {
+                        completedTasks.Add(new GraphPoint(DateTime.Parse(t.Task.CompletionDate.ToString()), 0));
+                    }
+                }
+            }
 
-            //foreach (GraphPoint gp in completedTasks)
-            //{
-            //    for (int i = 0; i < tasks.Count; i++)
-            //    {
-            //        if (tasks[i].Task.CompletionDate.ToString().Equals(gp.date.ToString()))
-            //        {
-            //            gp.count++;
-            //            Console.WriteLine("Task count for: " + gp.date.ToString() + " is: " + gp.count);
-            //        }
-            //    }
-            //}
+            foreach (GraphPoint gp in completedTasks)
+            {
+                for (int i = 0; i < tasks.Count; i++)
+                {
+                    if (tasks[i].Task.CompletionDate.ToString().Equals(gp.date.ToString()))
+                    {
+                        gp.count++;
+                        Console.WriteLine("Task count for: " + gp.date.ToString() + " is: " + gp.count);
+                    }
+                }
+            }
 
-            completedTasks.Add(new GraphPoint(new DateTime(2012, 5, 5), 2));
+            /*completedTasks.Add(new GraphPoint(new DateTime(2012, 5, 5), 2));
             completedTasks.Add(new GraphPoint(new DateTime(2012, 3, 2), 3));
             completedTasks.Add(new GraphPoint(new DateTime(2012, 4, 7), 1));
             completedTasks.Add(new GraphPoint(new DateTime(2012, 12, 10), 0));
             completedTasks.Add(new GraphPoint(new DateTime(2012, 5, 11), 2));
             completedTasks.Add(new GraphPoint(new DateTime(2012, 9, 5), 1));
-            completedTasks.Add(new GraphPoint(new DateTime(2012, 3, 2), 4));
+            completedTasks.Add(new GraphPoint(new DateTime(2012, 3, 2), 4));*/
             completedTasks = completedTasks.OrderBy(gp => gp.date).ToList();
             for (int i = 0; i < completedTasks.Count; i++)
             {
@@ -64,32 +64,32 @@ namespace Task_Tracker
             }
 
             tasksByCompletion = new List<GraphPoint>();
-            //foreach (IterationTask t in tasks)
-            //{
-            //    if (!tasksByCompletion.Contains(new GraphPoint(DateTime.Parse(t.PlannedCompletionDate.ToString()), 0)))
-            //    {
-            //        tasksByCompletion.Add(new GraphPoint(DateTime.Parse(t.PlannedCompletionDate.ToString()), 0));
-            //    }
-            //}
+            foreach (IterationTask t in tasks)
+            {
+                if (!tasksByCompletion.Contains(new GraphPoint(DateTime.Parse(t.PlannedCompletionDate.ToString()), 0)))
+                {
+                    tasksByCompletion.Add(new GraphPoint(DateTime.Parse(t.PlannedCompletionDate.ToString()), 0));
+                }
+            }
 
-            //foreach (GraphPoint gp in tasksByCompletion)
-            //{
-            //    for (int i = 0; i < tasks.Count; i++)
-            //    {
-            //        if (tasks[i].PlannedCompletionDate.ToString().Equals(gp.date.ToString()))
-            //        {
-            //            gp.count++;
-            //            Console.WriteLine("Task count for: " + gp.date.ToString() + " is: " + gp.count);
-            //        }
-            //    }
-            //}
-            tasksByCompletion.Add(new GraphPoint(new DateTime(2012, 5, 5), 4));
+            foreach (GraphPoint gp in tasksByCompletion)
+            {
+                for (int i = 0; i < tasks.Count; i++)
+                {
+                    if (tasks[i].PlannedCompletionDate.ToString().Equals(gp.date.ToString()))
+                    {
+                        gp.count++;
+                        Console.WriteLine("Task count for: " + gp.date.ToString() + " is: " + gp.count);
+                    }
+                }
+            }
+            /*tasksByCompletion.Add(new GraphPoint(new DateTime(2012, 5, 5), 4));
             tasksByCompletion.Add(new GraphPoint(new DateTime(2012, 3, 2), 8));
             tasksByCompletion.Add(new GraphPoint(new DateTime(2012, 4, 7), 5));
             tasksByCompletion.Add(new GraphPoint(new DateTime(2012, 12, 10), 2));
             tasksByCompletion.Add(new GraphPoint(new DateTime(2012, 5, 11), 3));
             tasksByCompletion.Add(new GraphPoint(new DateTime(2012, 9, 5), 1));
-            tasksByCompletion.Add(new GraphPoint(new DateTime(2012, 3, 2), 9));
+            tasksByCompletion.Add(new GraphPoint(new DateTime(2012, 3, 2), 9));*/
             tasksByCompletion = tasksByCompletion.OrderBy(gp => gp.date).ToList();
             for (int i = 0; i< tasksByCompletion.Count; i++)
             {

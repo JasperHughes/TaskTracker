@@ -16,10 +16,12 @@ namespace Task_Tracker
         private Iteration currentIteration;
         private List<IterationTask> tasks;
         private List<Task> unassignedTasks;
+        private IterationForm parent;
 
-        public EditIterationTasksForm(Iteration iteration)
+        public EditIterationTasksForm(Iteration iteration, IterationForm origin)
         {
             currentIteration = iteration;
+            parent = origin;
 
             InitializeComponent();
 
@@ -87,5 +89,9 @@ namespace Task_Tracker
             addToIterationBtn.Enabled = false;
         }
 
+        private void EditIterationTasksForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

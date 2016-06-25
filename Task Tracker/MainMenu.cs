@@ -34,7 +34,7 @@ namespace Task_Tracker
         {
             //testing graph
             IterationGraph ig = new IterationGraph();
-            ig.iterationID = 1;
+            ig.iterationID = 2;
             ig.Show();
         }
 
@@ -52,11 +52,5 @@ namespace Task_Tracker
             iterationForm.Show();
         }
 
-        private void iterationtaskstest_Click(object sender, EventArgs e)
-        {
-            Iteration it = DBInterface.GetIteration(2);
-            EditIterationTasksForm eitf = new EditIterationTasksForm(it);
-            eitf.Show();
-        }
     }
 }
