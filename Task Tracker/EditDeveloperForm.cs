@@ -100,28 +100,22 @@ namespace Task_Tracker
                 // Select first iteration so tasks are loaded
                 if (this.IterationsDataGridView.RowCount > 0)
                 {
-                    this.IterationsDataGridView.Visible = true;
-                    this.IterationHeaderLabel.Visible = true;
+                    this.IterationsPanel.Visible = true;
                     this.IterationsDataGridView.Rows[0].Selected = true;
                     LoadTasks();
                 }
                 else
                 {
                     // Hide the view of iterations and tasks, when there are none
-                    this.IterationsDataGridView.Visible = false;
-                    this.IterationHeaderLabel.Visible = false;
-                    this.TasksDataGridView.Visible = false;
-                    this.IterationTaskHeaderLabel.Visible = false;
-
+                    this.IterationsPanel.Visible = false;
+                    this.TasksPanel.Visible = false;
                 }
             }
             else
             {
                 // Hide the view of iterations and tasks, new developers won't have any
-                this.IterationsDataGridView.Visible = false;
-                this.IterationHeaderLabel.Visible = false;
-                this.TasksDataGridView.Visible = false;
-                this.IterationTaskHeaderLabel.Visible = false;
+                this.IterationsPanel.Visible = false;
+                this.TasksPanel.Visible = false;
             }
         }
 
@@ -136,8 +130,7 @@ namespace Task_Tracker
                 int iterationID = (int)this.IterationsDataGridView.SelectedRows[0].Cells["IterationID"].Value;
                 this.TasksDataGridView.ReadOnly = true;
                 this.TasksDataGridView.DataSource = DBInterface.GetDeveloperTasksByIteration(CurrentDeveloper.ID, iterationID);
-                this.TasksDataGridView.Visible = true;
-                this.IterationTaskHeaderLabel.Visible = true;
+                this.TasksPanel.Visible = true;
 
                 // Hide columns user doesn't need to see
                 this.TasksDataGridView.Columns["ID"].Visible = false;
@@ -146,9 +139,8 @@ namespace Task_Tracker
             }
             else
             {
-                // When no selected row hide TasksDataGridView
-                this.TasksDataGridView.Visible = false;
-                this.IterationTaskHeaderLabel.Visible = false;
+                // When no selected row hide Tasks panel
+                this.TasksPanel.Visible = false;
             }
         }
 

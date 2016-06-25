@@ -60,18 +60,22 @@
             this.TasksDataGridView = new System.Windows.Forms.DataGridView();
             this.IterationHeaderLabel = new System.Windows.Forms.Label();
             this.IterationTaskHeaderLabel = new System.Windows.Forms.Label();
+            this.IterationsPanel = new System.Windows.Forms.Panel();
+            this.TasksPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.developersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fKDeveloperIDDeveloperIterationTasksBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IterationsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TasksDataGridView)).BeginInit();
+            this.IterationsPanel.SuspendLayout();
+            this.TasksPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // CancelButton
             // 
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CancelButton.Location = new System.Drawing.Point(285, 352);
+            this.CancelButton.Location = new System.Drawing.Point(285, 354);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 32;
@@ -111,7 +115,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SaveButton.Location = new System.Drawing.Point(204, 352);
+            this.SaveButton.Location = new System.Drawing.Point(204, 354);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 28;
@@ -206,7 +210,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(946, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(798, 24);
             this.menuStrip1.TabIndex = 33;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -244,7 +248,7 @@
             // DeleteButton
             // 
             this.DeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DeleteButton.Location = new System.Drawing.Point(13, 351);
+            this.DeleteButton.Location = new System.Drawing.Point(13, 353);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 34;
@@ -284,10 +288,10 @@
             this.IterationsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.IterationsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ActionColumn});
-            this.IterationsDataGridView.Location = new System.Drawing.Point(366, 49);
+            this.IterationsDataGridView.Location = new System.Drawing.Point(6, 19);
             this.IterationsDataGridView.Name = "IterationsDataGridView";
             this.IterationsDataGridView.ReadOnly = true;
-            this.IterationsDataGridView.Size = new System.Drawing.Size(569, 150);
+            this.IterationsDataGridView.Size = new System.Drawing.Size(403, 150);
             this.IterationsDataGridView.TabIndex = 35;
             this.IterationsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IterationsDataGridView_CellContentClick);
             this.IterationsDataGridView.SelectionChanged += new System.EventHandler(this.IterationsDataGridView_SelectionChanged);
@@ -319,17 +323,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TasksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TasksDataGridView.Location = new System.Drawing.Point(366, 225);
+            this.TasksDataGridView.Location = new System.Drawing.Point(6, 29);
             this.TasksDataGridView.Name = "TasksDataGridView";
             this.TasksDataGridView.ReadOnly = true;
-            this.TasksDataGridView.Size = new System.Drawing.Size(569, 150);
+            this.TasksDataGridView.Size = new System.Drawing.Size(405, 129);
             this.TasksDataGridView.TabIndex = 38;
             // 
             // IterationHeaderLabel
             // 
             this.IterationHeaderLabel.AutoSize = true;
             this.IterationHeaderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IterationHeaderLabel.Location = new System.Drawing.Point(364, 30);
+            this.IterationHeaderLabel.Location = new System.Drawing.Point(3, 0);
             this.IterationHeaderLabel.Name = "IterationHeaderLabel";
             this.IterationHeaderLabel.Size = new System.Drawing.Size(72, 16);
             this.IterationHeaderLabel.TabIndex = 39;
@@ -339,22 +343,44 @@
             // 
             this.IterationTaskHeaderLabel.AutoSize = true;
             this.IterationTaskHeaderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IterationTaskHeaderLabel.Location = new System.Drawing.Point(364, 206);
+            this.IterationTaskHeaderLabel.Location = new System.Drawing.Point(3, 8);
             this.IterationTaskHeaderLabel.Name = "IterationTaskHeaderLabel";
             this.IterationTaskHeaderLabel.Size = new System.Drawing.Size(199, 16);
             this.IterationTaskHeaderLabel.TabIndex = 40;
             this.IterationTaskHeaderLabel.Text = "Tasks for Selected Iteration";
             // 
+            // IterationsPanel
+            // 
+            this.IterationsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.IterationsPanel.Controls.Add(this.TasksPanel);
+            this.IterationsPanel.Controls.Add(this.IterationsDataGridView);
+            this.IterationsPanel.Controls.Add(this.IterationHeaderLabel);
+            this.IterationsPanel.Location = new System.Drawing.Point(366, 38);
+            this.IterationsPanel.Name = "IterationsPanel";
+            this.IterationsPanel.Size = new System.Drawing.Size(412, 339);
+            this.IterationsPanel.TabIndex = 41;
+            // 
+            // TasksPanel
+            // 
+            this.TasksPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TasksPanel.Controls.Add(this.IterationTaskHeaderLabel);
+            this.TasksPanel.Controls.Add(this.TasksDataGridView);
+            this.TasksPanel.Location = new System.Drawing.Point(-2, 175);
+            this.TasksPanel.Name = "TasksPanel";
+            this.TasksPanel.Size = new System.Drawing.Size(416, 161);
+            this.TasksPanel.TabIndex = 41;
+            // 
             // EditDeveloperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 386);
-            this.Controls.Add(this.IterationTaskHeaderLabel);
-            this.Controls.Add(this.IterationHeaderLabel);
-            this.Controls.Add(this.TasksDataGridView);
+            this.ClientSize = new System.Drawing.Size(798, 388);
+            this.Controls.Add(this.IterationsPanel);
             this.Controls.Add(this.ActiveStatusLabel);
-            this.Controls.Add(this.IterationsDataGridView);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddEditLabel);
@@ -383,6 +409,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.fKDeveloperIDDeveloperIterationTasksBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IterationsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TasksDataGridView)).EndInit();
+            this.IterationsPanel.ResumeLayout(false);
+            this.IterationsPanel.PerformLayout();
+            this.TasksPanel.ResumeLayout(false);
+            this.TasksPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -421,6 +451,8 @@
         private System.Windows.Forms.DataGridView TasksDataGridView;
         private System.Windows.Forms.Label IterationHeaderLabel;
         private System.Windows.Forms.Label IterationTaskHeaderLabel;
+        private System.Windows.Forms.Panel IterationsPanel;
+        private System.Windows.Forms.Panel TasksPanel;
 
     }
 }
