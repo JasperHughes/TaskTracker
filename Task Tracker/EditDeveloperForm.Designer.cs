@@ -75,7 +75,7 @@
             // CancelButton
             // 
             this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CancelButton.Location = new System.Drawing.Point(285, 354);
+            this.CancelButton.Location = new System.Drawing.Point(285, 353);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 32;
@@ -88,7 +88,7 @@
             // 
             this.AddEditLabel.AutoSize = true;
             this.AddEditLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddEditLabel.Location = new System.Drawing.Point(13, 29);
+            this.AddEditLabel.Location = new System.Drawing.Point(14, 29);
             this.AddEditLabel.Name = "AddEditLabel";
             this.AddEditLabel.Size = new System.Drawing.Size(51, 16);
             this.AddEditLabel.TabIndex = 31;
@@ -96,7 +96,7 @@
             // 
             // NotesTextBox
             // 
-            this.NotesTextBox.Location = new System.Drawing.Point(123, 196);
+            this.NotesTextBox.Location = new System.Drawing.Point(123, 195);
             this.NotesTextBox.Multiline = true;
             this.NotesTextBox.Name = "NotesTextBox";
             this.NotesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -106,7 +106,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(14, 196);
+            this.label6.Location = new System.Drawing.Point(14, 195);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 13);
             this.label6.TabIndex = 29;
@@ -115,7 +115,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SaveButton.Location = new System.Drawing.Point(204, 354);
+            this.SaveButton.Location = new System.Drawing.Point(204, 353);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 28;
@@ -126,7 +126,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 171);
+            this.label5.Location = new System.Drawing.Point(14, 170);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 13);
             this.label5.TabIndex = 27;
@@ -135,7 +135,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 146);
+            this.label4.Location = new System.Drawing.Point(14, 145);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 13);
             this.label4.TabIndex = 25;
@@ -144,7 +144,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 121);
+            this.label3.Location = new System.Drawing.Point(14, 120);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 24;
@@ -153,7 +153,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 96);
+            this.label2.Location = new System.Drawing.Point(14, 95);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 23;
@@ -162,7 +162,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 71);
+            this.label1.Location = new System.Drawing.Point(14, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 22;
@@ -170,7 +170,7 @@
             // 
             // ContactNumberTextBox
             // 
-            this.ContactNumberTextBox.Location = new System.Drawing.Point(123, 146);
+            this.ContactNumberTextBox.Location = new System.Drawing.Point(123, 145);
             this.ContactNumberTextBox.MaxLength = 50;
             this.ContactNumberTextBox.Name = "ContactNumberTextBox";
             this.ContactNumberTextBox.Size = new System.Drawing.Size(235, 20);
@@ -179,7 +179,7 @@
             // 
             // EmailTextBox
             // 
-            this.EmailTextBox.Location = new System.Drawing.Point(123, 121);
+            this.EmailTextBox.Location = new System.Drawing.Point(123, 120);
             this.EmailTextBox.MaxLength = 255;
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(235, 20);
@@ -188,7 +188,7 @@
             // 
             // FamilyNameTextBox
             // 
-            this.FamilyNameTextBox.Location = new System.Drawing.Point(123, 96);
+            this.FamilyNameTextBox.Location = new System.Drawing.Point(123, 95);
             this.FamilyNameTextBox.MaxLength = 255;
             this.FamilyNameTextBox.Name = "FamilyNameTextBox";
             this.FamilyNameTextBox.Size = new System.Drawing.Size(235, 20);
@@ -197,7 +197,7 @@
             // 
             // GivenNamesTextBox
             // 
-            this.GivenNamesTextBox.Location = new System.Drawing.Point(123, 71);
+            this.GivenNamesTextBox.Location = new System.Drawing.Point(123, 70);
             this.GivenNamesTextBox.MaxLength = 255;
             this.GivenNamesTextBox.Name = "GivenNamesTextBox";
             this.GivenNamesTextBox.Size = new System.Drawing.Size(235, 20);
@@ -248,7 +248,7 @@
             // DeleteButton
             // 
             this.DeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DeleteButton.Location = new System.Drawing.Point(13, 353);
+            this.DeleteButton.Location = new System.Drawing.Point(14, 353);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 34;
@@ -309,7 +309,7 @@
             // ActiveStatusLabel
             // 
             this.ActiveStatusLabel.AutoSize = true;
-            this.ActiveStatusLabel.Location = new System.Drawing.Point(123, 177);
+            this.ActiveStatusLabel.Location = new System.Drawing.Point(123, 170);
             this.ActiveStatusLabel.Name = "ActiveStatusLabel";
             this.ActiveStatusLabel.Size = new System.Drawing.Size(35, 13);
             this.ActiveStatusLabel.TabIndex = 37;
@@ -326,7 +326,7 @@
             this.TasksDataGridView.Location = new System.Drawing.Point(6, 29);
             this.TasksDataGridView.Name = "TasksDataGridView";
             this.TasksDataGridView.ReadOnly = true;
-            this.TasksDataGridView.Size = new System.Drawing.Size(409, 129);
+            this.TasksDataGridView.Size = new System.Drawing.Size(409, 134);
             this.TasksDataGridView.TabIndex = 38;
             // 
             // IterationHeaderLabel
