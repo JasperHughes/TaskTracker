@@ -41,7 +41,17 @@ namespace Task_Tracker
 
             try
             {
-                developers = DBInterface.GetDevelopers();
+                // Get list of developers, either all or only active if the
+                // Active Only checkbox is on
+                if (this.ActiveOnlyCheckBox.Checked)
+                {
+                    developers = DBInterface.GetActiveDevelopers();
+                }
+                else
+                {
+                    developers = DBInterface.GetDevelopers();
+                }
+                
                 if (developers.Count > 0)
                 {
                     int i = 0;
@@ -113,6 +123,12 @@ namespace Task_Tracker
             // this is a new developer.
             editDeveloperForm.CurrentDeveloper = null;
             editDeveloperForm.Show();
+        }
+
+        private void ActiveOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Reload developers.
+            LoadDevelopers();
         }
 
     }

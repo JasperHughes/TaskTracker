@@ -42,6 +42,7 @@
             this.newDeveloperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NewDeveloperButton = new System.Windows.Forms.Button();
+            this.ActiveOnlyCheckBox = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,9 +60,9 @@
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7});
-            this.DevelopersListView.Location = new System.Drawing.Point(12, 27);
+            this.DevelopersListView.Location = new System.Drawing.Point(12, 51);
             this.DevelopersListView.Name = "DevelopersListView";
-            this.DevelopersListView.Size = new System.Drawing.Size(614, 330);
+            this.DevelopersListView.Size = new System.Drawing.Size(614, 306);
             this.DevelopersListView.TabIndex = 12;
             this.DevelopersListView.UseCompatibleStateImageBehavior = false;
             this.DevelopersListView.View = System.Windows.Forms.View.Details;
@@ -158,11 +159,23 @@
             this.NewDeveloperButton.UseVisualStyleBackColor = true;
             this.NewDeveloperButton.Click += new System.EventHandler(this.NewDeveloperButton_Click);
             // 
+            // ActiveOnlyCheckBox
+            // 
+            this.ActiveOnlyCheckBox.AutoSize = true;
+            this.ActiveOnlyCheckBox.Location = new System.Drawing.Point(489, 28);
+            this.ActiveOnlyCheckBox.Name = "ActiveOnlyCheckBox";
+            this.ActiveOnlyCheckBox.Size = new System.Drawing.Size(137, 17);
+            this.ActiveOnlyCheckBox.TabIndex = 20;
+            this.ActiveOnlyCheckBox.Text = "Active Developers Only";
+            this.ActiveOnlyCheckBox.UseVisualStyleBackColor = true;
+            this.ActiveOnlyCheckBox.CheckedChanged += new System.EventHandler(this.ActiveOnlyCheckBox_CheckedChanged);
+            // 
             // DeveloperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(638, 396);
+            this.Controls.Add(this.ActiveOnlyCheckBox);
             this.Controls.Add(this.NewDeveloperButton);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.DevelopersListView);
@@ -195,5 +208,6 @@
         private System.Windows.Forms.ToolStripMenuItem newDeveloperToolStripMenuItem;
         private System.Windows.Forms.Button NewDeveloperButton;
         public System.Windows.Forms.ListView DevelopersListView;
+        private System.Windows.Forms.CheckBox ActiveOnlyCheckBox;
     }
 }

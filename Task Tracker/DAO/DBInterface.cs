@@ -30,6 +30,15 @@ namespace Task_Tracker.DAO
                     select developer).ToList();
         }
 
+        public static List<Developer> GetActiveDevelopers()
+        {
+            // Get developers that have active = true, sorted by Family Name, Given Names
+            return (from developer in dataContext.Developers
+                    where developer.Active == true
+                    orderby developer.FamilyName, developer.GivenNames
+                    select developer).ToList();
+        }
+
         public static Developer GetDeveloper(int id)
         {
             
