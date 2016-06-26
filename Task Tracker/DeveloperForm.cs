@@ -92,8 +92,7 @@ namespace Task_Tracker
                 Developer developer = DBInterface.GetDeveloper(id);
 
                 // Load the Edit Developer Form
-                editDeveloperForm.CurrentDeveloper = developer;
-                editDeveloperForm.Show();
+                LoadDeveloper(developer);
             }
         }
 
@@ -121,8 +120,16 @@ namespace Task_Tracker
         {
             // Load the Edit Developer form. Using a null current developer indicates
             // this is a new developer.
-            editDeveloperForm.CurrentDeveloper = null;
+            LoadDeveloper(null);
+        }
+
+        private void LoadDeveloper(Developer developer)
+        {
+            // Load the developer in the EditDeveloperForm
+            editDeveloperForm.CurrentDeveloper = developer;
             editDeveloperForm.Show();
+            editDeveloperForm.Focus();
+
         }
 
         private void ActiveOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
