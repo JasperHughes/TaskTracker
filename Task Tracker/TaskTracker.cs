@@ -34,5 +34,10 @@ namespace Task_Tracker
         {
             return this.GivenNames + " " + this.FamilyName;
         }
+
+        public string ActiveString
+        {
+            get { return Active ? "Yes" : "No"; }
+        }
     }
 }

@@ -56,22 +56,6 @@ namespace Task_Tracker
 
         #region "Developer List"
 
-        private void DevelopersListView_ItemActivate(object sender, EventArgs e)
-        {
-            // If there is a selected item show the Edit developer form for the selected developer.
-            if (DevelopersListView.SelectedItems.Count > 0)
-            {
-                ListViewItem item = DevelopersListView.SelectedItems[0];
-                int id = Int32.Parse(item.SubItems[0].Text);
-
-                // Get the developer with this id
-                Developer developer = DBInterface.GetDeveloper(id);
-
-                // Load the Edit Developer Form
-                LoadDeveloper(developer);
-            }
-        }
-
         private void ActiveOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Reload developers.
@@ -80,7 +64,6 @@ namespace Task_Tracker
 
         private void LoadDevelopers()
         {
-            DevelopersListView.Items.Clear();
 
             // Load all the developers into the List View
             List<Developer> developers;
@@ -97,32 +80,51 @@ namespace Task_Tracker
                 {
                     developers = DBInterface.GetDevelopers();
                 }
-                
-                if (developers.Count > 0)
-                {
-                    int i = 0;
-                    foreach (Developer developer in developers)
-                    {
-                        DevelopersListView.Items.Add(developer.ID.ToString());
-                        DevelopersListView.Items[i].SubItems.Add(developer.GivenNames);
-                        DevelopersListView.Items[i].SubItems.Add(developer.FamilyName);
-                        DevelopersListView.Items[i].SubItems.Add(developer.Email);
-                        DevelopersListView.Items[i].SubItems.Add(developer.ContactNumber);
-                        DevelopersListView.Items[i].SubItems.Add(developer.Active ? "Yes" : "No");
-                        DevelopersListView.Items[i].SubItems.Add(developer.Notes);
 
-                        i++;
-                    }
-                }
-                else
-                {
-                    // TODO If there are no developers what happens?
-                }
+                this.DevelopersDataGridView.DataSource = developers;
+
+                // Hide ID
+                this.DevelopersDataGridView.Columns["ID"].Visible = false;
+
+                // Control the order of items
+                int displayIndex = 0;
+                this.DevelopersDataGridView.Columns["GivenNames"].DisplayIndex = displayIndex++;
+                this.DevelopersDataGridView.Columns["FamilyName"].DisplayIndex = displayIndex++;
+                this.DevelopersDataGridView.Columns["Email"].DisplayIndex = displayIndex++;
+                this.DevelopersDataGridView.Columns["ContactNumber"].DisplayIndex = displayIndex++;
+                this.DevelopersDataGridView.Columns["ActiveString"].DisplayIndex = displayIndex++;
+                this.DevelopersDataGridView.Columns["Notes"].DisplayIndex = displayIndex++;
+
+
+                // Change header text for these 2 word fields
+                this.DevelopersDataGridView.Columns["FamilyName"].HeaderText = "Family Name";
+                this.DevelopersDataGridView.Columns["GivenNames"].HeaderText = "Given Names";
+                this.DevelopersDataGridView.Columns["ContactNumber"].HeaderText = "Contact Number";
+
+                // Use ActiveString instead of Active which creates checkbox
+                this.DevelopersDataGridView.Columns["Active"].Visible = false;
+                this.DevelopersDataGridView.Columns["ActiveString"].HeaderText = "Active";
             }
             catch (Exception ex)
             {
                 // TODO What should really happen on error?
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+        }
+        
+        private void DevelopersDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Load selected developer. If header clicked do nothing.
+            if (e.RowIndex >= 0)
+            {
+                // Get the selected developer's id
+                int id = (int)DevelopersDataGridView.CurrentRow.Cells["ID"].Value;
+
+                // Get the developer with this id
+                Developer developer = DBInterface.GetDeveloper(id);
+
+                // Load the Edit Developer Form
+                LoadDeveloper(developer);
             }
         }
 
@@ -152,6 +154,7 @@ namespace Task_Tracker
         }
 
         #endregion
+
 
     }
 }

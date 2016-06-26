@@ -28,14 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DevelopersListView = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CloseButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,70 +35,15 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NewDeveloperButton = new System.Windows.Forms.Button();
             this.ActiveOnlyCheckBox = new System.Windows.Forms.CheckBox();
+            this.DevelopersDataGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DevelopersDataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // DevelopersListView
-            // 
-            this.DevelopersListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.DevelopersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DevelopersListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7});
-            this.DevelopersListView.Location = new System.Drawing.Point(12, 51);
-            this.DevelopersListView.Name = "DevelopersListView";
-            this.DevelopersListView.Size = new System.Drawing.Size(614, 306);
-            this.DevelopersListView.TabIndex = 12;
-            this.DevelopersListView.UseCompatibleStateImageBehavior = false;
-            this.DevelopersListView.View = System.Windows.Forms.View.Details;
-            this.DevelopersListView.ItemActivate += new System.EventHandler(this.DevelopersListView_ItemActivate);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "ID";
-            this.columnHeader1.Width = 30;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Given Names";
-            this.columnHeader2.Width = 100;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Family Name";
-            this.columnHeader3.Width = 100;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Email";
-            this.columnHeader4.Width = 100;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Contact Number";
-            this.columnHeader5.Width = 100;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Active";
-            this.columnHeader6.Width = 50;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Notes";
-            this.columnHeader7.Width = 130;
             // 
             // CloseButton
             // 
             this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CloseButton.Location = new System.Drawing.Point(554, 361);
+            this.CloseButton.Location = new System.Drawing.Point(641, 524);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(75, 23);
             this.CloseButton.TabIndex = 17;
@@ -121,7 +58,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(638, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(725, 24);
             this.menuStrip1.TabIndex = 18;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -151,7 +88,7 @@
             // NewDeveloperButton
             // 
             this.NewDeveloperButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.NewDeveloperButton.Location = new System.Drawing.Point(12, 361);
+            this.NewDeveloperButton.Location = new System.Drawing.Point(12, 524);
             this.NewDeveloperButton.Name = "NewDeveloperButton";
             this.NewDeveloperButton.Size = new System.Drawing.Size(112, 23);
             this.NewDeveloperButton.TabIndex = 19;
@@ -163,7 +100,7 @@
             // 
             this.ActiveOnlyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ActiveOnlyCheckBox.AutoSize = true;
-            this.ActiveOnlyCheckBox.Location = new System.Drawing.Point(489, 28);
+            this.ActiveOnlyCheckBox.Location = new System.Drawing.Point(576, 28);
             this.ActiveOnlyCheckBox.Name = "ActiveOnlyCheckBox";
             this.ActiveOnlyCheckBox.Size = new System.Drawing.Size(137, 17);
             this.ActiveOnlyCheckBox.TabIndex = 20;
@@ -171,15 +108,27 @@
             this.ActiveOnlyCheckBox.UseVisualStyleBackColor = true;
             this.ActiveOnlyCheckBox.CheckedChanged += new System.EventHandler(this.ActiveOnlyCheckBox_CheckedChanged);
             // 
+            // DevelopersDataGridView
+            // 
+            this.DevelopersDataGridView.AllowUserToAddRows = false;
+            this.DevelopersDataGridView.AllowUserToDeleteRows = false;
+            this.DevelopersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DevelopersDataGridView.Location = new System.Drawing.Point(12, 51);
+            this.DevelopersDataGridView.Name = "DevelopersDataGridView";
+            this.DevelopersDataGridView.ReadOnly = true;
+            this.DevelopersDataGridView.Size = new System.Drawing.Size(704, 467);
+            this.DevelopersDataGridView.TabIndex = 21;
+            this.DevelopersDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DevelopersDataGridView_CellClick);
+            // 
             // DeveloperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(638, 396);
+            this.ClientSize = new System.Drawing.Size(725, 559);
+            this.Controls.Add(this.DevelopersDataGridView);
             this.Controls.Add(this.ActiveOnlyCheckBox);
             this.Controls.Add(this.NewDeveloperButton);
             this.Controls.Add(this.CloseButton);
-            this.Controls.Add(this.DevelopersListView);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "DeveloperForm";
@@ -188,6 +137,7 @@
             this.Load += new System.EventHandler(this.DeveloperForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DevelopersDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,20 +145,13 @@
 
         #endregion
 
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newDeveloperToolStripMenuItem;
         private System.Windows.Forms.Button NewDeveloperButton;
-        public System.Windows.Forms.ListView DevelopersListView;
         private System.Windows.Forms.CheckBox ActiveOnlyCheckBox;
+        private System.Windows.Forms.DataGridView DevelopersDataGridView;
     }
 }
