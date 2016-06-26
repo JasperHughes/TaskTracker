@@ -289,6 +289,7 @@
             this.IterationsDataGridView.ReadOnly = true;
             this.IterationsDataGridView.Size = new System.Drawing.Size(407, 150);
             this.IterationsDataGridView.TabIndex = 35;
+            this.IterationsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IterationsDataGridView_CellClick);
             this.IterationsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.IterationsDataGridView_CellContentClick);
             this.IterationsDataGridView.SelectionChanged += new System.EventHandler(this.IterationsDataGridView_SelectionChanged);
             // 

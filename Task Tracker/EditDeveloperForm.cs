@@ -282,29 +282,6 @@ namespace Task_Tracker
         {
             DataGridView view = (DataGridView)sender;
 
-            // Reload tasks when any valid cell is clicked on
-            if (e.RowIndex >= 0)
-            {
-                // If there is a row currently selected and it's different to the cell's row then reload tasks
-                int currentSelectedRowIndex = -1;
-                if (view.SelectedRows.Count > 0)
-                {
-                    currentSelectedRowIndex = view.SelectedRows[0].Index;
-                }
-
-                // Clear any selected rows
-                view.ClearSelection();
-                // Set the cell's row as selected so that LoadTasks gets the right iteration
-                view.Rows[e.RowIndex].Selected = true;
-
-                // If this is a newly selected iteration reload tasks
-                if (currentSelectedRowIndex == 0 ||
-                    (currentSelectedRowIndex >= 0 && e.RowIndex != currentSelectedRowIndex))
-                {
-                    LoadTasks();
-                }
-            }
-
             if (view.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
                 // Report button clicked
@@ -312,6 +289,22 @@ namespace Task_Tracker
 
                 // Go ahead and print the report.
                 PrintReport(iterationID);
+            }
+        }
+
+        private void IterationsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // When any iteration cell is clicked mark row as selected and reload tasks for selected iteration
+            DataGridView view = (DataGridView)sender;
+            if (e.RowIndex >= 0)
+            {
+                // Clear any selected rows
+                view.ClearSelection();
+                // Set the cell's row as selected so that LoadTasks gets the right iteration
+                view.Rows[e.RowIndex].Selected = true;
+
+                // Reload tasks
+                LoadTasks();
             }
         }
 
@@ -452,6 +445,8 @@ namespace Task_Tracker
         }
 
         #endregion
+
+
 
     }
 }
