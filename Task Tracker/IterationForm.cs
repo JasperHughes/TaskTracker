@@ -172,6 +172,8 @@ namespace Task_Tracker
                     ITEditButton.Enabled = false;
                 }
                 projectIDTextBox.Enabled = false;
+                projectDropdown.Visible = false;
+                projectTextBox.Visible = true;
 
             }
         }
@@ -212,8 +214,7 @@ namespace Task_Tracker
         private void IterationTasksList_SelectedIndexChanged(object sender, EventArgs e)
         {
             ITEditButton.Enabled = true;
-            projectDropdown.Visible = false;
-            projectTextBox.Visible = true;
+
         }
 
         private void ITEditButton_Click(object sender, EventArgs e)
