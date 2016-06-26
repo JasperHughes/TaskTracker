@@ -161,6 +161,7 @@
             // 
             // ActiveOnlyCheckBox
             // 
+            this.ActiveOnlyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ActiveOnlyCheckBox.AutoSize = true;
             this.ActiveOnlyCheckBox.Location = new System.Drawing.Point(489, 28);
             this.ActiveOnlyCheckBox.Name = "ActiveOnlyCheckBox";
