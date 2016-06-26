@@ -55,7 +55,7 @@ namespace Task_Tracker
                         }
                         else
                         {
-                            iterationListView.Items[i].SubItems.Add("");
+                            iterationListView.Items[i].SubItems.Add(""); //Fill empty columns
                         }
                         foreach (DeveloperIterationTask dit in iteration.DeveloperIterationTasks)
                         {
@@ -71,10 +71,10 @@ namespace Task_Tracker
                         }
                         iterationListView.Items[i].SubItems.Add(iteration.StartDate.ToString());
                         iterationListView.Items[i].SubItems.Add(iteration.EndDate.ToString());
-
-
+                        
                         i++;
                     }
+                    ResetFields();
                 }
                 else
                 {
@@ -130,14 +130,13 @@ namespace Task_Tracker
                         }
                     }
                     ResetFields();
-
+                    SaveButton.Visible = false;
                     LoadIterations();
                 }
                 else
                 {
                     MessageBox.Show("Please enter make sure input is valid");
                 }
-                //  UpdateAddEditLabel();
 
             }
         }
@@ -203,10 +202,13 @@ namespace Task_Tracker
             {
                 projects = DBInterface.GetProjects();
                 projectTextBox.Text = projects.Find(project => project.ID == Int32.Parse(projectIDTextBox.Text)).ProjectName;
+                projectDropdown.SelectedItem = projects.Find(project => project.ID == Int32.Parse(projectIDTextBox.Text)).ProjectName;
+                projectDropdown.BackColor = Color.White;
             }
             catch (Exception ex)
             {
                 projectTextBox.Text = "";
+                projectDropdown.BackColor = Color.Firebrick;
                 Console.WriteLine(ex.Message, ex.GetType().ToString());
             }
         }
@@ -241,6 +243,7 @@ namespace Task_Tracker
             ResetFields();
             projectTextBox.Visible = false;
             projectDropdown.Visible = true;
+            SaveButton.Visible = true;
             try
             {
                 projects = DBInterface.GetProjects();
@@ -294,6 +297,16 @@ namespace Task_Tracker
         private void projectDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
             projectIDTextBox.Text = projects.Find(project => project.ProjectName == projectDropdown.SelectedItem.ToString()).ID.ToString();
+        }
+
+
+        private void IterationForm_FormClosed(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
         }
     }
 }

@@ -209,6 +209,7 @@
             this.SaveButton.TabIndex = 15;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Visible = false;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // IterationTasksList
@@ -225,9 +226,9 @@
             this.AddIterationTask.Enabled = false;
             this.AddIterationTask.Location = new System.Drawing.Point(247, 136);
             this.AddIterationTask.Name = "AddIterationTask";
-            this.AddIterationTask.Size = new System.Drawing.Size(61, 21);
+            this.AddIterationTask.Size = new System.Drawing.Size(84, 21);
             this.AddIterationTask.TabIndex = 17;
-            this.AddIterationTask.Text = "Add";
+            this.AddIterationTask.Text = "Add/Remove";
             this.AddIterationTask.UseVisualStyleBackColor = true;
             this.AddIterationTask.Click += new System.EventHandler(this.AddIterationTask_Click);
             // 
@@ -245,7 +246,7 @@
             this.ITEditButton.Enabled = false;
             this.ITEditButton.Location = new System.Drawing.Point(247, 158);
             this.ITEditButton.Name = "ITEditButton";
-            this.ITEditButton.Size = new System.Drawing.Size(61, 21);
+            this.ITEditButton.Size = new System.Drawing.Size(84, 21);
             this.ITEditButton.TabIndex = 18;
             this.ITEditButton.Text = "Edit";
             this.ITEditButton.UseVisualStyleBackColor = true;
@@ -263,7 +264,7 @@
             // 
             // projectDropdown
             // 
-            this.projectDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.projectDropdown.BackColor = System.Drawing.Color.White;
             this.projectDropdown.FormattingEnabled = true;
             this.projectDropdown.Location = new System.Drawing.Point(105, 106);
             this.projectDropdown.Name = "projectDropdown";
@@ -297,6 +298,7 @@
             this.Controls.Add(this.projectIDTextBox);
             this.Name = "IterationForm";
             this.Text = "IterationForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IterationForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
