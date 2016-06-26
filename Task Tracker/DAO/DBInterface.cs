@@ -95,6 +95,18 @@ namespace Task_Tracker.DAO
             }
         }
 
+        public static List<DeveloperIterationView> GetDeveloperCurrentIterationView(int id)
+        {
+            // Get the list of Iterations for a developer, sorted by Iteration.StartDate
+            DateTime today = DateTime.Today;
+            return (from developerIterationView in dataContext.DeveloperIterationViews
+                    where developerIterationView.DeveloperID == id
+                    where developerIterationView.StartDate <= today
+                    where developerIterationView.EndDate >= today
+                    orderby developerIterationView.StartDate
+                    select developerIterationView).ToList();
+        }
+
         public static List<DeveloperIterationView> GetDeveloperIterationView(int id)
         {
             // Get the list of Iterations for a developer, sorted by Iteration.StartDate
@@ -138,11 +150,22 @@ namespace Task_Tracker.DAO
 
         public static List<Task> GetDeveloperTasksByIteration(int developerID, int iterationID)
         {
-            // Get list of tasks assigned to developer that don't have a CompletionDate
+            // Get list of tasks assigned to developer and iteration
             return (from tasks in dataContext.Tasks
                     join developerIterationTask in dataContext.DeveloperIterationTasks on tasks.ID equals developerIterationTask.TaskID
                     where developerIterationTask.DeveloperID == developerID
                     where developerIterationTask.IterationID == iterationID
+                    select tasks).ToList();
+        }
+
+        public static List<Task> GetDeveloperIncompleteTasksByIteration(int developerID, int iterationID)
+        {
+            // Get list of tasks assigned to developer and iteration that don't have a CompletionDate
+            return (from tasks in dataContext.Tasks
+                    join developerIterationTask in dataContext.DeveloperIterationTasks on tasks.ID equals developerIterationTask.TaskID
+                    where developerIterationTask.DeveloperID == developerID
+                    where developerIterationTask.IterationID == iterationID
+                    where tasks.CompletionDate == null
                     select tasks).ToList();
         }
 

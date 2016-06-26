@@ -87,6 +87,9 @@ namespace Task_Tracker
             // Show Inactive Developer label at appropriate time
             this.InactiveDeveloperMessageLabel.Visible = CurrentDeveloper != null ? !CurrentDeveloper.Active : false;
 
+            // Default value of Iterations Only checkbox is false
+            this.CurrentIterationOnlyCheckBox.Checked = false;
+
             CheckEnableActions();
 
             LoadIterations();
@@ -102,7 +105,19 @@ namespace Task_Tracker
             if (CurrentDeveloper != null)
             {
                 this.IterationsDataGridView.ReadOnly = true;
-                this.IterationsDataGridView.DataSource = DBInterface.GetDeveloperIterationView(CurrentDeveloper.ID);
+
+                // Get list of all iterations
+                List<DeveloperIterationView> allIterations = DBInterface.GetDeveloperIterationView(CurrentDeveloper.ID);
+                // If only current iteration is to be shown get those elements.
+                if (this.CurrentIterationOnlyCheckBox.Checked)
+                {
+                    List<DeveloperIterationView> filteredIterations = DBInterface.GetDeveloperCurrentIterationView(CurrentDeveloper.ID);
+                    this.IterationsDataGridView.DataSource = filteredIterations;
+                }
+                else
+                {
+                    this.IterationsDataGridView.DataSource = allIterations;
+                }
 
                 // Hide the Developer ID, Iteration ID and Project ID columns
                 // they are only required by the query
@@ -111,11 +126,19 @@ namespace Task_Tracker
                 this.IterationsDataGridView.Columns["ProjectID"].Visible = false;
 
                 // Select first iteration so tasks are loaded
-                if (this.IterationsDataGridView.RowCount > 0)
+                if (allIterations.Count > 0)
                 {
                     this.IterationsPanel.Visible = true;
-                    this.IterationsDataGridView.Rows[0].Selected = true;
-                    LoadTasks();
+                    if (this.IterationsDataGridView.RowCount > 0)
+                    {
+                        this.IterationsDataGridView.Rows[0].Selected = true;
+                        LoadTasks();
+                    }
+                    else
+                    {
+                        // If there are no iterations hide the tasks panel
+                        this.TasksPanel.Visible = false;
+                    }
                 }
                 else
                 {
@@ -145,7 +168,18 @@ namespace Task_Tracker
                 // Set up the TasksDataGridView
                 int iterationID = (int)this.IterationsDataGridView.SelectedRows[0].Cells["IterationID"].Value;
                 this.TasksDataGridView.ReadOnly = true;
-                this.TasksDataGridView.DataSource = DBInterface.GetDeveloperTasksByIteration(CurrentDeveloper.ID, iterationID);
+
+                List<Task> tasks = null;
+                if (this.IncompleteTasksOnlyCheckBox.Checked)
+                {
+                    tasks = DBInterface.GetDeveloperIncompleteTasksByIteration(CurrentDeveloper.ID, iterationID);
+                }
+                else
+                {
+                    tasks = DBInterface.GetDeveloperTasksByIteration(CurrentDeveloper.ID, iterationID);
+                }                
+
+                this.TasksDataGridView.DataSource = tasks;
                 this.TasksPanel.Visible = true;
 
                 // Hide columns user doesn't need to see
@@ -363,5 +397,17 @@ namespace Task_Tracker
             ControlPaint.DrawBorder(e.Graphics, InactiveDeveloperMessageLabel.DisplayRectangle, Color.FromArgb(192, 0, 0), ButtonBorderStyle.Solid);
         }
 
+
+        private void CurrentIterationOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Reload the list of iterations
+            LoadIterations();
+        }
+
+        private void IncompleteTasksOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Reload the iteration tasks.
+            LoadTasks();
+        }
     }
 }

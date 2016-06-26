@@ -60,7 +60,9 @@
             this.IterationHeaderLabel = new System.Windows.Forms.Label();
             this.IterationTaskHeaderLabel = new System.Windows.Forms.Label();
             this.IterationsPanel = new System.Windows.Forms.Panel();
+            this.CurrentIterationOnlyCheckBox = new System.Windows.Forms.CheckBox();
             this.TasksPanel = new System.Windows.Forms.Panel();
+            this.IncompleteTasksOnlyCheckBox = new System.Windows.Forms.CheckBox();
             this.InactiveDeveloperMessageLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -221,21 +223,21 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // cancelToolStripMenuItem
             // 
             this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
-            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.cancelToolStripMenuItem.Text = "Cancel";
             this.cancelToolStripMenuItem.Click += new System.EventHandler(this.CancelButton_Click);
             // 
@@ -282,7 +284,7 @@
             this.IterationsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.IterationsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ActionColumn});
-            this.IterationsDataGridView.Location = new System.Drawing.Point(6, 19);
+            this.IterationsDataGridView.Location = new System.Drawing.Point(6, 21);
             this.IterationsDataGridView.Name = "IterationsDataGridView";
             this.IterationsDataGridView.ReadOnly = true;
             this.IterationsDataGridView.Size = new System.Drawing.Size(407, 150);
@@ -348,6 +350,7 @@
             this.IterationsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.IterationsPanel.Controls.Add(this.CurrentIterationOnlyCheckBox);
             this.IterationsPanel.Controls.Add(this.TasksPanel);
             this.IterationsPanel.Controls.Add(this.IterationsDataGridView);
             this.IterationsPanel.Controls.Add(this.IterationHeaderLabel);
@@ -356,17 +359,42 @@
             this.IterationsPanel.Size = new System.Drawing.Size(416, 472);
             this.IterationsPanel.TabIndex = 41;
             // 
+            // CurrentIterationOnlyCheckBox
+            // 
+            this.CurrentIterationOnlyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CurrentIterationOnlyCheckBox.AutoSize = true;
+            this.CurrentIterationOnlyCheckBox.Location = new System.Drawing.Point(288, 3);
+            this.CurrentIterationOnlyCheckBox.Name = "CurrentIterationOnlyCheckBox";
+            this.CurrentIterationOnlyCheckBox.Size = new System.Drawing.Size(125, 17);
+            this.CurrentIterationOnlyCheckBox.TabIndex = 42;
+            this.CurrentIterationOnlyCheckBox.Text = "Current Iteration Only";
+            this.CurrentIterationOnlyCheckBox.UseVisualStyleBackColor = true;
+            this.CurrentIterationOnlyCheckBox.CheckedChanged += new System.EventHandler(this.CurrentIterationOnlyCheckBox_CheckedChanged);
+            // 
             // TasksPanel
             // 
             this.TasksPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TasksPanel.Controls.Add(this.IncompleteTasksOnlyCheckBox);
             this.TasksPanel.Controls.Add(this.IterationTaskHeaderLabel);
             this.TasksPanel.Controls.Add(this.TasksDataGridView);
             this.TasksPanel.Location = new System.Drawing.Point(-2, 175);
             this.TasksPanel.Name = "TasksPanel";
             this.TasksPanel.Size = new System.Drawing.Size(420, 294);
             this.TasksPanel.TabIndex = 41;
+            // 
+            // IncompleteTasksOnlyCheckBox
+            // 
+            this.IncompleteTasksOnlyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.IncompleteTasksOnlyCheckBox.AutoSize = true;
+            this.IncompleteTasksOnlyCheckBox.Location = new System.Drawing.Point(281, 6);
+            this.IncompleteTasksOnlyCheckBox.Name = "IncompleteTasksOnlyCheckBox";
+            this.IncompleteTasksOnlyCheckBox.Size = new System.Drawing.Size(134, 17);
+            this.IncompleteTasksOnlyCheckBox.TabIndex = 43;
+            this.IncompleteTasksOnlyCheckBox.Text = "Incomplete Tasks Only";
+            this.IncompleteTasksOnlyCheckBox.UseVisualStyleBackColor = true;
+            this.IncompleteTasksOnlyCheckBox.CheckedChanged += new System.EventHandler(this.IncompleteTasksOnlyCheckBox_CheckedChanged);
             // 
             // InactiveDeveloperMessageLabel
             // 
@@ -492,6 +520,8 @@
         private System.Windows.Forms.Label InactiveDeveloperMessageLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.CheckBox CurrentIterationOnlyCheckBox;
+        private System.Windows.Forms.CheckBox IncompleteTasksOnlyCheckBox;
 
     }
 }
