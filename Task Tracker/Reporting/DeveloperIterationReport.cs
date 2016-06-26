@@ -255,8 +255,16 @@ namespace Task_Tracker.Reporting
                     PrintParagraphWithHeader("Other Developers: ", GetDeveloperText(otherDevelopers));
                 }
 
-                // Add Completed checkbox
-                PrintParagraphWithHeaderAndCheckbox("Completed: ");
+                if (task.CompletionDate == null)
+                {
+                    // Add Completed checkbox, as taks isn't completed yet.
+                    PrintParagraphWithHeaderAndCheckbox("Completed: ");
+                }
+                else
+                {
+                    // Task has been completed so include date it was completed instead of checkbox
+                    PrintParagraphWithHeader("Completed: ", String.Format(dateFormat, iteration.StartDate));
+                }
 
                 // Add an extra gap before horizontal line
                 yPos += paragraphFontOffSet;
