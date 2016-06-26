@@ -13,6 +13,8 @@ namespace Task_Tracker
 {
     public partial class DeveloperForm : Form
     {
+        #region "Initialise"
+
         // Only have 1 instance of the Edit Developer Form.
         private EditDeveloperForm editDeveloperForm;
 
@@ -22,6 +24,10 @@ namespace Task_Tracker
             editDeveloperForm = new EditDeveloperForm(this);
         }
 
+        #endregion
+
+        #region "Form"
+
         private void DeveloperForm_Load(object sender, EventArgs e)
         {
             UpdateForm();
@@ -29,6 +35,46 @@ namespace Task_Tracker
 
         public void UpdateForm()
         {
+            LoadDevelopers();
+        }
+
+        private void DeveloperForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Cancel the closing of the form and hide form instead
+            e.Cancel = true;
+            HideForm();
+        }
+
+        private void HideForm()
+        {
+            // Whent the form is hidden, also hide the Edit Developer form
+            this.Hide();
+            editDeveloperForm.Hide();
+        }
+
+        #endregion
+
+        #region "Developer List"
+
+        private void DevelopersListView_ItemActivate(object sender, EventArgs e)
+        {
+            // If there is a selected item show the Edit developer form for the selected developer.
+            if (DevelopersListView.SelectedItems.Count > 0)
+            {
+                ListViewItem item = DevelopersListView.SelectedItems[0];
+                int id = Int32.Parse(item.SubItems[0].Text);
+
+                // Get the developer with this id
+                Developer developer = DBInterface.GetDeveloper(id);
+
+                // Load the Edit Developer Form
+                LoadDeveloper(developer);
+            }
+        }
+
+        private void ActiveOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Reload developers.
             LoadDevelopers();
         }
 
@@ -80,49 +126,6 @@ namespace Task_Tracker
             }
         }
 
-        private void DevelopersListView_ItemActivate(object sender, EventArgs e)
-        {
-            // If there is a selected item show the Edit developer form for the selected developer.
-            if (DevelopersListView.SelectedItems.Count > 0)
-            {
-                ListViewItem item = DevelopersListView.SelectedItems[0];
-                int id = Int32.Parse(item.SubItems[0].Text);
-
-                // Get the developer with this id
-                Developer developer = DBInterface.GetDeveloper(id);
-
-                // Load the Edit Developer Form
-                LoadDeveloper(developer);
-            }
-        }
-
-        private void DeveloperForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // Cancel the closing of the form and hide form instead
-            e.Cancel = true;
-            HideForm();
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            HideForm();
-        }
-
-        private void HideForm()
-        {
-            // Whent the form is hidden, also hide the Edit Developer form
-            this.Hide();
-            editDeveloperForm.Hide();
-        }
-
-
-        private void NewDeveloperButton_Click(object sender, EventArgs e)
-        {
-            // Load the Edit Developer form. Using a null current developer indicates
-            // this is a new developer.
-            LoadDeveloper(null);
-        }
-
         private void LoadDeveloper(Developer developer)
         {
             // Load the developer in the EditDeveloperForm
@@ -132,11 +135,23 @@ namespace Task_Tracker
 
         }
 
-        private void ActiveOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
+        #endregion
+
+        #region "Button Events"
+
+        private void CloseButton_Click(object sender, EventArgs e)
         {
-            // Reload developers.
-            LoadDevelopers();
+            HideForm();
         }
+        
+        private void NewDeveloperButton_Click(object sender, EventArgs e)
+        {
+            // Load the Edit Developer form. Using a null current developer indicates
+            // this is a new developer.
+            LoadDeveloper(null);
+        }
+
+        #endregion
 
     }
 }

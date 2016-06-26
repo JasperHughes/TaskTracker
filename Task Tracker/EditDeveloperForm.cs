@@ -15,6 +15,9 @@ namespace Task_Tracker
 {
     public partial class EditDeveloperForm : Form
     {
+
+        #region "Initialise"
+
         // Link back to calling form which is always DeveloperForm
         private DeveloperForm callingForm;
 
@@ -56,8 +59,35 @@ namespace Task_Tracker
             };
         }
 
+        #endregion
 
-        public void UpdateForm() {
+        #region "Form"
+
+        private void EditDeveloperForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Cancel the closing of the form and hide form instead
+            e.Cancel = true;
+            HideForm();
+        }
+
+        private void EditDeveloperForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'taskTrackerDataSet.DeveloperIterationTasks' table. You can move, or remove it, as needed.
+            this.developerIterationTasksTableAdapter.Fill(this.taskTrackerDataSet.DeveloperIterationTasks);
+            // TODO: This line of code loads data into the 'taskTrackerDataSet.Developers' table. You can move, or remove it, as needed.
+            this.developersTableAdapter.Fill(this.taskTrackerDataSet.Developers);
+
+            UpdateForm();
+        }
+
+        private void InactiveDeveloperMessageLabel_Paint(object sender, PaintEventArgs e)
+        {
+            // Paint border red, cannot be done with properties on form design
+            ControlPaint.DrawBorder(e.Graphics, InactiveDeveloperMessageLabel.DisplayRectangle, Color.FromArgb(192, 0, 0), ButtonBorderStyle.Solid);
+        }
+        
+        public void UpdateForm()
+        {
             // Update the textboxes and page label with appropriate values
             if (CurrentDeveloper == null)
             {
@@ -97,6 +127,197 @@ namespace Task_Tracker
             // Reset size of form as it may need to be changed due to 
             // iterations panel being shown or hidden.
             ResetFormDimensions();
+        }
+
+        private void ResetFormDimensions()
+        {
+            // If there are no iterations resize form to exclude blank panel area.
+            // Note. Do not use visibility status of IterationsPanel, as it will
+            // always return false when form in hidden state.
+            if (this.IterationsDataGridView.RowCount == 0)
+            {
+                this.Width = this.Width - this.IterationsPanel.Width;
+            }
+            else
+            {
+                this.Width = IDEAL_FORM_WIDTH;
+            }
+        }
+
+        private void HideForm()
+        {
+            // In addition to hiding the form, need to update the calling form.
+            this.Hide();
+            callingForm.UpdateForm();
+        }
+
+        private void CheckEnableActions()
+        {
+            // If there is a value in all required fields then enable Save button
+            bool enableSave = true;
+            foreach (TextBox textBox in requiredFields)
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    enableSave = false;
+                    break;
+                }
+            }
+
+            this.SaveButton.Enabled = enableSave;
+            this.saveToolStripMenuItem.Enabled = enableSave;
+
+            // Delete button only enabled when editing a developer
+            bool enableDelete = (currentDeveloper != null && CurrentDeveloper.Active);
+            this.DeleteButton.Enabled = enableDelete;
+            this.deleteToolStripMenuItem.Enabled = enableDelete;
+        }
+        
+        #endregion
+
+        #region "Textbox, Button Events"
+
+        private void Input_TextChanged(object sender, EventArgs e)
+        {
+            // If any of the text boxes are changed check which actions are available.
+            CheckEnableActions();
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            // Use current developer, but if null create a new object.
+            Developer developer = CurrentDeveloper;
+            if (developer == null)
+            {
+                developer = new Developer();
+            }
+            SaveDeveloper(developer);
+
+            // Hide form after saving developer
+            HideForm();
+        }
+
+        private void SaveDeveloper(Developer developer)
+        {
+            // Move all the details from the textboxes to Developer object
+            developer.FamilyName = FamilyNameTextBox.Text;
+            developer.GivenNames = GivenNamesTextBox.Text;
+            developer.Email = EmailTextBox.Text;
+            developer.ContactNumber = ContactNumberTextBox.Text;
+            developer.Notes = NotesTextBox.Text;
+
+            try
+            {
+                // Save the developer to the database.
+                if (CurrentDeveloper == null)
+                {
+                    developer.Active = true;
+                    DBInterface.Add(developer);
+                }
+                else
+                {
+                    developer.ID = CurrentDeveloper.ID;
+                    DBInterface.Update(developer);
+                }
+            }
+            catch (Exception ex)
+            {
+                // TODO What should really happen on error?
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            HideForm();
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            // Deleting the developer actually marks Active as False in order to retain the record for 
+            // future purposes.
+
+            // Only take action when developer is active
+            if (currentDeveloper.Active)
+            {
+                // Cannot delete a developer that is assigned to an incomplete task
+                int incompleteTasks = DBInterface.GetDeveloperIncompleteTasks(currentDeveloper.ID).Count;
+                if (incompleteTasks > 0)
+                {
+                    MessageBox.Show("Developer cannot be deleted, they have "
+                        + incompleteTasks + " incomplete tasks. " + Environment.NewLine
+                        + "Either complete those tasks or remove them from this developer.",
+                        "Delete Developer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    // Mark current developer as inactive, save to the database (along with other changes
+                    // to textfields) and update the form
+                    currentDeveloper.Active = false;
+                    SaveDeveloper(currentDeveloper);
+                    UpdateForm();
+                    MessageBox.Show(currentDeveloper + " has been made inactive. " + Environment.NewLine
+                        + "They have not been deleted so that all previous work can be referenced.",
+                        "Delete Developer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                // Developer is inactive so no need to do anything
+                MessageBox.Show("Developer has already been deleted.", "Delete Developer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        #endregion
+
+        #region "Iterations"
+
+        private void CurrentIterationOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Reload the list of iterations
+            LoadIterations();
+        }
+
+        private void IterationsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView view = (DataGridView)sender;
+
+            // Reload tasks when any valid cell is clicked on
+            if (e.RowIndex >= 0)
+            {
+                // If there is a row currently selected and it's different to the cell's row then reload tasks
+                int currentSelectedRowIndex = -1;
+                if (view.SelectedRows.Count > 0)
+                {
+                    currentSelectedRowIndex = view.SelectedRows[0].Index;
+                }
+
+                // Clear any selected rows
+                view.ClearSelection();
+                // Set the cell's row as selected so that LoadTasks gets the right iteration
+                view.Rows[e.RowIndex].Selected = true;
+
+                // If this is a newly selected iteration reload tasks
+                if (currentSelectedRowIndex == 0 ||
+                    (currentSelectedRowIndex >= 0 && e.RowIndex != currentSelectedRowIndex))
+                {
+                    LoadTasks();
+                }
+            }
+
+            if (view.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                // Report button clicked
+                int iterationID = (int)view.Rows[e.RowIndex].Cells["IterationID"].Value;
+
+                // Go ahead and print the report.
+                PrintReport(iterationID);
+            }
+        }
+
+        private void IterationsDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            LoadTasks();
         }
 
         private void LoadIterations()
@@ -158,6 +379,16 @@ namespace Task_Tracker
             }
         }
 
+        #endregion
+
+        #region "Tasks"
+
+        private void IncompleteTasksOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // Reload the iteration tasks.
+            LoadTasks();
+        }
+
         private void LoadTasks()
         {
             // Load the list of tasks for the selected iteration that developer is assigned to
@@ -177,7 +408,7 @@ namespace Task_Tracker
                 else
                 {
                     tasks = DBInterface.GetDeveloperTasksByIteration(CurrentDeveloper.ID, iterationID);
-                }                
+                }
 
                 this.TasksDataGridView.DataSource = tasks;
                 this.TasksPanel.Visible = true;
@@ -194,198 +425,9 @@ namespace Task_Tracker
             }
         }
 
-        private void ResetFormDimensions()
-        {
-            // If there are no iterations resize form to exclude blank panel area.
-            // Note. Do not use visibility status of IterationsPanel, as it will
-            // always return false when form in hidden state.
-            if (this.IterationsDataGridView.RowCount == 0)
-            {
-                this.Width = this.Width - this.IterationsPanel.Width;
-            }
-            else
-            {
-                this.Width = IDEAL_FORM_WIDTH;
-            }
-        }
-
-        private void Input_TextChanged(object sender, EventArgs e)
-        {
-            // If any of the text boxes are changed check which actions are available.
-            CheckEnableActions();
-        }
-
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            // Use current developer, but if null create a new object.
-            Developer developer = CurrentDeveloper;
-            if (developer == null)
-            {
-                developer = new Developer();
-            }
-            SaveDeveloper(developer);
-
-            // Hide form after saving developer
-            HideForm();
-        }
-
-        private void SaveDeveloper(Developer developer)
-        {
-            // Move all the details from the textboxes to Developer object
-            developer.FamilyName = FamilyNameTextBox.Text;
-            developer.GivenNames = GivenNamesTextBox.Text;
-            developer.Email = EmailTextBox.Text;
-            developer.ContactNumber = ContactNumberTextBox.Text;
-            developer.Notes = NotesTextBox.Text;
-
-            try
-            {
-                // Save the developer to the database.
-                if (CurrentDeveloper == null)
-                {
-                    developer.Active = true;
-                    DBInterface.Add(developer);
-                }
-                else
-                {
-                    developer.ID = CurrentDeveloper.ID;
-                    DBInterface.Update(developer);
-                }
-            }
-            catch (Exception ex)
-            {
-                // TODO What should really happen on error?
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
-            }
-
-        }
-
-        private void HideForm()
-        {
-            // In addition to hiding the form, need to update the calling form.
-            this.Hide();
-            callingForm.UpdateForm();
-        }
-
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            HideForm();
-        }
-
-        private void DeleteButton_Click(object sender, EventArgs e)
-        {
-            // Deleting the developer actually marks Active as False in order to retain the record for 
-            // future purposes.
-
-            // Only take action when developer is active
-            if (currentDeveloper.Active)
-            {
-                // Cannot delete a developer that is assigned to an incomplete task
-                int incompleteTasks = DBInterface.GetDeveloperIncompleteTasks(currentDeveloper.ID).Count;
-                if (incompleteTasks > 0)
-                {
-                    MessageBox.Show("Developer cannot be deleted, they have "
-                        + incompleteTasks + " incomplete tasks. " + Environment.NewLine
-                        + "Either complete those tasks or remove them from this developer.", 
-                        "Delete Developer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    // Mark current developer as inactive, save to the database (along with other changes
-                    // to textfields) and update the form
-                    currentDeveloper.Active = false;
-                    SaveDeveloper(currentDeveloper);
-                    UpdateForm();
-                    MessageBox.Show(currentDeveloper + " has been made inactive. " + Environment.NewLine
-                        + "They have not been deleted so that all previous work can be referenced.",
-                        "Delete Developer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                // Developer is inactive so no need to do anything
-                MessageBox.Show("Developer has already been deleted.", "Delete Developer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-        }
-
-
-        private void CheckEnableActions()
-        {
-            // If there is a value in all required fields then enable Save button
-            bool enableSave = true;
-            foreach (TextBox textBox in requiredFields)
-            {
-                if (string.IsNullOrWhiteSpace(textBox.Text))
-                {
-                    enableSave = false;
-                    break;
-                }
-            }
-
-            this.SaveButton.Enabled = enableSave;
-            this.saveToolStripMenuItem.Enabled = enableSave;
-
-            // Delete button only enabled when editing a developer
-            bool enableDelete = (currentDeveloper != null && CurrentDeveloper.Active);
-            this.DeleteButton.Enabled = enableDelete;
-            this.deleteToolStripMenuItem.Enabled = enableDelete;
-        }
-
-        private void EditDeveloperForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // Cancel the closing of the form and hide form instead
-            e.Cancel = true;
-            HideForm();
-        }
-
-        private void EditDeveloperForm_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'taskTrackerDataSet.DeveloperIterationTasks' table. You can move, or remove it, as needed.
-            this.developerIterationTasksTableAdapter.Fill(this.taskTrackerDataSet.DeveloperIterationTasks);
-            // TODO: This line of code loads data into the 'taskTrackerDataSet.Developers' table. You can move, or remove it, as needed.
-            this.developersTableAdapter.Fill(this.taskTrackerDataSet.Developers);
-
-            UpdateForm();
-
-        }
-
-        private void IterationsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridView view = (DataGridView)sender;
-
-            // Reload tasks when any valid cell is clicked on
-            if (e.RowIndex >= 0)
-            {
-                // If there is a row currently selected and it's different to the cell's row then reload tasks
-                int currentSelectedRowIndex = -1;
-                if (view.SelectedRows.Count > 0)
-                {
-                    currentSelectedRowIndex = view.SelectedRows[0].Index;
-                }
-
-                // Clear any selected rows
-                view.ClearSelection();
-                // Set the cell's row as selected so that LoadTasks gets the right iteration
-                view.Rows[e.RowIndex].Selected = true;
-
-                // If this is a newly selected iteration reload tasks
-                if (currentSelectedRowIndex == 0 ||
-                    (currentSelectedRowIndex >= 0 && e.RowIndex != currentSelectedRowIndex))
-                {
-                    LoadTasks();
-                }
-            }
-
-            if (view.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
-            {
-                // Report button clicked
-                int iterationID = (int)view.Rows[e.RowIndex].Cells["IterationID"].Value;
-
-                // Go ahead and print the report.
-                PrintReport(iterationID);
-            }
-        }
+        #endregion
+        
+        #region "Reporting"
 
         private void PrintReport(int iterationID)
         {
@@ -401,37 +443,15 @@ namespace Task_Tracker
                 PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
                 printPreviewDialog.Document = report;
                 printPreviewDialog.ShowDialog();
-
             }
             else
             {
                 // Error finding iteration record so display error to user to try again
-                MessageBox.Show("Couldn't find Report to print. Try again.","Unable to Print", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Couldn't find Report to print. Try again.", "Unable to Print", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void IterationsDataGridView_SelectionChanged(object sender, EventArgs e)
-        {
-            LoadTasks();
-        }
+        #endregion
 
-        private void InactiveDeveloperMessageLabel_Paint(object sender, PaintEventArgs e)
-        {
-            // Paint border red, cannot be done with properties on form design
-            ControlPaint.DrawBorder(e.Graphics, InactiveDeveloperMessageLabel.DisplayRectangle, Color.FromArgb(192, 0, 0), ButtonBorderStyle.Solid);
-        }
-
-
-        private void CurrentIterationOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            // Reload the list of iterations
-            LoadIterations();
-        }
-
-        private void IncompleteTasksOnlyCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            // Reload the iteration tasks.
-            LoadTasks();
-        }
     }
 }
