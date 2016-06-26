@@ -51,42 +51,43 @@
             this.AddIterationTask = new System.Windows.Forms.Button();
             this.IterationIDLabel = new System.Windows.Forms.Label();
             this.ITEditButton = new System.Windows.Forms.Button();
-            this.NewProjectButton = new System.Windows.Forms.Button();
+            this.NewIterationButton = new System.Windows.Forms.Button();
+            this.projectDropdown = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // projectIDTextBox
             // 
             this.projectIDTextBox.Enabled = false;
-            this.projectIDTextBox.Location = new System.Drawing.Point(142, 81);
+            this.projectIDTextBox.Location = new System.Drawing.Point(105, 81);
             this.projectIDTextBox.Name = "projectIDTextBox";
-            this.projectIDTextBox.Size = new System.Drawing.Size(100, 20);
+            this.projectIDTextBox.Size = new System.Drawing.Size(55, 20);
             this.projectIDTextBox.TabIndex = 1;
             this.projectIDTextBox.TextChanged += new System.EventHandler(this.projectIDTextBox_TextChanged);
             // 
             // projectTextBox
             // 
             this.projectTextBox.Enabled = false;
-            this.projectTextBox.Location = new System.Drawing.Point(142, 107);
+            this.projectTextBox.Location = new System.Drawing.Point(105, 107);
             this.projectTextBox.Name = "projectTextBox";
-            this.projectTextBox.Size = new System.Drawing.Size(100, 20);
+            this.projectTextBox.Size = new System.Drawing.Size(136, 20);
             this.projectTextBox.TabIndex = 2;
             // 
             // startDatePicker
             // 
             this.startDatePicker.Enabled = false;
             this.startDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.startDatePicker.Location = new System.Drawing.Point(142, 209);
+            this.startDatePicker.Location = new System.Drawing.Point(105, 209);
             this.startDatePicker.Name = "startDatePicker";
-            this.startDatePicker.Size = new System.Drawing.Size(99, 20);
+            this.startDatePicker.Size = new System.Drawing.Size(136, 20);
             this.startDatePicker.TabIndex = 5;
             // 
             // endDatePicker
             // 
             this.endDatePicker.Enabled = false;
             this.endDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.endDatePicker.Location = new System.Drawing.Point(142, 235);
+            this.endDatePicker.Location = new System.Drawing.Point(105, 235);
             this.endDatePicker.Name = "endDatePicker";
-            this.endDatePicker.Size = new System.Drawing.Size(99, 20);
+            this.endDatePicker.Size = new System.Drawing.Size(136, 20);
             this.endDatePicker.TabIndex = 6;
             // 
             // label1
@@ -213,9 +214,9 @@
             // IterationTasksList
             // 
             this.IterationTasksList.FormattingEnabled = true;
-            this.IterationTasksList.Location = new System.Drawing.Point(142, 136);
+            this.IterationTasksList.Location = new System.Drawing.Point(105, 136);
             this.IterationTasksList.Name = "IterationTasksList";
-            this.IterationTasksList.Size = new System.Drawing.Size(99, 69);
+            this.IterationTasksList.Size = new System.Drawing.Size(136, 69);
             this.IterationTasksList.TabIndex = 16;
             this.IterationTasksList.SelectedIndexChanged += new System.EventHandler(this.IterationTasksList_SelectedIndexChanged);
             // 
@@ -250,22 +251,34 @@
             this.ITEditButton.UseVisualStyleBackColor = true;
             this.ITEditButton.Click += new System.EventHandler(this.ITEditButton_Click);
             // 
-            // NewProjectButton
+            // NewIterationButton
             // 
-            this.NewProjectButton.Location = new System.Drawing.Point(10, 292);
-            this.NewProjectButton.Name = "NewProjectButton";
-            this.NewProjectButton.Size = new System.Drawing.Size(99, 23);
-            this.NewProjectButton.TabIndex = 19;
-            this.NewProjectButton.Text = "New";
-            this.NewProjectButton.UseVisualStyleBackColor = true;
-            this.NewProjectButton.Click += new System.EventHandler(this.NewProjectButton_Click);
+            this.NewIterationButton.Location = new System.Drawing.Point(10, 292);
+            this.NewIterationButton.Name = "NewIterationButton";
+            this.NewIterationButton.Size = new System.Drawing.Size(99, 23);
+            this.NewIterationButton.TabIndex = 19;
+            this.NewIterationButton.Text = "New";
+            this.NewIterationButton.UseVisualStyleBackColor = true;
+            this.NewIterationButton.Click += new System.EventHandler(this.NewIterationButton_Click);
+            // 
+            // projectDropdown
+            // 
+            this.projectDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.projectDropdown.FormattingEnabled = true;
+            this.projectDropdown.Location = new System.Drawing.Point(105, 106);
+            this.projectDropdown.Name = "projectDropdown";
+            this.projectDropdown.Size = new System.Drawing.Size(137, 21);
+            this.projectDropdown.TabIndex = 20;
+            this.projectDropdown.Visible = false;
+            this.projectDropdown.SelectedIndexChanged += new System.EventHandler(this.projectDropdown_SelectedIndexChanged);
             // 
             // IterationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 399);
-            this.Controls.Add(this.NewProjectButton);
+            this.Controls.Add(this.projectDropdown);
+            this.Controls.Add(this.NewIterationButton);
             this.Controls.Add(this.ITEditButton);
             this.Controls.Add(this.IterationIDLabel);
             this.Controls.Add(this.AddIterationTask);
@@ -313,6 +326,7 @@
         private System.Windows.Forms.Button AddIterationTask;
         private System.Windows.Forms.Label IterationIDLabel;
         private System.Windows.Forms.Button ITEditButton;
-        private System.Windows.Forms.Button NewProjectButton;
+        private System.Windows.Forms.Button NewIterationButton;
+        private System.Windows.Forms.ComboBox projectDropdown;
     }
 }

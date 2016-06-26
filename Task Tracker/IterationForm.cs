@@ -172,8 +172,7 @@ namespace Task_Tracker
                     ITEditButton.Enabled = false;
                 }
                 projectIDTextBox.Enabled = false;
-                // LoadIterations();
-                //UpdateAddEditLabel();
+
             }
         }
 
@@ -213,6 +212,8 @@ namespace Task_Tracker
         private void IterationTasksList_SelectedIndexChanged(object sender, EventArgs e)
         {
             ITEditButton.Enabled = true;
+            projectDropdown.Visible = false;
+            projectTextBox.Visible = true;
         }
 
         private void ITEditButton_Click(object sender, EventArgs e)
@@ -234,9 +235,23 @@ namespace Task_Tracker
             }
         }
 
-        private void NewProjectButton_Click(object sender, EventArgs e)
+        private void NewIterationButton_Click(object sender, EventArgs e)
         {
             ResetFields();
+            projectTextBox.Visible = false;
+            projectDropdown.Visible = true;
+            try
+            {
+                projects = DBInterface.GetProjects();
+                foreach (Project proj in projects) {
+                    projectDropdown.Items.Add(proj.ProjectName);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message, ex.GetType().ToString());
+            }
             AddIterationTask.Enabled = true;
             ITEditButton.Enabled = false;
             projectIDTextBox.Enabled = true;
@@ -249,9 +264,11 @@ namespace Task_Tracker
             IterationIDLabel.Text = "";
             projectIDTextBox.Text = "";
             projectTextBox.Text = "";
+            projectDropdown.Items.Clear();
             AddIterationTask.Enabled = false;
             ITEditButton.Enabled = false;
-
+            projectDropdown.Visible = false;
+            projectTextBox.Visible = false;
             IterationTasksList.Items.Clear();
             startDatePicker.ResetText();
             endDatePicker.ResetText();
@@ -271,6 +288,11 @@ namespace Task_Tracker
                 startDatePicker.Enabled = true;
                 endDatePicker.Enabled = true;
             }
+        }
+
+        private void projectDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            projectIDTextBox.Text = projects.Find(project => project.ProjectName == projectDropdown.SelectedItem.ToString()).ID.ToString();
         }
     }
 }
