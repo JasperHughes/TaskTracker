@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.iterationChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.printBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.iterationChart)).BeginInit();
@@ -39,27 +40,39 @@
             // 
             // iterationChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.iterationChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.iterationChart.Legends.Add(legend1);
+            chartArea3.AxisX.Title = "Days of Iteration";
+            chartArea3.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea3.AxisY.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea3.AxisY.Title = "Number of Tasks";
+            chartArea3.Name = "ChartArea1";
+            this.iterationChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.iterationChart.Legends.Add(legend3);
             this.iterationChart.Location = new System.Drawing.Point(12, 12);
             this.iterationChart.Name = "iterationChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Completed Tasks";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Tasks";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
-            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            this.iterationChart.Series.Add(series1);
-            this.iterationChart.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series5.Legend = "Legend1";
+            series5.Name = "Completed Tasks";
+            series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series5.YValuesPerPoint = 4;
+            series5.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series6.Legend = "Legend1";
+            series6.Name = "Tasks";
+            series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            series6.YValuesPerPoint = 4;
+            series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            this.iterationChart.Series.Add(series5);
+            this.iterationChart.Series.Add(series6);
             this.iterationChart.Size = new System.Drawing.Size(731, 399);
             this.iterationChart.TabIndex = 0;
             this.iterationChart.Text = "Iteration Progress";
+            title3.Name = "graphTitle";
+            title3.Text = "Iteration Progress";
+            this.iterationChart.Titles.Add(title3);
+            this.iterationChart.GetToolTipText += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ToolTipEventArgs>(this.iterationChart_GetToolTipText);
             // 
             // printBtn
             // 
@@ -69,6 +82,7 @@
             this.printBtn.TabIndex = 1;
             this.printBtn.Text = "Print";
             this.printBtn.UseVisualStyleBackColor = true;
+            this.printBtn.Click += new System.EventHandler(this.printBtn_Click);
             // 
             // IterationGraph
             // 
@@ -78,7 +92,7 @@
             this.Controls.Add(this.printBtn);
             this.Controls.Add(this.iterationChart);
             this.Name = "IterationGraph";
-            this.Text = "IterationGraph";
+            this.Text = "Iteration Progress Graph";
             this.Load += new System.EventHandler(this.IterationGraph_Load);
             ((System.ComponentModel.ISupportInitialize)(this.iterationChart)).EndInit();
             this.ResumeLayout(false);

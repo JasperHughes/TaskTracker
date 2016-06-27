@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Task_Tracker
 {
@@ -15,6 +16,7 @@ namespace Task_Tracker
         private List<GraphPoint> tasksByCompletion;
         private List<GraphPoint> completedTasks;
         public int iterationID;
+        private Iteration iteration;
         public IterationGraph()
         {
             InitializeComponent();
@@ -111,6 +113,24 @@ namespace Task_Tracker
         private void IterationGraph_Load(object sender, EventArgs e)
         {
             MapGraph(DAO.DBInterface.GetTasksForIteration(iterationID));
+            iteration = DAO.DBInterface.GetIteration(iterationID);
+        }
+
+        private void iterationChart_GetToolTipText(object sender, System.Windows.Forms.DataVisualization.Charting.ToolTipEventArgs e)
+        {
+            switch (e.HitTestResult.ChartElementType)
+            {
+                case ChartElementType.DataPoint:
+                    var dataPoint = e.HitTestResult.Series.Points[e.HitTestResult.PointIndex];
+                    e.Text = "Date: " + DateTime.FromOADate(dataPoint.XValue) + " Task Count: "+dataPoint.YValues[0];
+                    break;
+            }
+        }
+
+        private void printBtn_Click(object sender, EventArgs e)
+        {
+            iterationChart.Printing.PrintDocument.DocumentName = "Iteration of " + iteration.Project.ProjectName;
+            iterationChart.Printing.PrintDocument.Print();
         }
     }
 }
