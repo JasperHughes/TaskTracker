@@ -31,7 +31,6 @@
             this.DevelopersButton = new System.Windows.Forms.Button();
             this.IterationsButton = new System.Windows.Forms.Button();
             this.TasksButton = new System.Windows.Forms.Button();
-            this.graphtest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // DevelopersButton
@@ -65,23 +64,12 @@
             this.TasksButton.UseVisualStyleBackColor = true;
             this.TasksButton.Click += new System.EventHandler(this.TasksButton_Click);
             // 
-            // graphtest
-            // 
-            this.graphtest.Location = new System.Drawing.Point(62, 166);
-            this.graphtest.Name = "graphtest";
-            this.graphtest.Size = new System.Drawing.Size(75, 23);
-            this.graphtest.TabIndex = 3;
-            this.graphtest.Text = "Test Graph";
-            this.graphtest.UseVisualStyleBackColor = true;
-            this.graphtest.Click += new System.EventHandler(this.graphtest_Click);
-            // 
             // MainMenu
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Controls.Add(this.graphtest);
             this.Controls.Add(this.TasksButton);
             this.Controls.Add(this.IterationsButton);
             this.Controls.Add(this.DevelopersButton);
@@ -96,7 +84,6 @@
         private System.Windows.Forms.Button DevelopersButton;
         private System.Windows.Forms.Button IterationsButton;
         private System.Windows.Forms.Button TasksButton;
-        private System.Windows.Forms.Button graphtest;
     }
 }
 

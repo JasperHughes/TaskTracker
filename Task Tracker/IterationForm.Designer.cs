@@ -39,13 +39,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.iterationListView = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.iterationID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.projectID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.startDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.endDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SaveButton = new System.Windows.Forms.Button();
             this.IterationTasksList = new System.Windows.Forms.ListBox();
             this.AddIterationTask = new System.Windows.Forms.Button();
@@ -53,6 +50,7 @@
             this.ITEditButton = new System.Windows.Forms.Button();
             this.NewIterationButton = new System.Windows.Forms.Button();
             this.projectDropdown = new System.Windows.Forms.ComboBox();
+            this.graphBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // projectIDTextBox
@@ -148,13 +146,10 @@
             // 
             this.iterationListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.iterationListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7});
+            this.iterationID,
+            this.projectID,
+            this.startDate,
+            this.endDate});
             this.iterationListView.FullRowSelect = true;
             this.iterationListView.HideSelection = false;
             this.iterationListView.Location = new System.Drawing.Point(373, 55);
@@ -166,39 +161,25 @@
             this.iterationListView.View = System.Windows.Forms.View.Details;
             this.iterationListView.SelectedIndexChanged += new System.EventHandler(this.iterationListView_SelectedIndexChanged_1);
             // 
-            // columnHeader1
+            // iterationID
             // 
-            this.columnHeader1.Text = "ID";
-            this.columnHeader1.Width = 23;
+            this.iterationID.Text = "ID";
+            this.iterationID.Width = 23;
             // 
-            // columnHeader2
+            // projectID
             // 
-            this.columnHeader2.Text = "Project ID";
-            this.columnHeader2.Width = 59;
+            this.projectID.Text = "Project ID";
+            this.projectID.Width = 59;
             // 
-            // columnHeader3
+            // startDate
             // 
-            this.columnHeader3.Text = "Project";
-            this.columnHeader3.Width = 45;
+            this.startDate.Text = "Start Date";
+            this.startDate.Width = 172;
             // 
-            // columnHeader4
+            // endDate
             // 
-            this.columnHeader4.Text = "Iteration Tasks";
-            this.columnHeader4.Width = 86;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Developer Iteration Tasks";
-            this.columnHeader5.Width = 134;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Start Date";
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "End Date";
-            this.columnHeader7.Width = 57;
+            this.endDate.Text = "End Date";
+            this.endDate.Width = 200;
             // 
             // SaveButton
             // 
@@ -273,11 +254,23 @@
             this.projectDropdown.Visible = false;
             this.projectDropdown.SelectedIndexChanged += new System.EventHandler(this.projectDropdown_SelectedIndexChanged);
             // 
+            // graphBtn
+            // 
+            this.graphBtn.Location = new System.Drawing.Point(10, 321);
+            this.graphBtn.Name = "graphBtn";
+            this.graphBtn.Size = new System.Drawing.Size(99, 23);
+            this.graphBtn.TabIndex = 21;
+            this.graphBtn.Text = "View Progress";
+            this.graphBtn.UseVisualStyleBackColor = true;
+            this.graphBtn.Visible = false;
+            this.graphBtn.Click += new System.EventHandler(this.graphBtn_Click);
+            // 
             // IterationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 399);
+            this.Controls.Add(this.graphBtn);
             this.Controls.Add(this.projectDropdown);
             this.Controls.Add(this.NewIterationButton);
             this.Controls.Add(this.ITEditButton);
@@ -316,13 +309,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListView iterationListView;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader iterationID;
+        private System.Windows.Forms.ColumnHeader projectID;
+        private System.Windows.Forms.ColumnHeader startDate;
+        private System.Windows.Forms.ColumnHeader endDate;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.ListBox IterationTasksList;
         private System.Windows.Forms.Button AddIterationTask;
@@ -330,5 +320,6 @@
         private System.Windows.Forms.Button ITEditButton;
         private System.Windows.Forms.Button NewIterationButton;
         private System.Windows.Forms.ComboBox projectDropdown;
+        private System.Windows.Forms.Button graphBtn;
     }
 }

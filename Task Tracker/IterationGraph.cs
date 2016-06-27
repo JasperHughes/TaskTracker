@@ -93,7 +93,7 @@ namespace Task_Tracker
             tasksByCompletion = tasksByCompletion.OrderBy(gp => gp.date).ToList();
             for (int i = 0; i< tasksByCompletion.Count; i++)
             {
-                iterationChart.Series["Tasks"].Points.AddXY(tasksByCompletion[i].date.ToOADate(), tasksByCompletion[i].count - completedTasks[i].count);
+                iterationChart.Series["Tasks"].Points.AddXY(tasksByCompletion[i].date.ToOADate(), tasksByCompletion[i].count);
             }
         }
 

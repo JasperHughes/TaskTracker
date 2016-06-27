@@ -40,11 +40,11 @@ namespace Task_Tracker
 
                     foreach (Iteration iteration in iterations)
                     {
-                        string itTasks = "";
-                        string devItTasks = "";
+                        //string itTasks = "";
+                        //string devItTasks = "";
                         iterationListView.Items.Add(iteration.ID.ToString());
                         iterationListView.Items[i].SubItems.Add(iteration.ProjectID.ToString());
-                        iterationListView.Items[i].SubItems.Add(iteration.Project.ProjectName);
+                        /*iterationListView.Items[i].SubItems.Add(iteration.Project.ProjectName);
                         foreach (IterationTask it in iteration.IterationTasks)
                         {
                             itTasks += it.TaskID.ToString() + ",";
@@ -68,13 +68,19 @@ namespace Task_Tracker
                         else
                         {
                             iterationListView.Items[i].SubItems.Add("");
-                        }
+                        }*/
                         iterationListView.Items[i].SubItems.Add(iteration.StartDate.ToString());
                         iterationListView.Items[i].SubItems.Add(iteration.EndDate.ToString());
                         
                         i++;
                     }
-                    ResetFields();
+                    if(IterationIDLabel.Text != "")
+                    {
+                        Console.WriteLine("IterationIDLabel Text: " + IterationIDLabel.Text);
+                        iterationListView.Select();
+                        iterationListView.Items[iterationListView.Items.IndexOf(iterationListView.FindItemWithText(IterationIDLabel.Text))].Selected = false;
+                        iterationListView.Items[iterationListView.Items.IndexOf(iterationListView.FindItemWithText(IterationIDLabel.Text))].Selected = true;
+                    }
                 }
                 else
                 {
@@ -147,21 +153,26 @@ namespace Task_Tracker
             {
                 // Load Values into Editable fields
                 AddIterationTask.Enabled = true;
-
+                graphBtn.Visible = true;
                 ListViewItem item = iterationListView.SelectedItems[0];
                 int i = 0;
                 IterationTasksList.Items.Clear();
                 IterationIDLabel.Text = item.SubItems[i++].Text;
                 projectIDTextBox.Text = item.SubItems[i++].Text;
-                projectTextBox.Text = item.SubItems[i++].Text;
-                foreach (IterationTask it in iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text)).IterationTasks)
-                {
-                    IterationTasksList.Items.Add(it.TaskID);
-                }
-                i++;
-                i++;
+                //projectTextBox.Text = item.SubItems[i++].Text;
+                //foreach (IterationTask it in iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text)).IterationTasks)
+                //{
+                //    IterationTasksList.Items.Add(it.TaskID);
+                //}
+                //i++;
+                //i++;
                 startDatePicker.Text = item.SubItems[i++].Text;
                 endDatePicker.Text = item.SubItems[i++].Text;
+                List<IterationTask> tasks = DBInterface.GetTasksForIteration((Int32.Parse(IterationIDLabel.Text)));
+                foreach(IterationTask t in tasks)
+                {
+                    IterationTasksList.Items.Add(t.TaskID);
+                }
                 if (IterationTasksList.Items.Count != 0)
                 {
                     IterationTasksList.SelectedIndex = 0;
@@ -174,6 +185,10 @@ namespace Task_Tracker
                 projectDropdown.Visible = false;
                 projectTextBox.Visible = true;
 
+            }
+            else
+            {
+                ResetFields();
             }
         }
 
@@ -243,6 +258,7 @@ namespace Task_Tracker
             ResetFields();
             projectTextBox.Visible = false;
             projectDropdown.Visible = true;
+            graphBtn.Visible = false;
             SaveButton.Visible = true;
             try
             {
@@ -306,6 +322,16 @@ namespace Task_Tracker
             {
                 e.Cancel = true;
                 Hide();
+            }
+        }
+
+        private void graphBtn_Click(object sender, EventArgs e)
+        {
+            IterationGraph g = new IterationGraph();
+            if(IterationIDLabel.Text != "")
+            {
+                g.iterationID = Int32.Parse(IterationIDLabel.Text);
+                g.Show();
             }
         }
     }
