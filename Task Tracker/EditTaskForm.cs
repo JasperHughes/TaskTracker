@@ -30,7 +30,15 @@ namespace Task_Tracker
             }
             InitializeComponent();
             TaskNameTextBox.Text = currentTask.TaskName;
-            CompletetionDateTextBox.Value = currentTask.CompletionDate.Value;
+            if (currentTask.CompletionDate.Value == null)
+            {
+                CompletetionDateTextBox.Value = DateTime.Today;
+                CompletetionDateTextBox.Checked = false;
+            }
+            else {
+                CompletetionDateTextBox.Value = currentTask.CompletionDate.Value;
+                CompletetionDateTextBox.Checked = true;
+            }
             PriorityTextBox.Text = currentTask.Priority;
             ProjectIDTextBox.Text = currentTask.Project.ProjectName;
             DescriptionTextBox.Text = currentTask.Description;
