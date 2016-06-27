@@ -298,12 +298,13 @@ namespace Task_Tracker
         {
             if (IterationIDLabel.Text.Equals(""))
             {
-                SaveButton.Enabled = false;
+                SaveButton.Visible = false;
                 startDatePicker.Enabled = false;
                 endDatePicker.Enabled = false;
             }
             else
             {
+                SaveButton.Visible = true;
                 SaveButton.Enabled = true;
                 startDatePicker.Enabled = true;
                 endDatePicker.Enabled = true;
