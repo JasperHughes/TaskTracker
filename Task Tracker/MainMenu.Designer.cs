@@ -31,6 +31,7 @@
             this.DevelopersButton = new System.Windows.Forms.Button();
             this.IterationsButton = new System.Windows.Forms.Button();
             this.TasksButton = new System.Windows.Forms.Button();
+            this.ExitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // DevelopersButton
@@ -64,12 +65,23 @@
             this.TasksButton.UseVisualStyleBackColor = true;
             this.TasksButton.Click += new System.EventHandler(this.TasksButton_Click);
             // 
+            // ExitButton
+            // 
+            this.ExitButton.Location = new System.Drawing.Point(13, 102);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(171, 23);
+            this.ExitButton.TabIndex = 3;
+            this.ExitButton.Text = "Exit";
+            this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
             // MainMenu
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.TasksButton);
             this.Controls.Add(this.IterationsButton);
             this.Controls.Add(this.DevelopersButton);
@@ -84,6 +96,7 @@
         private System.Windows.Forms.Button DevelopersButton;
         private System.Windows.Forms.Button IterationsButton;
         private System.Windows.Forms.Button TasksButton;
+        private System.Windows.Forms.Button ExitButton;
     }
 }
 

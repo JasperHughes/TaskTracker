@@ -53,5 +53,12 @@ namespace Task_Tracker
             iterationForm.Show();
         }
 
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            // Exit the application
+            Environment.Exit(0);
+        }
+
+
     }
 }
