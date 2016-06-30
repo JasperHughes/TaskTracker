@@ -140,6 +140,7 @@ namespace Task_Tracker
             toEdit.Priority = PriorityTextBox.Text;
             DBInterface.Update(toEdit);
             this.sender.ReloadData();
+            this.Dispose();
         }
     }
 }
