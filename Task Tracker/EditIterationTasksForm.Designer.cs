@@ -28,30 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.IterationLbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.assignedToIterationLB = new System.Windows.Forms.ListBox();
             this.unassignedToIterationLB = new System.Windows.Forms.ListBox();
             this.removeFromIterationBtn = new System.Windows.Forms.Button();
             this.addToIterationBtn = new System.Windows.Forms.Button();
+            this.CloseButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // IterationLbl
-            // 
-            this.IterationLbl.AutoSize = true;
-            this.IterationLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IterationLbl.Location = new System.Drawing.Point(15, 12);
-            this.IterationLbl.Name = "IterationLbl";
-            this.IterationLbl.Size = new System.Drawing.Size(77, 20);
-            this.IterationLbl.TabIndex = 15;
-            this.IterationLbl.Text = "Iteration";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(405, 54);
+            this.label2.Location = new System.Drawing.Point(406, 11);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label2.Size = new System.Drawing.Size(119, 17);
@@ -63,7 +53,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 54);
+            this.label1.Location = new System.Drawing.Point(13, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 17);
             this.label1.TabIndex = 13;
@@ -73,7 +63,7 @@
             // assignedToIterationLB
             // 
             this.assignedToIterationLB.FormattingEnabled = true;
-            this.assignedToIterationLB.Location = new System.Drawing.Point(405, 74);
+            this.assignedToIterationLB.Location = new System.Drawing.Point(406, 31);
             this.assignedToIterationLB.Name = "assignedToIterationLB";
             this.assignedToIterationLB.Size = new System.Drawing.Size(239, 277);
             this.assignedToIterationLB.TabIndex = 12;
@@ -83,7 +73,7 @@
             // 
             this.unassignedToIterationLB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.unassignedToIterationLB.FormattingEnabled = true;
-            this.unassignedToIterationLB.Location = new System.Drawing.Point(13, 77);
+            this.unassignedToIterationLB.Location = new System.Drawing.Point(14, 34);
             this.unassignedToIterationLB.Name = "unassignedToIterationLB";
             this.unassignedToIterationLB.Size = new System.Drawing.Size(239, 277);
             this.unassignedToIterationLB.TabIndex = 11;
@@ -92,7 +82,7 @@
             // removeFromIterationBtn
             // 
             this.removeFromIterationBtn.Enabled = false;
-            this.removeFromIterationBtn.Location = new System.Drawing.Point(291, 282);
+            this.removeFromIterationBtn.Location = new System.Drawing.Point(292, 239);
             this.removeFromIterationBtn.Name = "removeFromIterationBtn";
             this.removeFromIterationBtn.Size = new System.Drawing.Size(75, 23);
             this.removeFromIterationBtn.TabIndex = 10;
@@ -103,7 +93,7 @@
             // addToIterationBtn
             // 
             this.addToIterationBtn.Enabled = false;
-            this.addToIterationBtn.Location = new System.Drawing.Point(291, 126);
+            this.addToIterationBtn.Location = new System.Drawing.Point(292, 83);
             this.addToIterationBtn.Name = "addToIterationBtn";
             this.addToIterationBtn.Size = new System.Drawing.Size(75, 23);
             this.addToIterationBtn.TabIndex = 9;
@@ -111,12 +101,22 @@
             this.addToIterationBtn.UseVisualStyleBackColor = true;
             this.addToIterationBtn.Click += new System.EventHandler(this.addToIterationBtn_Click);
             // 
+            // CloseButton
+            // 
+            this.CloseButton.Location = new System.Drawing.Point(570, 332);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(75, 23);
+            this.CloseButton.TabIndex = 15;
+            this.CloseButton.Text = "Close";
+            this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
             // EditIterationTasksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(657, 367);
-            this.Controls.Add(this.IterationLbl);
+            this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.assignedToIterationLB);
@@ -133,12 +133,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label IterationLbl;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox assignedToIterationLB;
         private System.Windows.Forms.ListBox unassignedToIterationLB;
         private System.Windows.Forms.Button removeFromIterationBtn;
         private System.Windows.Forms.Button addToIterationBtn;
+        private System.Windows.Forms.Button CloseButton;
     }
 }

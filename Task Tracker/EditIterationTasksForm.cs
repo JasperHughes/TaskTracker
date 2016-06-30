@@ -25,7 +25,6 @@ namespace Task_Tracker
 
             InitializeComponent();
 
-            IterationLbl.Text = "Assign Tasks to Iteration " + iteration.ID;
             populateLists();
         }
 
@@ -93,6 +92,11 @@ namespace Task_Tracker
         {
             parent.LoadIterations();
             this.Dispose();
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
