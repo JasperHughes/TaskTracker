@@ -97,21 +97,21 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 239);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(291, 17);
+            this.label1.Size = new System.Drawing.Size(161, 17);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Developers Not Assigned To This Task";
+            this.label1.Text = "Available Developers";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(386, 239);
+            this.label2.Location = new System.Drawing.Point(405, 239);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(261, 17);
+            this.label2.Size = new System.Drawing.Size(158, 17);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Developers Assigned To This Task";
+            this.label2.Text = "Selected Developers";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tableLayoutPanel1
@@ -255,7 +255,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 404);
+            this.ClientSize = new System.Drawing.Size(657, 405);
             this.Controls.Add(this.saveTaskBtn);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.DescriptionTextBox);

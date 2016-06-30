@@ -54,9 +54,9 @@
             this.label2.Location = new System.Drawing.Point(405, 54);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(242, 17);
+            this.label2.Size = new System.Drawing.Size(119, 17);
             this.label2.TabIndex = 14;
-            this.label2.Text = "Tasks Assigned to This Iteration";
+            this.label2.Text = "Selected Tasks";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
@@ -65,9 +65,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(259, 17);
+            this.label1.Size = new System.Drawing.Size(122, 17);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Tasks Not Assigned to an Iteration";
+            this.label1.Text = "Available Tasks";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // assignedToIterationLB
