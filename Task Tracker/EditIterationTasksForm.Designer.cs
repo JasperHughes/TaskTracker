@@ -124,7 +124,7 @@
             this.Controls.Add(this.removeFromIterationBtn);
             this.Controls.Add(this.addToIterationBtn);
             this.Name = "EditIterationTasksForm";
-            this.Text = "IterationTasks";
+            this.Text = "Assign Tasks to Iteration";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditIterationTasksForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

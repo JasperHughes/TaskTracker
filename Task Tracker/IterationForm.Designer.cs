@@ -302,7 +302,7 @@
             this.Controls.Add(this.projectTextBox);
             this.Controls.Add(this.projectIDTextBox);
             this.Name = "IterationForm";
-            this.Text = "IterationForm";
+            this.Text = "Manage Iterations";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IterationForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
