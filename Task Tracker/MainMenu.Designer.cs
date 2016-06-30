@@ -32,11 +32,18 @@
             this.IterationsButton = new System.Windows.Forms.Button();
             this.TasksButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.applicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageDevelopersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageIterationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageTasksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DevelopersButton
             // 
-            this.DevelopersButton.Location = new System.Drawing.Point(13, 13);
+            this.DevelopersButton.Location = new System.Drawing.Point(13, 51);
             this.DevelopersButton.Name = "DevelopersButton";
             this.DevelopersButton.Size = new System.Drawing.Size(171, 23);
             this.DevelopersButton.TabIndex = 0;
@@ -47,7 +54,7 @@
             // 
             // IterationsButton
             // 
-            this.IterationsButton.Location = new System.Drawing.Point(13, 43);
+            this.IterationsButton.Location = new System.Drawing.Point(13, 81);
             this.IterationsButton.Name = "IterationsButton";
             this.IterationsButton.Size = new System.Drawing.Size(171, 23);
             this.IterationsButton.TabIndex = 1;
@@ -57,7 +64,7 @@
             // 
             // TasksButton
             // 
-            this.TasksButton.Location = new System.Drawing.Point(13, 73);
+            this.TasksButton.Location = new System.Drawing.Point(13, 111);
             this.TasksButton.Name = "TasksButton";
             this.TasksButton.Size = new System.Drawing.Size(171, 23);
             this.TasksButton.TabIndex = 2;
@@ -67,13 +74,62 @@
             // 
             // ExitButton
             // 
-            this.ExitButton.Location = new System.Drawing.Point(13, 102);
+            this.ExitButton.Location = new System.Drawing.Point(13, 140);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(171, 23);
             this.ExitButton.TabIndex = 3;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.applicationToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(284, 24);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // applicationToolStripMenuItem
+            // 
+            this.applicationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manageDevelopersToolStripMenuItem,
+            this.manageIterationsToolStripMenuItem,
+            this.manageTasksToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.applicationToolStripMenuItem.Name = "applicationToolStripMenuItem";
+            this.applicationToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.applicationToolStripMenuItem.Text = "Application";
+            // 
+            // manageDevelopersToolStripMenuItem
+            // 
+            this.manageDevelopersToolStripMenuItem.Name = "manageDevelopersToolStripMenuItem";
+            this.manageDevelopersToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.manageDevelopersToolStripMenuItem.Text = "Manage Developers";
+            this.manageDevelopersToolStripMenuItem.Click += new System.EventHandler(this.DevelopersButton_Click);
+            // 
+            // manageIterationsToolStripMenuItem
+            // 
+            this.manageIterationsToolStripMenuItem.Name = "manageIterationsToolStripMenuItem";
+            this.manageIterationsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.manageIterationsToolStripMenuItem.Text = "Manage Iterations";
+            this.manageIterationsToolStripMenuItem.Click += new System.EventHandler(this.IterationsButton_Click);
+            // 
+            // manageTasksToolStripMenuItem
+            // 
+            this.manageTasksToolStripMenuItem.Name = "manageTasksToolStripMenuItem";
+            this.manageTasksToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.manageTasksToolStripMenuItem.Text = "Manage Tasks";
+            this.manageTasksToolStripMenuItem.Click += new System.EventHandler(this.TasksButton_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // MainMenu
             // 
@@ -85,9 +141,14 @@
             this.Controls.Add(this.TasksButton);
             this.Controls.Add(this.IterationsButton);
             this.Controls.Add(this.DevelopersButton);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainMenu";
             this.Text = "Task Tracker - Main Menu";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -97,6 +158,12 @@
         private System.Windows.Forms.Button IterationsButton;
         private System.Windows.Forms.Button TasksButton;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem applicationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageDevelopersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageIterationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageTasksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 
