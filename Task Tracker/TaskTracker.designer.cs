@@ -33,24 +33,24 @@ namespace Task_Tracker
     partial void InsertClient(Client instance);
     partial void UpdateClient(Client instance);
     partial void DeleteClient(Client instance);
-    partial void InsertTask(Task instance);
-    partial void UpdateTask(Task instance);
-    partial void DeleteTask(Task instance);
     partial void InsertDeveloperIterationTask(DeveloperIterationTask instance);
     partial void UpdateDeveloperIterationTask(DeveloperIterationTask instance);
     partial void DeleteDeveloperIterationTask(DeveloperIterationTask instance);
     partial void InsertDeveloper(Developer instance);
     partial void UpdateDeveloper(Developer instance);
     partial void DeleteDeveloper(Developer instance);
-    partial void InsertIteration(Iteration instance);
-    partial void UpdateIteration(Iteration instance);
-    partial void DeleteIteration(Iteration instance);
     partial void InsertIterationTask(IterationTask instance);
     partial void UpdateIterationTask(IterationTask instance);
     partial void DeleteIterationTask(IterationTask instance);
     partial void InsertProject(Project instance);
     partial void UpdateProject(Project instance);
     partial void DeleteProject(Project instance);
+    partial void InsertTask(Task instance);
+    partial void UpdateTask(Task instance);
+    partial void DeleteTask(Task instance);
+    partial void InsertIteration(Iteration instance);
+    partial void UpdateIteration(Iteration instance);
+    partial void DeleteIteration(Iteration instance);
     #endregion
 		
 		public TaskTrackerDataContext() : 
@@ -91,14 +91,6 @@ namespace Task_Tracker
 			}
 		}
 		
-		public System.Data.Linq.Table<Task> Tasks
-		{
-			get
-			{
-				return this.GetTable<Task>();
-			}
-		}
-		
 		public System.Data.Linq.Table<DeveloperIterationTask> DeveloperIterationTasks
 		{
 			get
@@ -112,14 +104,6 @@ namespace Task_Tracker
 			get
 			{
 				return this.GetTable<Developer>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Iteration> Iterations
-		{
-			get
-			{
-				return this.GetTable<Iteration>();
 			}
 		}
 		
@@ -152,6 +136,22 @@ namespace Task_Tracker
 			get
 			{
 				return this.GetTable<DeveloperIterationTasksView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Task> Tasks
+		{
+			get
+			{
+				return this.GetTable<Task>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Iteration> Iterations
+		{
+			get
+			{
+				return this.GetTable<Iteration>();
 			}
 		}
 	}
@@ -390,285 +390,6 @@ namespace Task_Tracker
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tasks")]
-	public partial class Task : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _TaskName;
-		
-		private string _Description;
-		
-		private string _Priority;
-		
-		private System.Nullable<System.DateTime> _CompletionDate;
-		
-		private int _ProjectID;
-		
-		private EntitySet<DeveloperIterationTask> _DeveloperIterationTasks;
-		
-		private EntitySet<IterationTask> _IterationTasks;
-		
-		private EntityRef<Project> _Project;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnTaskNameChanging(string value);
-    partial void OnTaskNameChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnPriorityChanging(string value);
-    partial void OnPriorityChanged();
-    partial void OnCompletionDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnCompletionDateChanged();
-    partial void OnProjectIDChanging(int value);
-    partial void OnProjectIDChanged();
-    #endregion
-		
-		public Task()
-		{
-			this._DeveloperIterationTasks = new EntitySet<DeveloperIterationTask>(new Action<DeveloperIterationTask>(this.attach_DeveloperIterationTasks), new Action<DeveloperIterationTask>(this.detach_DeveloperIterationTasks));
-			this._IterationTasks = new EntitySet<IterationTask>(new Action<IterationTask>(this.attach_IterationTasks), new Action<IterationTask>(this.detach_IterationTasks));
-			this._Project = default(EntityRef<Project>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskName", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string TaskName
-		{
-			get
-			{
-				return this._TaskName;
-			}
-			set
-			{
-				if ((this._TaskName != value))
-				{
-					this.OnTaskNameChanging(value);
-					this.SendPropertyChanging();
-					this._TaskName = value;
-					this.SendPropertyChanged("TaskName");
-					this.OnTaskNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Priority", DbType="Varchar(10)", CanBeNull=false)]
-		public string Priority
-		{
-			get
-			{
-				return this._Priority;
-			}
-			set
-			{
-				if ((this._Priority != value))
-				{
-					this.OnPriorityChanging(value);
-					this.SendPropertyChanging();
-					this._Priority = value;
-					this.SendPropertyChanged("Priority");
-					this.OnPriorityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompletionDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CompletionDate
-		{
-			get
-			{
-				return this._CompletionDate;
-			}
-			set
-			{
-				if ((this._CompletionDate != value))
-				{
-					this.OnCompletionDateChanging(value);
-					this.SendPropertyChanging();
-					this._CompletionDate = value;
-					this.SendPropertyChanged("CompletionDate");
-					this.OnCompletionDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int NOT NULL")]
-		public int ProjectID
-		{
-			get
-			{
-				return this._ProjectID;
-			}
-			set
-			{
-				if ((this._ProjectID != value))
-				{
-					if (this._Project.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProjectIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProjectID = value;
-					this.SendPropertyChanged("ProjectID");
-					this.OnProjectIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_DeveloperIterationTask", Storage="_DeveloperIterationTasks", ThisKey="ID", OtherKey="TaskID")]
-		public EntitySet<DeveloperIterationTask> DeveloperIterationTasks
-		{
-			get
-			{
-				return this._DeveloperIterationTasks;
-			}
-			set
-			{
-				this._DeveloperIterationTasks.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_IterationTask", Storage="_IterationTasks", ThisKey="ID", OtherKey="TaskID")]
-		public EntitySet<IterationTask> IterationTasks
-		{
-			get
-			{
-				return this._IterationTasks;
-			}
-			set
-			{
-				this._IterationTasks.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Task", Storage="_Project", ThisKey="ProjectID", OtherKey="ID", IsForeignKey=true)]
-		public Project Project
-		{
-			get
-			{
-				return this._Project.Entity;
-			}
-			set
-			{
-				Project previousValue = this._Project.Entity;
-				if (((previousValue != value) 
-							|| (this._Project.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Project.Entity = null;
-						previousValue.Tasks.Remove(this);
-					}
-					this._Project.Entity = value;
-					if ((value != null))
-					{
-						value.Tasks.Add(this);
-						this._ProjectID = value.ID;
-					}
-					else
-					{
-						this._ProjectID = default(int);
-					}
-					this.SendPropertyChanged("Project");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_DeveloperIterationTasks(DeveloperIterationTask entity)
-		{
-			this.SendPropertyChanging();
-			entity.Task = this;
-		}
-		
-		private void detach_DeveloperIterationTasks(DeveloperIterationTask entity)
-		{
-			this.SendPropertyChanging();
-			entity.Task = null;
-		}
-		
-		private void attach_IterationTasks(IterationTask entity)
-		{
-			this.SendPropertyChanging();
-			entity.Task = this;
-		}
-		
-		private void detach_IterationTasks(IterationTask entity)
-		{
-			this.SendPropertyChanging();
-			entity.Task = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeveloperIterationTasks")]
 	public partial class DeveloperIterationTask : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -681,9 +402,9 @@ namespace Task_Tracker
 		
 		private int _IterationID;
 		
-		private EntityRef<Task> _Task;
-		
 		private EntityRef<Developer> _Developer;
+		
+		private EntityRef<Task> _Task;
 		
 		private EntityRef<Iteration> _Iteration;
 		
@@ -701,8 +422,8 @@ namespace Task_Tracker
 		
 		public DeveloperIterationTask()
 		{
-			this._Task = default(EntityRef<Task>);
 			this._Developer = default(EntityRef<Developer>);
+			this._Task = default(EntityRef<Task>);
 			this._Iteration = default(EntityRef<Iteration>);
 			OnCreated();
 		}
@@ -779,40 +500,6 @@ namespace Task_Tracker
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_DeveloperIterationTask", Storage="_Task", ThisKey="TaskID", OtherKey="ID", IsForeignKey=true)]
-		public Task Task
-		{
-			get
-			{
-				return this._Task.Entity;
-			}
-			set
-			{
-				Task previousValue = this._Task.Entity;
-				if (((previousValue != value) 
-							|| (this._Task.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Task.Entity = null;
-						previousValue.DeveloperIterationTasks.Remove(this);
-					}
-					this._Task.Entity = value;
-					if ((value != null))
-					{
-						value.DeveloperIterationTasks.Add(this);
-						this._TaskID = value.ID;
-					}
-					else
-					{
-						this._TaskID = default(int);
-					}
-					this.SendPropertyChanged("Task");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Developer_DeveloperIterationTask", Storage="_Developer", ThisKey="DeveloperID", OtherKey="ID", IsForeignKey=true)]
 		public Developer Developer
 		{
@@ -847,7 +534,41 @@ namespace Task_Tracker
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Iteration_DeveloperIterationTask", Storage="_Iteration", ThisKey="IterationID", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task1_DeveloperIterationTask", Storage="_Task", ThisKey="TaskID", OtherKey="ID", IsForeignKey=true)]
+		public Task Task
+		{
+			get
+			{
+				return this._Task.Entity;
+			}
+			set
+			{
+				Task previousValue = this._Task.Entity;
+				if (((previousValue != value) 
+							|| (this._Task.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Task.Entity = null;
+						previousValue.DeveloperIterationTasks.Remove(this);
+					}
+					this._Task.Entity = value;
+					if ((value != null))
+					{
+						value.DeveloperIterationTasks.Add(this);
+						this._TaskID = value.ID;
+					}
+					else
+					{
+						this._TaskID = default(int);
+					}
+					this.SendPropertyChanged("Task");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Iteration1_DeveloperIterationTask", Storage="_Iteration", ThisKey="IterationID", OtherKey="ID", IsForeignKey=true)]
 		public Iteration Iteration
 		{
 			get
@@ -1136,237 +857,6 @@ namespace Task_Tracker
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Iterations")]
-	public partial class Iteration : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private System.Nullable<System.DateTime> _StartDate;
-		
-		private System.Nullable<System.DateTime> _EndDate;
-		
-		private int _ProjectID;
-		
-		private EntitySet<DeveloperIterationTask> _DeveloperIterationTasks;
-		
-		private EntitySet<IterationTask> _IterationTasks;
-		
-		private EntityRef<Project> _Project;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnStartDateChanged();
-    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnEndDateChanged();
-    partial void OnProjectIDChanging(int value);
-    partial void OnProjectIDChanged();
-    #endregion
-		
-		public Iteration()
-		{
-			this._DeveloperIterationTasks = new EntitySet<DeveloperIterationTask>(new Action<DeveloperIterationTask>(this.attach_DeveloperIterationTasks), new Action<DeveloperIterationTask>(this.detach_DeveloperIterationTasks));
-			this._IterationTasks = new EntitySet<IterationTask>(new Action<IterationTask>(this.attach_IterationTasks), new Action<IterationTask>(this.detach_IterationTasks));
-			this._Project = default(EntityRef<Project>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> StartDate
-		{
-			get
-			{
-				return this._StartDate;
-			}
-			set
-			{
-				if ((this._StartDate != value))
-				{
-					this.OnStartDateChanging(value);
-					this.SendPropertyChanging();
-					this._StartDate = value;
-					this.SendPropertyChanged("StartDate");
-					this.OnStartDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> EndDate
-		{
-			get
-			{
-				return this._EndDate;
-			}
-			set
-			{
-				if ((this._EndDate != value))
-				{
-					this.OnEndDateChanging(value);
-					this.SendPropertyChanging();
-					this._EndDate = value;
-					this.SendPropertyChanged("EndDate");
-					this.OnEndDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int NOT NULL")]
-		public int ProjectID
-		{
-			get
-			{
-				return this._ProjectID;
-			}
-			set
-			{
-				if ((this._ProjectID != value))
-				{
-					if (this._Project.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProjectIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProjectID = value;
-					this.SendPropertyChanged("ProjectID");
-					this.OnProjectIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Iteration_DeveloperIterationTask", Storage="_DeveloperIterationTasks", ThisKey="ID", OtherKey="IterationID")]
-		public EntitySet<DeveloperIterationTask> DeveloperIterationTasks
-		{
-			get
-			{
-				return this._DeveloperIterationTasks;
-			}
-			set
-			{
-				this._DeveloperIterationTasks.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Iteration_IterationTask", Storage="_IterationTasks", ThisKey="ID", OtherKey="IterationID")]
-		public EntitySet<IterationTask> IterationTasks
-		{
-			get
-			{
-				return this._IterationTasks;
-			}
-			set
-			{
-				this._IterationTasks.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Iteration", Storage="_Project", ThisKey="ProjectID", OtherKey="ID", IsForeignKey=true)]
-		public Project Project
-		{
-			get
-			{
-				return this._Project.Entity;
-			}
-			set
-			{
-				Project previousValue = this._Project.Entity;
-				if (((previousValue != value) 
-							|| (this._Project.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Project.Entity = null;
-						previousValue.Iterations.Remove(this);
-					}
-					this._Project.Entity = value;
-					if ((value != null))
-					{
-						value.Iterations.Add(this);
-						this._ProjectID = value.ID;
-					}
-					else
-					{
-						this._ProjectID = default(int);
-					}
-					this.SendPropertyChanged("Project");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_DeveloperIterationTasks(DeveloperIterationTask entity)
-		{
-			this.SendPropertyChanging();
-			entity.Iteration = this;
-		}
-		
-		private void detach_DeveloperIterationTasks(DeveloperIterationTask entity)
-		{
-			this.SendPropertyChanging();
-			entity.Iteration = null;
-		}
-		
-		private void attach_IterationTasks(IterationTask entity)
-		{
-			this.SendPropertyChanging();
-			entity.Iteration = this;
-		}
-		
-		private void detach_IterationTasks(IterationTask entity)
-		{
-			this.SendPropertyChanging();
-			entity.Iteration = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.IterationTasks")]
 	public partial class IterationTask : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1381,9 +871,9 @@ namespace Task_Tracker
 		
 		private System.Nullable<System.DateTime> _PlannedCompletionDate;
 		
-		private EntityRef<Iteration> _Iteration;
-		
 		private EntityRef<Task> _Task;
+		
+		private EntityRef<Iteration> _Iteration;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1401,8 +891,8 @@ namespace Task_Tracker
 		
 		public IterationTask()
 		{
-			this._Iteration = default(EntityRef<Iteration>);
 			this._Task = default(EntityRef<Task>);
+			this._Iteration = default(EntityRef<Iteration>);
 			OnCreated();
 		}
 		
@@ -1494,41 +984,7 @@ namespace Task_Tracker
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Iteration_IterationTask", Storage="_Iteration", ThisKey="IterationID", OtherKey="ID", IsForeignKey=true)]
-		public Iteration Iteration
-		{
-			get
-			{
-				return this._Iteration.Entity;
-			}
-			set
-			{
-				Iteration previousValue = this._Iteration.Entity;
-				if (((previousValue != value) 
-							|| (this._Iteration.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Iteration.Entity = null;
-						previousValue.IterationTasks.Remove(this);
-					}
-					this._Iteration.Entity = value;
-					if ((value != null))
-					{
-						value.IterationTasks.Add(this);
-						this._IterationID = value.ID;
-					}
-					else
-					{
-						this._IterationID = default(int);
-					}
-					this.SendPropertyChanged("Iteration");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_IterationTask", Storage="_Task", ThisKey="TaskID", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task1_IterationTask", Storage="_Task", ThisKey="TaskID", OtherKey="ID", IsForeignKey=true)]
 		public Task Task
 		{
 			get
@@ -1558,6 +1014,40 @@ namespace Task_Tracker
 						this._TaskID = default(int);
 					}
 					this.SendPropertyChanged("Task");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Iteration1_IterationTask", Storage="_Iteration", ThisKey="IterationID", OtherKey="ID", IsForeignKey=true)]
+		public Iteration Iteration
+		{
+			get
+			{
+				return this._Iteration.Entity;
+			}
+			set
+			{
+				Iteration previousValue = this._Iteration.Entity;
+				if (((previousValue != value) 
+							|| (this._Iteration.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Iteration.Entity = null;
+						previousValue.IterationTasks.Remove(this);
+					}
+					this._Iteration.Entity = value;
+					if ((value != null))
+					{
+						value.IterationTasks.Add(this);
+						this._IterationID = value.ID;
+					}
+					else
+					{
+						this._IterationID = default(int);
+					}
+					this.SendPropertyChanged("Iteration");
 				}
 			}
 		}
@@ -1781,7 +1271,7 @@ namespace Task_Tracker
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Task", Storage="_Tasks", ThisKey="ID", OtherKey="ProjectID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Task1", Storage="_Tasks", ThisKey="ID", OtherKey="ProjectID")]
 		public EntitySet<Task> Tasks
 		{
 			get
@@ -1794,7 +1284,7 @@ namespace Task_Tracker
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Iteration", Storage="_Iterations", ThisKey="ID", OtherKey="ProjectID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Iteration1", Storage="_Iterations", ThisKey="ID", OtherKey="ProjectID")]
 		public EntitySet<Iteration> Iterations
 		{
 			get
@@ -2153,6 +1643,564 @@ namespace Task_Tracker
 					this._ProjectID = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tasks")]
+	public partial class Task : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _TaskName;
+		
+		private string _Description;
+		
+		private string _Priority;
+		
+		private System.Nullable<System.DateTime> _CompletionDate;
+		
+		private int _ProjectID;
+		
+		private bool _Active;
+		
+		private EntitySet<DeveloperIterationTask> _DeveloperIterationTasks;
+		
+		private EntitySet<IterationTask> _IterationTasks;
+		
+		private EntityRef<Project> _Project;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnTaskNameChanging(string value);
+    partial void OnTaskNameChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnPriorityChanging(string value);
+    partial void OnPriorityChanged();
+    partial void OnCompletionDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCompletionDateChanged();
+    partial void OnProjectIDChanging(int value);
+    partial void OnProjectIDChanged();
+    partial void OnActiveChanging(bool value);
+    partial void OnActiveChanged();
+    #endregion
+		
+		public Task()
+		{
+			this._DeveloperIterationTasks = new EntitySet<DeveloperIterationTask>(new Action<DeveloperIterationTask>(this.attach_DeveloperIterationTasks), new Action<DeveloperIterationTask>(this.detach_DeveloperIterationTasks));
+			this._IterationTasks = new EntitySet<IterationTask>(new Action<IterationTask>(this.attach_IterationTasks), new Action<IterationTask>(this.detach_IterationTasks));
+			this._Project = default(EntityRef<Project>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskName", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string TaskName
+		{
+			get
+			{
+				return this._TaskName;
+			}
+			set
+			{
+				if ((this._TaskName != value))
+				{
+					this.OnTaskNameChanging(value);
+					this.SendPropertyChanging();
+					this._TaskName = value;
+					this.SendPropertyChanged("TaskName");
+					this.OnTaskNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Priority", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Priority
+		{
+			get
+			{
+				return this._Priority;
+			}
+			set
+			{
+				if ((this._Priority != value))
+				{
+					this.OnPriorityChanging(value);
+					this.SendPropertyChanging();
+					this._Priority = value;
+					this.SendPropertyChanged("Priority");
+					this.OnPriorityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompletionDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CompletionDate
+		{
+			get
+			{
+				return this._CompletionDate;
+			}
+			set
+			{
+				if ((this._CompletionDate != value))
+				{
+					this.OnCompletionDateChanging(value);
+					this.SendPropertyChanging();
+					this._CompletionDate = value;
+					this.SendPropertyChanged("CompletionDate");
+					this.OnCompletionDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int NOT NULL")]
+		public int ProjectID
+		{
+			get
+			{
+				return this._ProjectID;
+			}
+			set
+			{
+				if ((this._ProjectID != value))
+				{
+					if (this._Project.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProjectID = value;
+					this.SendPropertyChanged("ProjectID");
+					this.OnProjectIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
+		public bool Active
+		{
+			get
+			{
+				return this._Active;
+			}
+			set
+			{
+				if ((this._Active != value))
+				{
+					this.OnActiveChanging(value);
+					this.SendPropertyChanging();
+					this._Active = value;
+					this.SendPropertyChanged("Active");
+					this.OnActiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task1_DeveloperIterationTask", Storage="_DeveloperIterationTasks", ThisKey="ID", OtherKey="TaskID")]
+		public EntitySet<DeveloperIterationTask> DeveloperIterationTasks
+		{
+			get
+			{
+				return this._DeveloperIterationTasks;
+			}
+			set
+			{
+				this._DeveloperIterationTasks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task1_IterationTask", Storage="_IterationTasks", ThisKey="ID", OtherKey="TaskID")]
+		public EntitySet<IterationTask> IterationTasks
+		{
+			get
+			{
+				return this._IterationTasks;
+			}
+			set
+			{
+				this._IterationTasks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Task1", Storage="_Project", ThisKey="ProjectID", OtherKey="ID", IsForeignKey=true)]
+		public Project Project
+		{
+			get
+			{
+				return this._Project.Entity;
+			}
+			set
+			{
+				Project previousValue = this._Project.Entity;
+				if (((previousValue != value) 
+							|| (this._Project.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Project.Entity = null;
+						previousValue.Tasks.Remove(this);
+					}
+					this._Project.Entity = value;
+					if ((value != null))
+					{
+						value.Tasks.Add(this);
+						this._ProjectID = value.ID;
+					}
+					else
+					{
+						this._ProjectID = default(int);
+					}
+					this.SendPropertyChanged("Project");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_DeveloperIterationTasks(DeveloperIterationTask entity)
+		{
+			this.SendPropertyChanging();
+			entity.Task = this;
+		}
+		
+		private void detach_DeveloperIterationTasks(DeveloperIterationTask entity)
+		{
+			this.SendPropertyChanging();
+			entity.Task = null;
+		}
+		
+		private void attach_IterationTasks(IterationTask entity)
+		{
+			this.SendPropertyChanging();
+			entity.Task = this;
+		}
+		
+		private void detach_IterationTasks(IterationTask entity)
+		{
+			this.SendPropertyChanging();
+			entity.Task = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Iterations")]
+	public partial class Iteration : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private System.DateTime _StartDate;
+		
+		private System.DateTime _EndDate;
+		
+		private int _ProjectID;
+		
+		private bool _Active;
+		
+		private EntitySet<DeveloperIterationTask> _DeveloperIterationTasks;
+		
+		private EntitySet<IterationTask> _IterationTasks;
+		
+		private EntityRef<Project> _Project;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnStartDateChanging(System.DateTime value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.DateTime value);
+    partial void OnEndDateChanged();
+    partial void OnProjectIDChanging(int value);
+    partial void OnProjectIDChanged();
+    partial void OnActiveChanging(bool value);
+    partial void OnActiveChanged();
+    #endregion
+		
+		public Iteration()
+		{
+			this._DeveloperIterationTasks = new EntitySet<DeveloperIterationTask>(new Action<DeveloperIterationTask>(this.attach_DeveloperIterationTasks), new Action<DeveloperIterationTask>(this.detach_DeveloperIterationTasks));
+			this._IterationTasks = new EntitySet<IterationTask>(new Action<IterationTask>(this.attach_IterationTasks), new Action<IterationTask>(this.detach_IterationTasks));
+			this._Project = default(EntityRef<Project>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime NOT NULL")]
+		public System.DateTime StartDate
+		{
+			get
+			{
+				return this._StartDate;
+			}
+			set
+			{
+				if ((this._StartDate != value))
+				{
+					this.OnStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._StartDate = value;
+					this.SendPropertyChanged("StartDate");
+					this.OnStartDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime NOT NULL")]
+		public System.DateTime EndDate
+		{
+			get
+			{
+				return this._EndDate;
+			}
+			set
+			{
+				if ((this._EndDate != value))
+				{
+					this.OnEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EndDate = value;
+					this.SendPropertyChanged("EndDate");
+					this.OnEndDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int NOT NULL")]
+		public int ProjectID
+		{
+			get
+			{
+				return this._ProjectID;
+			}
+			set
+			{
+				if ((this._ProjectID != value))
+				{
+					if (this._Project.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProjectID = value;
+					this.SendPropertyChanged("ProjectID");
+					this.OnProjectIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Active", DbType="Bit NOT NULL")]
+		public bool Active
+		{
+			get
+			{
+				return this._Active;
+			}
+			set
+			{
+				if ((this._Active != value))
+				{
+					this.OnActiveChanging(value);
+					this.SendPropertyChanging();
+					this._Active = value;
+					this.SendPropertyChanged("Active");
+					this.OnActiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Iteration1_DeveloperIterationTask", Storage="_DeveloperIterationTasks", ThisKey="ID", OtherKey="IterationID")]
+		public EntitySet<DeveloperIterationTask> DeveloperIterationTasks
+		{
+			get
+			{
+				return this._DeveloperIterationTasks;
+			}
+			set
+			{
+				this._DeveloperIterationTasks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Iteration1_IterationTask", Storage="_IterationTasks", ThisKey="ID", OtherKey="IterationID")]
+		public EntitySet<IterationTask> IterationTasks
+		{
+			get
+			{
+				return this._IterationTasks;
+			}
+			set
+			{
+				this._IterationTasks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Iteration1", Storage="_Project", ThisKey="ProjectID", OtherKey="ID", IsForeignKey=true)]
+		public Project Project
+		{
+			get
+			{
+				return this._Project.Entity;
+			}
+			set
+			{
+				Project previousValue = this._Project.Entity;
+				if (((previousValue != value) 
+							|| (this._Project.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Project.Entity = null;
+						previousValue.Iterations.Remove(this);
+					}
+					this._Project.Entity = value;
+					if ((value != null))
+					{
+						value.Iterations.Add(this);
+						this._ProjectID = value.ID;
+					}
+					else
+					{
+						this._ProjectID = default(int);
+					}
+					this.SendPropertyChanged("Project");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_DeveloperIterationTasks(DeveloperIterationTask entity)
+		{
+			this.SendPropertyChanging();
+			entity.Iteration = this;
+		}
+		
+		private void detach_DeveloperIterationTasks(DeveloperIterationTask entity)
+		{
+			this.SendPropertyChanging();
+			entity.Iteration = null;
+		}
+		
+		private void attach_IterationTasks(IterationTask entity)
+		{
+			this.SendPropertyChanging();
+			entity.Iteration = this;
+		}
+		
+		private void detach_IterationTasks(IterationTask entity)
+		{
+			this.SendPropertyChanging();
+			entity.Iteration = null;
 		}
 	}
 }

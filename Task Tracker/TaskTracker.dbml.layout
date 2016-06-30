@@ -1,17 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.875, 9.125" name="TaskTracker">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.875, 11" name="TaskTracker">
   <DataContextMoniker Name="/TaskTrackerDataContext" />
   <nestedChildShapes>
     <classShape Id="dd3b6c22-2f89-46d1-b7d8-d64ae9b038d8" absoluteBounds="1.625, 5.625, 2, 2.1554996744791666">
       <DataClassMoniker Name="/TaskTrackerDataContext/Client" />
       <nestedChildShapes>
         <elementListCompartment Id="2ac265f1-2777-4825-b2e6-e8e16a5c036d" absoluteBounds="1.6399999999999997, 6.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="5b8c2928-b539-4b08-9499-89d0c9bbcf31" absoluteBounds="7.125, 6.875, 2, 1.9631982421875005">
-      <DataClassMoniker Name="/TaskTrackerDataContext/Task" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ea919ee9-c6e5-4e62-9a8d-169aa536d820" absoluteBounds="7.1400000000000006, 7.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="930ae37e-2bc9-4d31-a8e2-fc82445e2875" absoluteBounds="9.875, 6, 2, 1.3862939453125005">
@@ -26,12 +20,6 @@
         <elementListCompartment Id="a4d7724f-0547-4612-9536-679f627fe514" absoluteBounds="7.1400000000000006, 2.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="61d3d9b5-3b5f-4b8b-946d-ceb5933d1493" absoluteBounds="7.125, 4.5, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/TaskTrackerDataContext/Iteration" />
-      <nestedChildShapes>
-        <elementListCompartment Id="da12ebb2-dc8a-48b4-81c7-f417d944f61f" absoluteBounds="7.1400000000000006, 4.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="f3d303a7-738e-43e9-a776-a35e1eb3a7bc" absoluteBounds="10.625, 3, 2, 1.5785953776041666">
       <DataClassMoniker Name="/TaskTrackerDataContext/IterationTask" />
       <nestedChildShapes>
@@ -44,13 +32,6 @@
         <elementListCompartment Id="48c24993-a7ad-4d01-9e79-0ba5f932d491" absoluteBounds="4.3900000000000006, 6.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(9.125 : 7.13064697265625); (9.875 : 7.13064697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TaskTrackerDataContext/Task/Task_DeveloperIterationTask" />
-      <nodes>
-        <classShapeMoniker Id="5b8c2928-b539-4b08-9499-89d0c9bbcf31" />
-        <classShapeMoniker Id="930ae37e-2bc9-4d31-a8e2-fc82445e2875" />
-      </nodes>
-    </associationConnector>
     <associationConnector edgePoints="[(9.125 : 2.28125); (10.21875 : 2.28125); (10.21875 : 6)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TaskTrackerDataContext/Developer/Developer_DeveloperIterationTask" />
       <nodes>
@@ -58,42 +39,7 @@
         <classShapeMoniker Id="930ae37e-2bc9-4d31-a8e2-fc82445e2875" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9.125 : 5.28929518880208); (10.0156225 : 5.28929518880208); (10.0156225 : 6)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TaskTrackerDataContext/Iteration/Iteration_DeveloperIterationTask" />
-      <nodes>
-        <classShapeMoniker Id="61d3d9b5-3b5f-4b8b-946d-ceb5933d1493" />
-        <classShapeMoniker Id="930ae37e-2bc9-4d31-a8e2-fc82445e2875" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(9.125 : 4.90269328320313); (10.1354166666667 : 4.90269328320313 : JumpStart); (10.3020833333333 : 4.90269328320313 : JumpEnd); (11.9947891666667 : 4.90269328320313 : JumpStart); (12.1614558333333 : 4.90269328320313 : JumpEnd); (12.28125 : 4.90269328320313); (12.28125 : 4.57859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TaskTrackerDataContext/Iteration/Iteration_IterationTask" />
-      <nodes>
-        <classShapeMoniker Id="61d3d9b5-3b5f-4b8b-946d-ceb5933d1493" />
-        <classShapeMoniker Id="f3d303a7-738e-43e9-a776-a35e1eb3a7bc" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(9.125 : 8.14349609375); (12.0781225 : 8.14349609375); (12.0781225 : 4.57859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TaskTrackerDataContext/Task/Task_IterationTask" />
-      <nodes>
-        <classShapeMoniker Id="5b8c2928-b539-4b08-9499-89d0c9bbcf31" />
-        <classShapeMoniker Id="f3d303a7-738e-43e9-a776-a35e1eb3a7bc" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(6.375 : 7.32774983723958); (7.125 : 7.32774983723958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TaskTrackerDataContext/Project/Project_Task" />
-      <nodes>
-        <classShapeMoniker Id="f12e5b59-996d-4a35-9d99-628d8affe71e" />
-        <classShapeMoniker Id="5b8c2928-b539-4b08-9499-89d0c9bbcf31" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(6.375 : 5.85179768880208); (7.125 : 5.85179768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TaskTrackerDataContext/Project/Project_Iteration" />
-      <nodes>
-        <classShapeMoniker Id="f12e5b59-996d-4a35-9d99-628d8affe71e" />
-        <classShapeMoniker Id="61d3d9b5-3b5f-4b8b-946d-ceb5933d1493" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3.625 : 6.70274983723958); (4.375 : 6.70274983723958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.625 : 6.70274983723958); (3.94791666666667 : 6.70274983723958 : JumpStart); (4.11458333333333 : 6.70274983723958 : JumpEnd); (4.375 : 6.70274983723958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TaskTrackerDataContext/Client/Client_Project" />
       <nodes>
         <classShapeMoniker Id="dd3b6c22-2f89-46d1-b7d8-d64ae9b038d8" />
@@ -112,5 +58,59 @@
         <elementListCompartment Id="17cba786-86ab-4134-a4e4-5cff9daf4760" absoluteBounds="4.14, 2.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="d6eacfb5-0e46-440f-b10d-aaa2552cf0a2" absoluteBounds="4, 8.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/TaskTrackerDataContext/Task" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1fc4a7cb-2616-4757-9c51-2403b511babf" absoluteBounds="4.015, 9.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.1875 : 7.78049967447917); (5.1875 : 8.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TaskTrackerDataContext/Project/Project_Task1" />
+      <nodes>
+        <classShapeMoniker Id="f12e5b59-996d-4a35-9d99-628d8affe71e" />
+        <classShapeMoniker Id="d6eacfb5-0e46-440f-b10d-aaa2552cf0a2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6 : 9.84059895833333); (10.875 : 9.84059895833333); (10.875 : 7.3862939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TaskTrackerDataContext/Task/Task1_DeveloperIterationTask" />
+      <nodes>
+        <classShapeMoniker Id="d6eacfb5-0e46-440f-b10d-aaa2552cf0a2" />
+        <classShapeMoniker Id="930ae37e-2bc9-4d31-a8e2-fc82445e2875" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.03125 : 8.625); (4.03125 : 4.3069482421875); (9.13541666666667 : 4.3069482421875 : JumpStart); (9.30208333333333 : 4.3069482421875 : JumpEnd); (10.1354166666667 : 4.3069482421875 : JumpStart); (10.3020833333333 : 4.3069482421875 : JumpEnd); (10.625 : 4.3069482421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TaskTrackerDataContext/Task/Task1_IterationTask" />
+      <nodes>
+        <classShapeMoniker Id="d6eacfb5-0e46-440f-b10d-aaa2552cf0a2" />
+        <classShapeMoniker Id="f3d303a7-738e-43e9-a776-a35e1eb3a7bc" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f9d74a94-acbb-4772-a6c7-17dd3ea14dbe" absoluteBounds="7.25, 5.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/TaskTrackerDataContext/Iteration" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1ad470e1-f614-41db-b050-469c9677ab86" absoluteBounds="7.2650000000000006, 6.2100000000000009, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.25 : 6.69314697265625); (9.875 : 6.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TaskTrackerDataContext/Iteration/Iteration1_DeveloperIterationTask" />
+      <nodes>
+        <classShapeMoniker Id="f9d74a94-acbb-4772-a6c7-17dd3ea14dbe" />
+        <classShapeMoniker Id="930ae37e-2bc9-4d31-a8e2-fc82445e2875" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.375 : 6.63544840494792); (7.25 : 6.63544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TaskTrackerDataContext/Project/Project_Iteration1" />
+      <nodes>
+        <classShapeMoniker Id="f12e5b59-996d-4a35-9d99-628d8affe71e" />
+        <classShapeMoniker Id="f9d74a94-acbb-4772-a6c7-17dd3ea14dbe" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.21875 : 5.75); (9.21875 : 4.04372145833333); (10.1354166666667 : 4.04372145833333 : JumpStart); (10.3020833333333 : 4.04372145833333 : JumpEnd); (10.625 : 4.04372145833333)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TaskTrackerDataContext/Iteration/Iteration1_IterationTask" />
+      <nodes>
+        <classShapeMoniker Id="f9d74a94-acbb-4772-a6c7-17dd3ea14dbe" />
+        <classShapeMoniker Id="f3d303a7-738e-43e9-a776-a35e1eb3a7bc" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

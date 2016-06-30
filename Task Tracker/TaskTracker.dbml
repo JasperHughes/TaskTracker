@@ -12,27 +12,14 @@
       <Association Name="Client_Project" Member="Projects" ThisKey="ID" OtherKey="ClientID" Type="Project" />
     </Type>
   </Table>
-  <Table Name="dbo.Tasks" Member="Tasks">
-    <Type Name="Task">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TaskName" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Priority" Type="System.String" DbType="Varchar(10)" CanBeNull="false" />
-      <Column Name="CompletionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Task_DeveloperIterationTask" Member="DeveloperIterationTasks" ThisKey="ID" OtherKey="TaskID" Type="DeveloperIterationTask" />
-      <Association Name="Task_IterationTask" Member="IterationTasks" ThisKey="ID" OtherKey="TaskID" Type="IterationTask" />
-      <Association Name="Project_Task" Member="Project" ThisKey="ProjectID" OtherKey="ID" Type="Project" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.DeveloperIterationTasks" Member="DeveloperIterationTasks">
     <Type Name="DeveloperIterationTask">
       <Column Name="DeveloperID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="IterationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Task_DeveloperIterationTask" Member="Task" ThisKey="TaskID" OtherKey="ID" Type="Task" IsForeignKey="true" />
       <Association Name="Developer_DeveloperIterationTask" Member="Developer" ThisKey="DeveloperID" OtherKey="ID" Type="Developer" IsForeignKey="true" />
-      <Association Name="Iteration_DeveloperIterationTask" Member="Iteration" ThisKey="IterationID" OtherKey="ID" Type="Iteration" IsForeignKey="true" />
+      <Association Name="Task1_DeveloperIterationTask" Member="Task" ThisKey="TaskID" OtherKey="ID" Type="Task" IsForeignKey="true" />
+      <Association Name="Iteration1_DeveloperIterationTask" Member="Iteration" ThisKey="IterationID" OtherKey="ID" Type="Iteration" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Developers" Member="Developers">
@@ -47,25 +34,14 @@
       <Association Name="Developer_DeveloperIterationTask" Member="DeveloperIterationTasks" ThisKey="ID" OtherKey="DeveloperID" Type="DeveloperIterationTask" />
     </Type>
   </Table>
-  <Table Name="dbo.Iterations" Member="Iterations">
-    <Type Name="Iteration">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Iteration_DeveloperIterationTask" Member="DeveloperIterationTasks" ThisKey="ID" OtherKey="IterationID" Type="DeveloperIterationTask" />
-      <Association Name="Iteration_IterationTask" Member="IterationTasks" ThisKey="ID" OtherKey="IterationID" Type="IterationTask" />
-      <Association Name="Project_Iteration" Member="Project" ThisKey="ProjectID" OtherKey="ID" Type="Project" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.IterationTasks" Member="IterationTasks">
     <Type Name="IterationTask">
       <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="IterationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="PlannedStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="PlannedCompletionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Iteration_IterationTask" Member="Iteration" ThisKey="IterationID" OtherKey="ID" Type="Iteration" IsForeignKey="true" />
-      <Association Name="Task_IterationTask" Member="Task" ThisKey="TaskID" OtherKey="ID" Type="Task" IsForeignKey="true" />
+      <Association Name="Task1_IterationTask" Member="Task" ThisKey="TaskID" OtherKey="ID" Type="Task" IsForeignKey="true" />
+      <Association Name="Iteration1_IterationTask" Member="Iteration" ThisKey="IterationID" OtherKey="ID" Type="Iteration" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Projects" Member="Projects">
@@ -77,8 +53,8 @@
       <Column Name="CompletionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Status" Type="System.String" DbType="Varchar(20)" CanBeNull="false" />
       <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Project_Task" Member="Tasks" ThisKey="ID" OtherKey="ProjectID" Type="Task" />
-      <Association Name="Project_Iteration" Member="Iterations" ThisKey="ID" OtherKey="ProjectID" Type="Iteration" />
+      <Association Name="Project_Task1" Member="Tasks" ThisKey="ID" OtherKey="ProjectID" Type="Task" />
+      <Association Name="Project_Iteration1" Member="Iterations" ThisKey="ID" OtherKey="ProjectID" Type="Iteration" />
       <Association Name="Client_Project" Member="Client" ThisKey="ClientID" OtherKey="ID" Type="Client" IsForeignKey="true" />
     </Type>
   </Table>
@@ -102,6 +78,32 @@
       <Column Name="Priority" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="CompletionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tasks" Member="Tasks">
+    <Type Name="Task">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TaskName" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Priority" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CompletionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Task1_DeveloperIterationTask" Member="DeveloperIterationTasks" ThisKey="ID" OtherKey="TaskID" Type="DeveloperIterationTask" />
+      <Association Name="Task1_IterationTask" Member="IterationTasks" ThisKey="ID" OtherKey="TaskID" Type="IterationTask" />
+      <Association Name="Project_Task1" Member="Project" ThisKey="ProjectID" OtherKey="ID" Type="Project" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Iterations" Member="Iterations">
+    <Type Name="Iteration">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Iteration1_DeveloperIterationTask" Member="DeveloperIterationTasks" ThisKey="ID" OtherKey="IterationID" Type="DeveloperIterationTask" />
+      <Association Name="Iteration1_IterationTask" Member="IterationTasks" ThisKey="ID" OtherKey="IterationID" Type="IterationTask" />
+      <Association Name="Project_Iteration1" Member="Project" ThisKey="ProjectID" OtherKey="ID" Type="Project" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
