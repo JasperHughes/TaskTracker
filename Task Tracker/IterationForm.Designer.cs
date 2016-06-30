@@ -74,7 +74,7 @@
             // 
             this.startDatePicker.Enabled = false;
             this.startDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.startDatePicker.Location = new System.Drawing.Point(105, 209);
+            this.startDatePicker.Location = new System.Drawing.Point(105, 133);
             this.startDatePicker.Name = "startDatePicker";
             this.startDatePicker.Size = new System.Drawing.Size(136, 20);
             this.startDatePicker.TabIndex = 5;
@@ -83,7 +83,7 @@
             // 
             this.endDatePicker.Enabled = false;
             this.endDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.endDatePicker.Location = new System.Drawing.Point(105, 235);
+            this.endDatePicker.Location = new System.Drawing.Point(105, 159);
             this.endDatePicker.Name = "endDatePicker";
             this.endDatePicker.Size = new System.Drawing.Size(136, 20);
             this.endDatePicker.TabIndex = 6;
@@ -118,7 +118,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 136);
+            this.label4.Location = new System.Drawing.Point(7, 185);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 13);
             this.label4.TabIndex = 10;
@@ -127,7 +127,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 212);
+            this.label6.Location = new System.Drawing.Point(7, 136);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 12;
@@ -136,7 +136,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 238);
+            this.label7.Location = new System.Drawing.Point(7, 162);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 13);
             this.label7.TabIndex = 13;
@@ -196,7 +196,7 @@
             // IterationTasksList
             // 
             this.IterationTasksList.FormattingEnabled = true;
-            this.IterationTasksList.Location = new System.Drawing.Point(105, 136);
+            this.IterationTasksList.Location = new System.Drawing.Point(105, 185);
             this.IterationTasksList.Name = "IterationTasksList";
             this.IterationTasksList.Size = new System.Drawing.Size(136, 69);
             this.IterationTasksList.TabIndex = 16;
@@ -205,7 +205,7 @@
             // AddIterationTask
             // 
             this.AddIterationTask.Enabled = false;
-            this.AddIterationTask.Location = new System.Drawing.Point(247, 136);
+            this.AddIterationTask.Location = new System.Drawing.Point(247, 185);
             this.AddIterationTask.Name = "AddIterationTask";
             this.AddIterationTask.Size = new System.Drawing.Size(84, 21);
             this.AddIterationTask.TabIndex = 17;
@@ -216,7 +216,7 @@
             // IterationIDLabel
             // 
             this.IterationIDLabel.AutoSize = true;
-            this.IterationIDLabel.Location = new System.Drawing.Point(139, 58);
+            this.IterationIDLabel.Location = new System.Drawing.Point(109, 58);
             this.IterationIDLabel.Name = "IterationIDLabel";
             this.IterationIDLabel.Size = new System.Drawing.Size(0, 13);
             this.IterationIDLabel.TabIndex = 0;
@@ -225,11 +225,11 @@
             // ITEditButton
             // 
             this.ITEditButton.Enabled = false;
-            this.ITEditButton.Location = new System.Drawing.Point(247, 158);
+            this.ITEditButton.Location = new System.Drawing.Point(247, 207);
             this.ITEditButton.Name = "ITEditButton";
             this.ITEditButton.Size = new System.Drawing.Size(84, 21);
             this.ITEditButton.TabIndex = 18;
-            this.ITEditButton.Text = "Edit";
+            this.ITEditButton.Text = "Edit Task";
             this.ITEditButton.UseVisualStyleBackColor = true;
             this.ITEditButton.Click += new System.EventHandler(this.ITEditButton_Click);
             // 
@@ -249,7 +249,7 @@
             this.projectDropdown.FormattingEnabled = true;
             this.projectDropdown.Location = new System.Drawing.Point(105, 106);
             this.projectDropdown.Name = "projectDropdown";
-            this.projectDropdown.Size = new System.Drawing.Size(137, 21);
+            this.projectDropdown.Size = new System.Drawing.Size(136, 21);
             this.projectDropdown.TabIndex = 20;
             this.projectDropdown.Visible = false;
             this.projectDropdown.SelectedIndexChanged += new System.EventHandler(this.projectDropdown_SelectedIndexChanged);
