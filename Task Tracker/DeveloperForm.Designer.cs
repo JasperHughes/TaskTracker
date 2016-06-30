@@ -68,20 +68,20 @@
             this.newDeveloperToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.fileToolStripMenuItem.Text = "Developers";
             // 
             // newDeveloperToolStripMenuItem
             // 
             this.newDeveloperToolStripMenuItem.Name = "newDeveloperToolStripMenuItem";
-            this.newDeveloperToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.newDeveloperToolStripMenuItem.Text = "New Developer";
+            this.newDeveloperToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newDeveloperToolStripMenuItem.Text = "New";
             this.newDeveloperToolStripMenuItem.Click += new System.EventHandler(this.NewDeveloperButton_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseButton_Click);
             // 
