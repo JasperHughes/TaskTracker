@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Task_Tracker.DAO;
+using Task_Tracker.Reporting;
 
 namespace Task_Tracker
 {
@@ -333,6 +334,34 @@ namespace Task_Tracker
             {
                 g.iterationID = Int32.Parse(IterationIDLabel.Text);
                 g.Show();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PrintReport(Int32.Parse(IterationIDLabel.Text));
+        }
+
+
+        private void PrintReport(int iterationID)
+        {
+            Iteration iteration = DBInterface.GetIteration(iterationID);
+            if (iteration != null)
+            {
+
+                IterationReport report = new IterationReport(iteration);
+                // TODO Enable printing of report
+                //report.Print();
+
+                // During testing just show print preview of document.
+                PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
+                printPreviewDialog.Document = report;
+                printPreviewDialog.ShowDialog();
+            }
+            else
+            {
+                // Error finding iteration record so display error to user to try again
+                MessageBox.Show("Couldn't find Report to print. Try again.", "Unable to Print", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

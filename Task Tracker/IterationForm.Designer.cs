@@ -51,6 +51,7 @@
             this.NewIterationButton = new System.Windows.Forms.Button();
             this.projectDropdown = new System.Windows.Forms.ComboBox();
             this.graphBtn = new System.Windows.Forms.Button();
+            this.reportButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // projectIDTextBox
@@ -198,7 +199,7 @@
             this.IterationTasksList.FormattingEnabled = true;
             this.IterationTasksList.Location = new System.Drawing.Point(105, 185);
             this.IterationTasksList.Name = "IterationTasksList";
-            this.IterationTasksList.Size = new System.Drawing.Size(136, 69);
+            this.IterationTasksList.Size = new System.Drawing.Size(136, 95);
             this.IterationTasksList.TabIndex = 16;
             this.IterationTasksList.SelectedIndexChanged += new System.EventHandler(this.IterationTasksList_SelectedIndexChanged);
             // 
@@ -225,7 +226,7 @@
             // ITEditButton
             // 
             this.ITEditButton.Enabled = false;
-            this.ITEditButton.Location = new System.Drawing.Point(247, 207);
+            this.ITEditButton.Location = new System.Drawing.Point(247, 212);
             this.ITEditButton.Name = "ITEditButton";
             this.ITEditButton.Size = new System.Drawing.Size(84, 21);
             this.ITEditButton.TabIndex = 18;
@@ -249,7 +250,7 @@
             this.projectDropdown.FormattingEnabled = true;
             this.projectDropdown.Location = new System.Drawing.Point(105, 106);
             this.projectDropdown.Name = "projectDropdown";
-            this.projectDropdown.Size = new System.Drawing.Size(136, 21);
+            this.projectDropdown.Size = new System.Drawing.Size(226, 21);
             this.projectDropdown.TabIndex = 20;
             this.projectDropdown.Visible = false;
             this.projectDropdown.SelectedIndexChanged += new System.EventHandler(this.projectDropdown_SelectedIndexChanged);
@@ -265,11 +266,22 @@
             this.graphBtn.Visible = false;
             this.graphBtn.Click += new System.EventHandler(this.graphBtn_Click);
             // 
+            // reportButton
+            // 
+            this.reportButton.Location = new System.Drawing.Point(744, 336);
+            this.reportButton.Name = "reportButton";
+            this.reportButton.Size = new System.Drawing.Size(99, 23);
+            this.reportButton.TabIndex = 22;
+            this.reportButton.Text = "Report";
+            this.reportButton.UseVisualStyleBackColor = true;
+            this.reportButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // IterationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 399);
+            this.Controls.Add(this.reportButton);
             this.Controls.Add(this.graphBtn);
             this.Controls.Add(this.projectDropdown);
             this.Controls.Add(this.NewIterationButton);
@@ -321,5 +333,6 @@
         private System.Windows.Forms.Button NewIterationButton;
         private System.Windows.Forms.ComboBox projectDropdown;
         private System.Windows.Forms.Button graphBtn;
+        private System.Windows.Forms.Button reportButton;
     }
 }
