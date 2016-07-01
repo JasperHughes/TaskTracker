@@ -24,6 +24,7 @@ namespace Task_Tracker
             parent = origin;
 
             InitializeComponent();
+            Text = "Assign Task to Iteration " + currentIteration.ID;
 
             populateLists();
         }
