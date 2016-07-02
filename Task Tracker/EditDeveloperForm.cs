@@ -333,7 +333,7 @@ namespace Task_Tracker
                     this.IterationsDataGridView.DataSource = allIterations;
                 }
 
-                // Hide the Developer ID, Iteration ID and Project ID columns
+                // Hide the Developer ID, Iteration ID, and Project ID columns
                 // they are only required by the query
                 this.IterationsDataGridView.Columns["DeveloperID"].Visible = false;
                 this.IterationsDataGridView.Columns["IterationID"].Visible = false;
@@ -410,6 +410,8 @@ namespace Task_Tracker
                 this.TasksDataGridView.Columns["ID"].Visible = false;
                 this.TasksDataGridView.Columns["ProjectID"].Visible = false;
                 this.TasksDataGridView.Columns["Project"].Visible = false;
+                this.TasksDataGridView.Columns["Active"].Visible = false;
+
             }
             else
             {

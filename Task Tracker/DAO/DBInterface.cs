@@ -150,22 +150,24 @@ namespace Task_Tracker.DAO
 
         public static List<Task> GetDeveloperTasksByIteration(int developerID, int iterationID)
         {
-            // Get list of tasks assigned to developer and iteration
+            // Get list of active tasks assigned to developer and iteration
             return (from tasks in dataContext.Tasks
                     join developerIterationTask in dataContext.DeveloperIterationTasks on tasks.ID equals developerIterationTask.TaskID
                     where developerIterationTask.DeveloperID == developerID
                     where developerIterationTask.IterationID == iterationID
+                    where tasks.Active == true
                     select tasks).ToList();
         }
 
         public static List<Task> GetDeveloperIncompleteTasksByIteration(int developerID, int iterationID)
         {
-            // Get list of tasks assigned to developer and iteration that don't have a CompletionDate
+            // Get list of active tasks assigned to developer and iteration that don't have a CompletionDate
             return (from tasks in dataContext.Tasks
                     join developerIterationTask in dataContext.DeveloperIterationTasks on tasks.ID equals developerIterationTask.TaskID
                     where developerIterationTask.DeveloperID == developerID
                     where developerIterationTask.IterationID == iterationID
                     where tasks.CompletionDate == null
+                    where tasks.Active == true
                     select tasks).ToList();
         }
 
