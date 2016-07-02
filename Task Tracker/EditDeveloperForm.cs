@@ -431,10 +431,10 @@ namespace Task_Tracker
             {
 
                 DeveloperIterationReport report = new DeveloperIterationReport(CurrentDeveloper, iteration);
-                // TODO Enable printing of report
+                // To enable printing directly to printer uncomment this line and comment the next 3 lines of code
                 //report.Print();
 
-                // During testing just show print preview of document.
+                // Preview the report. It can then be printed if so desired.
                 PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
                 printPreviewDialog.Document = report;
                 printPreviewDialog.ShowDialog();
