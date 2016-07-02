@@ -74,14 +74,14 @@
             // newDeveloperToolStripMenuItem
             // 
             this.newDeveloperToolStripMenuItem.Name = "newDeveloperToolStripMenuItem";
-            this.newDeveloperToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newDeveloperToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.newDeveloperToolStripMenuItem.Text = "New";
             this.newDeveloperToolStripMenuItem.Click += new System.EventHandler(this.NewDeveloperButton_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseButton_Click);
             // 
@@ -112,6 +112,9 @@
             // 
             this.DevelopersDataGridView.AllowUserToAddRows = false;
             this.DevelopersDataGridView.AllowUserToDeleteRows = false;
+            this.DevelopersDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DevelopersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DevelopersDataGridView.Location = new System.Drawing.Point(12, 51);
             this.DevelopersDataGridView.Name = "DevelopersDataGridView";
