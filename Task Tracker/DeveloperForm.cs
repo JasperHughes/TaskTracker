@@ -41,7 +41,9 @@ namespace Task_Tracker
         private void DeveloperForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Cancel the closing of the form and hide form instead
+            
             e.Cancel = true;
+            Owner.Enabled = true;
             HideForm();
         }
 
@@ -143,7 +145,7 @@ namespace Task_Tracker
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            HideForm();
+            Close();
         }
         
         private void NewDeveloperButton_Click(object sender, EventArgs e)

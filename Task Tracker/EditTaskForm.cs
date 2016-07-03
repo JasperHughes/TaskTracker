@@ -149,13 +149,19 @@ namespace Task_Tracker
             toEdit.Priority = PriorityTextBox.Text;
             DBInterface.Update(toEdit);
             this.sender.ReloadData();
-            this.Dispose();
+            this.Close();
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             DBInterface.Delete(currentTask);
             this.sender.ReloadData();
+            this.Close();
+        }
+
+        private void EditTaskForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Owner.Enabled = true;
             this.Dispose();
         }
     }

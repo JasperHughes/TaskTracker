@@ -28,26 +28,24 @@ namespace Task_Tracker
         private void DevelopersButton_Click(object sender, EventArgs e)
         {
             // Load the Developer Form
+            developerForm.Owner = this;
+            Enabled = false;
             developerForm.Show();
-        }
-
-        private void graphtest_Click(object sender, EventArgs e)
-        {
-            //testing graph
-            IterationGraph ig = new IterationGraph();
-            ig.iterationID = 2;
-            ig.Show();
         }
 
         private void TasksButton_Click(object sender, EventArgs e)
         {
             //Load Tasks form
+            taskForm.Owner = this;
+            Enabled = false;
             taskForm.Show();
         }
 
         private void IterationsButton_Click(object sender, EventArgs e)
         {
             //load iteration form
+            iterationForm.Owner = this;
+            Enabled = false;
             iterationForm.Show();
         }
 

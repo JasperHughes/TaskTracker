@@ -202,6 +202,8 @@ namespace Task_Tracker
             try
             {
                 EditIterationTasksForm eitf = new EditIterationTasksForm(iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text)), this);
+                eitf.Owner = this;
+                Enabled = false;
                 eitf.Show();
             }
             catch
@@ -330,6 +332,7 @@ namespace Task_Tracker
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
+                Owner.Enabled = true;
                 e.Cancel = true;
                 Hide();
             }
