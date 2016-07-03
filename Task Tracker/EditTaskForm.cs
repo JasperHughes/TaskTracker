@@ -34,10 +34,12 @@ namespace Task_Tracker
             {
                 CompletetionDateTextBox.Value = DateTime.Today;
                 CompletetionDateTextBox.Checked = false;
+                deleteBtn.Visible = false;
             }
             else {
                 CompletetionDateTextBox.Value = currentTask.CompletionDate.Value;
                 CompletetionDateTextBox.Checked = true;
+                deleteBtn.Visible = true;
             }
             PriorityTextBox.Text = currentTask.Priority;
             ProjectIDTextBox.Text = currentTask.Project.ProjectName;
@@ -54,13 +56,13 @@ namespace Task_Tracker
             {
                 foreach(DeveloperIterationTask dit in d.DeveloperIterationTasks)
                 {
-                    if (dit.Task.Equals(currentTask))
+                    if (dit.Task.Equals(currentTask) && d.Active == true)
                     {
                         assignedToIterationLB.Items.Add(d);
                         break;                        
                     }
                 }
-                if (!assignedToIterationLB.Items.Contains(d))
+                if (!assignedToIterationLB.Items.Contains(d) && d.Active == true)
                 {
                     unassignedToIterationLB.Items.Add(d);
                 }
@@ -139,6 +141,13 @@ namespace Task_Tracker
             toEdit.CompletionDate = CompletetionDateTextBox.Value;
             toEdit.Priority = PriorityTextBox.Text;
             DBInterface.Update(toEdit);
+            this.sender.ReloadData();
+            this.Dispose();
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            DBInterface.Delete(currentTask);
             this.sender.ReloadData();
             this.Dispose();
         }
