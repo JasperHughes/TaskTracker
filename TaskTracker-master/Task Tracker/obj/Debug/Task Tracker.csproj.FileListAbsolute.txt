@@ -1,0 +1,19 @@
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\bin\Debug\Task Tracker.exe.config
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\bin\Debug\TaskTracker.mdf
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\bin\Debug\TaskTracker_log.ldf
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\bin\Debug\Task Tracker.exe
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\bin\Debug\Task Tracker.pdb
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task Tracker.csprojResolveAssemblyReference.cache
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.DeveloperForm.resources
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.EditDeveloperForm.resources
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.EditTaskForm.resources
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.IterationForm.resources
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.IterationGraph.resources
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.EditIterationTasksForm.resources
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.IterationTaskDatesForm.resources
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.MainMenu.resources
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.Properties.Resources.resources
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.TasksForm.resources
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task Tracker.csproj.GenerateResource.Cache
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task Tracker.exe
+C:\Users\jamie\Desktop\TaskTracker-master\Task Tracker\obj\Debug\Task Tracker.pdb
