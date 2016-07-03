@@ -94,7 +94,7 @@
             this.TaskFormSaveButton.Name = "TaskFormSaveButton";
             this.TaskFormSaveButton.Size = new System.Drawing.Size(75, 38);
             this.TaskFormSaveButton.TabIndex = 11;
-            this.TaskFormSaveButton.Text = "SAVE";
+            this.TaskFormSaveButton.Text = "Save";
             this.TaskFormSaveButton.UseVisualStyleBackColor = true;
             this.TaskFormSaveButton.Click += new System.EventHandler(this.TaskFormSaveButton_Click);
             // 
@@ -233,7 +233,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(594, 211);
             this.dataGridView1.TabIndex = 17;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-
             // 
             // iDDataGridViewTextBoxColumn
             // 
