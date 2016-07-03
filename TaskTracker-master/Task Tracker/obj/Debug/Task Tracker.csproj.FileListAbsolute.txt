@@ -1,0 +1,19 @@
+D:\TaskTracker-master\Task Tracker\bin\Debug\Task Tracker.exe.config
+D:\TaskTracker-master\Task Tracker\bin\Debug\TaskTracker.mdf
+D:\TaskTracker-master\Task Tracker\bin\Debug\TaskTracker_log.ldf
+D:\TaskTracker-master\Task Tracker\bin\Debug\Task Tracker.exe
+D:\TaskTracker-master\Task Tracker\bin\Debug\Task Tracker.pdb
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task Tracker.csprojResolveAssemblyReference.cache
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.DeveloperForm.resources
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.EditDeveloperForm.resources
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.EditTaskForm.resources
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.IterationForm.resources
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.IterationGraph.resources
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.EditIterationTasksForm.resources
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.IterationTaskDatesForm.resources
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.MainMenu.resources
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.Properties.Resources.resources
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task_Tracker.TasksForm.resources
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task Tracker.csproj.GenerateResource.Cache
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task Tracker.exe
+D:\TaskTracker-master\Task Tracker\obj\Debug\Task Tracker.pdb
