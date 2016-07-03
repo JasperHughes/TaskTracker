@@ -148,6 +148,9 @@
             // iterationListView
             // 
             this.iterationListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.iterationListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.iterationListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.iterationID,
             this.projectID,
@@ -187,7 +190,7 @@
             // SaveButton
             // 
             this.SaveButton.Enabled = false;
-            this.SaveButton.Location = new System.Drawing.Point(142, 292);
+            this.SaveButton.Location = new System.Drawing.Point(115, 292);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(99, 23);
             this.SaveButton.TabIndex = 15;
@@ -270,6 +273,7 @@
             // 
             // printBtn
             // 
+            this.printBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.printBtn.Enabled = false;
             this.printBtn.Location = new System.Drawing.Point(744, 336);
             this.printBtn.Name = "printBtn";
@@ -281,6 +285,7 @@
             // 
             // deleteButton
             // 
+            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteButton.Enabled = false;
             this.deleteButton.Location = new System.Drawing.Point(534, 336);
             this.deleteButton.Name = "deleteButton";
@@ -292,6 +297,7 @@
             // 
             // reportBtn
             // 
+            this.reportBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.reportBtn.Enabled = false;
             this.reportBtn.Location = new System.Drawing.Point(639, 336);
             this.reportBtn.Name = "reportBtn";
@@ -328,8 +334,7 @@
             this.Controls.Add(this.startDatePicker);
             this.Controls.Add(this.projectTextBox);
             this.Controls.Add(this.projectIDTextBox);
-            this.MaximumSize = new System.Drawing.Size(871, 438);
-            this.MinimumSize = new System.Drawing.Size(871, 438);
+            this.MinimumSize = new System.Drawing.Size(556, 394);
             this.Name = "IterationForm";
             this.Text = "Manage Iterations";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IterationForm_FormClosed);

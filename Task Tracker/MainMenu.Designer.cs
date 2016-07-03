@@ -153,7 +153,6 @@
             this.MinimumSize = new System.Drawing.Size(210, 218);
             this.Name = "MainMenu";
             this.Text = "Task Tracker - Main Menu";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenu_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

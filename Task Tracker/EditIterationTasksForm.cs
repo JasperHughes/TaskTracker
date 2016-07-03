@@ -97,7 +97,8 @@ namespace Task_Tracker
 
         private void addToIterationBtn_Click(object sender, EventArgs e)
         {
-            Task taskSelected = unassignedTasks[unassignedToIterationLB.SelectedIndex];
+            Task taskSelected = unassignedTasks[unassignedToIterationLB.SelectedIndex+1];
+            Console.WriteLine(taskSelected);
             IterationTaskDatesForm itdf = new IterationTaskDatesForm(currentIteration, taskSelected, this);
             itdf.Owner = this;
             itdf.Show();

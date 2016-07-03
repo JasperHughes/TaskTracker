@@ -29,13 +29,20 @@ namespace Task_Tracker
 
         private void OkBtn_Click(object sender, EventArgs e)
         {
-            IterationTask itTaskToAdd = new IterationTask();
-            itTaskToAdd.TaskID = currentTask.ID;
-            itTaskToAdd.IterationID = currentIteration.ID;
-            itTaskToAdd.PlannedStartDate = StartDateDtPck.Value;
-            itTaskToAdd.PlannedCompletionDate = EndDateDtPck.Value;
-            DBInterface.Add(itTaskToAdd);
-            this.Close();
+            if (EndDateDtPck.Value < StartDateDtPck.Value)
+            {
+                MessageBox.Show("End date must not be before Start date");
+            }
+            else
+            {
+                IterationTask itTaskToAdd = new IterationTask();
+                itTaskToAdd.TaskID = currentTask.ID;
+                itTaskToAdd.IterationID = currentIteration.ID;
+                itTaskToAdd.PlannedStartDate = StartDateDtPck.Value;
+                itTaskToAdd.PlannedCompletionDate = EndDateDtPck.Value;
+                DBInterface.Add(itTaskToAdd);
+                this.Close();
+            }
         }
 
         private void IterationTaskDatesForm_FormClosed(object sender, FormClosedEventArgs e)
