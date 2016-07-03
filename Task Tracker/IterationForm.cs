@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -154,7 +155,8 @@ namespace Task_Tracker
             {
                 // Load Values into Editable fields
                 deleteButton.Enabled = true;
-                reportButton.Enabled = true;
+                reportBtn.Enabled = true;
+                printBtn.Enabled = true;
                 AddIterationTask.Enabled = true;
                 graphBtn.Visible = true;
                 ListViewItem item = iterationListView.SelectedItems[0];
@@ -200,8 +202,6 @@ namespace Task_Tracker
             try
             {
                 EditIterationTasksForm eitf = new EditIterationTasksForm(iterations.Find(iteration => iteration.ID == Int32.Parse(IterationIDLabel.Text)), this);
-                eitf.Owner = this;
-                Enabled = false;
                 eitf.Show();
             }
             catch
@@ -236,6 +236,7 @@ namespace Task_Tracker
         private void IterationTasksList_SelectedIndexChanged(object sender, EventArgs e)
         {
             ITEditButton.Enabled = true;
+
 
         }
 
@@ -297,6 +298,9 @@ namespace Task_Tracker
             IterationTasksList.Items.Clear();
             startDatePicker.ResetText();
             endDatePicker.ResetText();
+            deleteButton.Enabled = false;
+            reportBtn.Enabled = false;
+            printBtn.Enabled = false;
         }
 
         private void IterationIDLabel_TextChanged(object sender, EventArgs e)
@@ -326,7 +330,6 @@ namespace Task_Tracker
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                Owner.Enabled = true;
                 e.Cancel = true;
                 Hide();
             }
@@ -396,6 +399,63 @@ namespace Task_Tracker
                 DBInterface.Delete(itToDel);
                 LoadIterations();
             }
+        }
+
+        private void CSVReport(int iterationID)
+        {
+            Iteration i = DBInterface.GetIteration(iterationID);
+            Stream csvStream;
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if ((csvStream = saveFileDialog.OpenFile()) != null)
+                {
+                    StreamWriter output = new StreamWriter(csvStream);
+                    output.WriteLine("Task ID, Task Name, Description, Priority, Start Date, Finish Date, Developers");
+                    foreach(IterationTask it in i.IterationTasks)
+                    {
+                        output.Write(it.TaskID);
+                        output.Write(", ");
+                        output.Write(it.Task.TaskName);
+                        output.Write(", ");
+                        output.Write(it.Task.Description);
+                        output.Write(", ");
+                        output.Write(it.Task.Priority);
+                        output.Write(", ");
+                        output.Write(it.PlannedStartDate);
+                        output.Write(", ");
+                        output.Write(it.PlannedCompletionDate);
+                        output.Write(", ");
+                        List<Developer> devs = DBInterface.GetOtherDevelopersForIterationTask(it.TaskID, it.IterationID, 0);
+                        Developer lastInList = null;
+                        if (devs.Count > 0)
+                        {
+                            lastInList = devs[devs.Count - 1];
+                        }
+                        foreach (Developer d in devs)
+                        {
+                            output.Write(d.GivenNames + " " + d.FamilyName);
+                            if (!d.Equals(lastInList))
+                            {
+                                output.Write(" | ");
+                            }
+                        }
+                        output.Write(Environment.NewLine);
+                    }
+                    output.WriteLine();
+                    output.Close();
+                    csvStream.Close();
+                    MessageBox.Show("Data Exported. Check save location!");
+                }
+            }
+        }
+
+        private void reportBtn_Click(object sender, EventArgs e)
+        {
+            CSVReport(Int32.Parse(IterationIDLabel.Text));
         }
     }
 }
