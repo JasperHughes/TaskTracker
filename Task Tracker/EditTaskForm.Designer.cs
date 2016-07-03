@@ -35,17 +35,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.PriorityTextBox = new System.Windows.Forms.ComboBox();
+            this.ProjectIDTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.TaskNameLabel = new System.Windows.Forms.Label();
+            this.CompletetionDateTextBox = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.TaskNameTextBox = new System.Windows.Forms.TextBox();
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.saveTaskBtn = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.CompletetionDateTextBox = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.PriorityTextBox = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ProjectIDTextBox = new System.Windows.Forms.TextBox();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -140,6 +140,40 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(632, 80);
             this.tableLayoutPanel1.TabIndex = 17;
             // 
+            // PriorityTextBox
+            // 
+            this.PriorityTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.PriorityTextBox.FormattingEnabled = true;
+            this.PriorityTextBox.Items.AddRange(new object[] {
+            "Low",
+            "Medium",
+            "High"});
+            this.PriorityTextBox.Location = new System.Drawing.Point(384, 49);
+            this.PriorityTextBox.Name = "PriorityTextBox";
+            this.PriorityTextBox.Size = new System.Drawing.Size(245, 21);
+            this.PriorityTextBox.TabIndex = 25;
+            this.PriorityTextBox.Text = "Select a Priority";
+            // 
+            // ProjectIDTextBox
+            // 
+            this.ProjectIDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProjectIDTextBox.Location = new System.Drawing.Point(384, 10);
+            this.ProjectIDTextBox.Name = "ProjectIDTextBox";
+            this.ProjectIDTextBox.ReadOnly = true;
+            this.ProjectIDTextBox.Size = new System.Drawing.Size(245, 20);
+            this.ProjectIDTextBox.TabIndex = 27;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(339, 53);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Priority";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // TaskNameLabel
             // 
             this.TaskNameLabel.AutoSize = true;
@@ -150,6 +184,37 @@
             this.TaskNameLabel.TabIndex = 12;
             this.TaskNameLabel.Text = "Task Name";
             this.TaskNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CompletetionDateTextBox
+            // 
+            this.CompletetionDateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.CompletetionDateTextBox.Location = new System.Drawing.Point(92, 50);
+            this.CompletetionDateTextBox.Name = "CompletetionDateTextBox";
+            this.CompletetionDateTextBox.ShowCheckBox = true;
+            this.CompletetionDateTextBox.Size = new System.Drawing.Size(240, 20);
+            this.CompletetionDateTextBox.TabIndex = 23;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(338, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 13);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Project";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 53);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(83, 13);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "Completed Date";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TaskNameTextBox
             // 
@@ -187,71 +252,6 @@
             this.saveTaskBtn.UseVisualStyleBackColor = true;
             this.saveTaskBtn.Click += new System.EventHandler(this.saveTaskBtn_Click);
             // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 53);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 13);
-            this.label3.TabIndex = 22;
-            this.label3.Text = "Completed Date";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // CompletetionDateTextBox
-            // 
-            this.CompletetionDateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.CompletetionDateTextBox.Location = new System.Drawing.Point(92, 50);
-            this.CompletetionDateTextBox.Name = "CompletetionDateTextBox";
-            this.CompletetionDateTextBox.ShowCheckBox = true;
-            this.CompletetionDateTextBox.Size = new System.Drawing.Size(240, 20);
-            this.CompletetionDateTextBox.TabIndex = 23;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(339, 53);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Priority";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // PriorityTextBox
-            // 
-            this.PriorityTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.PriorityTextBox.FormattingEnabled = true;
-            this.PriorityTextBox.Items.AddRange(new object[] {
-            "Low",
-            "Medium",
-            "High"});
-            this.PriorityTextBox.Location = new System.Drawing.Point(384, 49);
-            this.PriorityTextBox.Name = "PriorityTextBox";
-            this.PriorityTextBox.Size = new System.Drawing.Size(245, 21);
-            this.PriorityTextBox.TabIndex = 25;
-            this.PriorityTextBox.Text = "Select a Priority";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(338, 13);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 26;
-            this.label5.Text = "Project";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // ProjectIDTextBox
-            // 
-            this.ProjectIDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProjectIDTextBox.Location = new System.Drawing.Point(384, 10);
-            this.ProjectIDTextBox.Name = "ProjectIDTextBox";
-            this.ProjectIDTextBox.ReadOnly = true;
-            this.ProjectIDTextBox.Size = new System.Drawing.Size(245, 20);
-            this.ProjectIDTextBox.TabIndex = 27;
-            // 
             // deleteBtn
             // 
             this.deleteBtn.Location = new System.Drawing.Point(12, 365);
@@ -283,6 +283,7 @@
             this.MinimumSize = new System.Drawing.Size(673, 443);
             this.Name = "EditTaskForm";
             this.Text = "Edit Task";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditTaskForm_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

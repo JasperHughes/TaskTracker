@@ -23,7 +23,7 @@ namespace Task_Tracker
 
         private void TaskForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            Owner.Enabled = true;
             e.Cancel = true;
             HideForm();
         }
@@ -85,6 +85,8 @@ namespace Task_Tracker
         {
             Task selected = DBInterface.GetTask((int)dataGridView1.CurrentRow.Cells[0].Value);
             EditTaskForm etf = new EditTaskForm(selected, this);
+            etf.Owner = this;
+            Enabled = false;
             etf.Show();
 
         }

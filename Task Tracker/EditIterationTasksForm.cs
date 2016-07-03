@@ -107,6 +107,7 @@ namespace Task_Tracker
 
         private void EditIterationTasksForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Owner.Enabled = true;
             parent.LoadIterations();
             this.Dispose();
         }
