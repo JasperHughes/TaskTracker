@@ -17,9 +17,21 @@ namespace Task_Tracker
         public TasksForm()
         {
             InitializeComponent();
-      
+
         }
 
+
+        private void TaskForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            e.Cancel = true;
+            HideForm();
+        }
+        private void HideForm()
+        {
+
+            this.Hide();
+        }
 
         private void TaksForm_Load(object sender, EventArgs e)
         {
@@ -30,7 +42,7 @@ namespace Task_Tracker
         {
             bool priority = false;
             bool project = false;
-            if(PriorityTextBox.Text.Equals("Select a Priority"))
+            if (PriorityTextBox.Text.Equals("Select a Priority"))
             {
                 MessageBox.Show("Please select a priority");
                 priority = false;
@@ -39,7 +51,7 @@ namespace Task_Tracker
             {
                 priority = true;
             }
-            if(ProjectIDTextBox.Text.Equals("Select a Project"))
+            if (ProjectIDTextBox.Text.Equals("Select a Project"))
             {
                 MessageBox.Show("Please select a project");
                 project = false;
@@ -74,6 +86,7 @@ namespace Task_Tracker
             Task selected = DBInterface.GetTask((int)dataGridView1.CurrentRow.Cells[0].Value);
             EditTaskForm etf = new EditTaskForm(selected, this);
             etf.Show();
+
         }
 
         public void ReloadData()
@@ -82,6 +95,14 @@ namespace Task_Tracker
             this.projectsTableAdapter.Fill(this.taskTrackerDataSet.Projects);
             // TODO: This line of code loads data into the 'taskTrackerDataSet.Tasks' table. You can move, or remove it, as needed.
             this.tasksTableAdapter.Fill(this.taskTrackerDataSet.Tasks);
+
         }
+
+        private void TaskCloseButton_Click(object sender, EventArgs e)
+        {
+            HideForm();
+        }
+
+    
     }
 }

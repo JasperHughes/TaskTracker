@@ -53,6 +53,7 @@
             this.tasksBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tasksTableAdapter = new Task_Tracker.TaskTrackerDataSetTableAdapters.TasksTableAdapter();
             this.projectsTableAdapter = new Task_Tracker.TaskTrackerDataSetTableAdapters.ProjectsTableAdapter();
+            this.TaskCloseButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskTrackerDataSet)).BeginInit();
@@ -232,6 +233,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(594, 211);
             this.dataGridView1.TabIndex = 17;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -284,11 +286,22 @@
             // 
             this.projectsTableAdapter.ClearBeforeFill = true;
             // 
+            // TaskCloseButton
+            // 
+            this.TaskCloseButton.Location = new System.Drawing.Point(30, 237);
+            this.TaskCloseButton.Name = "TaskCloseButton";
+            this.TaskCloseButton.Size = new System.Drawing.Size(89, 30);
+            this.TaskCloseButton.TabIndex = 18;
+            this.TaskCloseButton.Text = "Close";
+            this.TaskCloseButton.UseVisualStyleBackColor = true;
+            this.TaskCloseButton.Click += new System.EventHandler(this.TaskCloseButton_Click);
+            // 
             // TasksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(845, 277);
+            this.Controls.Add(this.TaskCloseButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.TaskFormSaveButton);
@@ -331,5 +344,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn priorityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn completionDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button TaskCloseButton;
     }
 }
