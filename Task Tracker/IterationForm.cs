@@ -153,6 +153,8 @@ namespace Task_Tracker
             if (iterationListView.SelectedItems.Count > 0)
             {
                 // Load Values into Editable fields
+                deleteButton.Enabled = true;
+                reportButton.Enabled = true;
                 AddIterationTask.Enabled = true;
                 graphBtn.Visible = true;
                 ListViewItem item = iterationListView.SelectedItems[0];
@@ -368,6 +370,28 @@ namespace Task_Tracker
             {
                 // Error finding iteration record so display error to user to try again
                 MessageBox.Show("Couldn't find Report to print. Try again.", "Unable to Print", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            DialogResult delChoice = MessageBox.Show("Are you sure you want to delete this iteration?", "Confirm", MessageBoxButtons.OKCancel);
+            if (delChoice == DialogResult.OK)
+            {
+                List<IterationTask> itTasksToDel = DBInterface.GetTasksForIteration(Int32.Parse(iterationListView.SelectedItems[0].SubItems[0].Text));
+                Console.WriteLine(iterationListView.SelectedItems[0].SubItems[0].Text);
+                foreach (IterationTask itTask in itTasksToDel)
+                {
+                    DBInterface.Delete(itTask);
+                }
+                List<DeveloperIterationTask> devItTasksToDel = DBInterface.GetDeveloperTasksForIteration(Int32.Parse(iterationListView.SelectedItems[0].SubItems[0].Text));
+                foreach (DeveloperIterationTask devItTask in devItTasksToDel)
+                {
+                    DBInterface.Delete(devItTask);
+                }
+                Iteration itToDel = DBInterface.GetIteration(Int32.Parse(iterationListView.SelectedItems[0].SubItems[0].Text));
+                DBInterface.Delete(itToDel);
+                LoadIterations();
             }
         }
     }

@@ -24,7 +24,7 @@ namespace Task_Tracker
             parent = origin;
 
             InitializeComponent();
-            Text = "Assign Task to Iteration " + currentIteration.ID;
+            Text = "Assign Tasks to Iteration " + currentIteration.ID;
 
             populateLists();
         }
@@ -37,11 +37,20 @@ namespace Task_Tracker
             unassignedTasks = DBInterface.GetUnassignedTasks();
             foreach (IterationTask itTask in tasks)
             {
-                assignedToIterationLB.Items.Add(DBInterface.GetTask(itTask.TaskID));
+                Task taskToAdd = DBInterface.GetTask(itTask.TaskID);
+                if (taskToAdd.CompletionDate != null)
+                {
+                    assignedToIterationLB.Items.Add(taskToAdd + " (Completed)");
+                }
+                else
+                {
+                    assignedToIterationLB.Items.Add(taskToAdd);
+                }
             }
             foreach (Task task in unassignedTasks)
             {
-                unassignedToIterationLB.Items.Add(task);
+                if (task.CompletionDate == null) 
+                    unassignedToIterationLB.Items.Add(task);
             }
         }
 
@@ -74,9 +83,16 @@ namespace Task_Tracker
         private void removeFromIterationBtn_Click(object sender, EventArgs e)
         {
             IterationTask delItTask = tasks[assignedToIterationLB.SelectedIndex];
-            DBInterface.Delete(delItTask);
-            populateLists();
-            removeFromIterationBtn.Enabled = false;
+            if (DBInterface.GetTask(delItTask.TaskID).CompletionDate == null)
+            {
+                DBInterface.Delete(delItTask);
+                populateLists();
+                removeFromIterationBtn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Cannot remove a task that has already been completed.");
+            }  
         }
 
         private void addToIterationBtn_Click(object sender, EventArgs e)

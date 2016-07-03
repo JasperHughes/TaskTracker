@@ -52,6 +52,7 @@
             this.projectDropdown = new System.Windows.Forms.ComboBox();
             this.graphBtn = new System.Windows.Forms.Button();
             this.reportButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // projectIDTextBox
@@ -268,6 +269,7 @@
             // 
             // reportButton
             // 
+            this.reportButton.Enabled = false;
             this.reportButton.Location = new System.Drawing.Point(744, 336);
             this.reportButton.Name = "reportButton";
             this.reportButton.Size = new System.Drawing.Size(99, 23);
@@ -276,11 +278,23 @@
             this.reportButton.UseVisualStyleBackColor = true;
             this.reportButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // deleteButton
+            // 
+            this.deleteButton.Enabled = false;
+            this.deleteButton.Location = new System.Drawing.Point(639, 336);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(99, 23);
+            this.deleteButton.TabIndex = 23;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
             // IterationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 399);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.reportButton);
             this.Controls.Add(this.graphBtn);
             this.Controls.Add(this.projectDropdown);
@@ -334,5 +348,6 @@
         private System.Windows.Forms.ComboBox projectDropdown;
         private System.Windows.Forms.Button graphBtn;
         private System.Windows.Forms.Button reportButton;
+        private System.Windows.Forms.Button deleteButton;
     }
 }

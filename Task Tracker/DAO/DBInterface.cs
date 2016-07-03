@@ -527,5 +527,11 @@ namespace Task_Tracker.DAO
                 Console.WriteLine(e.StackTrace);
             }
         }
+
+        public static List<DeveloperIterationTask> GetDeveloperTasksForIteration(int id)
+        {
+
+            return (from t in dataContext.DeveloperIterationTasks where t.IterationID == id select t).ToList();
+        }
     }        
 }
