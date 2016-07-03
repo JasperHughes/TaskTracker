@@ -43,6 +43,8 @@
             // 
             // DevelopersButton
             // 
+            this.DevelopersButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DevelopersButton.Location = new System.Drawing.Point(13, 51);
             this.DevelopersButton.Name = "DevelopersButton";
             this.DevelopersButton.Size = new System.Drawing.Size(171, 23);
@@ -54,6 +56,7 @@
             // 
             // IterationsButton
             // 
+            this.IterationsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.IterationsButton.Location = new System.Drawing.Point(13, 81);
             this.IterationsButton.Name = "IterationsButton";
             this.IterationsButton.Size = new System.Drawing.Size(171, 23);
@@ -64,6 +67,7 @@
             // 
             // TasksButton
             // 
+            this.TasksButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.TasksButton.Location = new System.Drawing.Point(13, 111);
             this.TasksButton.Name = "TasksButton";
             this.TasksButton.Size = new System.Drawing.Size(171, 23);
@@ -74,6 +78,8 @@
             // 
             // ExitButton
             // 
+            this.ExitButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ExitButton.Location = new System.Drawing.Point(13, 140);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(171, 23);
@@ -88,7 +94,7 @@
             this.applicationToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(284, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(194, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -136,15 +142,18 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(194, 179);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.TasksButton);
             this.Controls.Add(this.IterationsButton);
             this.Controls.Add(this.DevelopersButton);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximumSize = new System.Drawing.Size(210, 218);
+            this.MinimumSize = new System.Drawing.Size(210, 218);
             this.Name = "MainMenu";
             this.Text = "Task Tracker - Main Menu";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenu_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

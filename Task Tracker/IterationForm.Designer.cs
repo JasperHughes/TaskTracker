@@ -147,6 +147,9 @@
             // iterationListView
             // 
             this.iterationListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.iterationListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.iterationListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.iterationID,
             this.projectID,
@@ -269,6 +272,7 @@
             // 
             // reportButton
             // 
+            this.reportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.reportButton.Enabled = false;
             this.reportButton.Location = new System.Drawing.Point(744, 336);
             this.reportButton.Name = "reportButton";
@@ -280,6 +284,7 @@
             // 
             // deleteButton
             // 
+            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.deleteButton.Enabled = false;
             this.deleteButton.Location = new System.Drawing.Point(639, 336);
             this.deleteButton.Name = "deleteButton";
@@ -315,6 +320,7 @@
             this.Controls.Add(this.startDatePicker);
             this.Controls.Add(this.projectTextBox);
             this.Controls.Add(this.projectIDTextBox);
+            this.MinimumSize = new System.Drawing.Size(487, 393);
             this.Name = "IterationForm";
             this.Text = "Manage Iterations";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IterationForm_FormClosed);

@@ -134,6 +134,7 @@
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(680, 304);
             this.Name = "DeveloperForm";
             this.Text = "Manage Developers";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeveloperForm_FormClosing);

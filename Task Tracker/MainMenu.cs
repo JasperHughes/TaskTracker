@@ -51,10 +51,13 @@ namespace Task_Tracker
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
+            Close();
+        }
+
+        private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
             // Exit the application
             Environment.Exit(0);
         }
-
-
     }
 }

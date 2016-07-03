@@ -90,6 +90,7 @@
             // 
             // TaskFormSaveButton
             // 
+            this.TaskFormSaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TaskFormSaveButton.Location = new System.Drawing.Point(757, 229);
             this.TaskFormSaveButton.Name = "TaskFormSaveButton";
             this.TaskFormSaveButton.Size = new System.Drawing.Size(75, 38);
@@ -218,6 +219,9 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -305,6 +309,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.TaskFormSaveButton);
             this.ForeColor = System.Drawing.Color.Black;
+            this.MinimumSize = new System.Drawing.Size(464, 315);
             this.Name = "TasksForm";
             this.Text = "Manage Tasks";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TaskForm_FormClosing);

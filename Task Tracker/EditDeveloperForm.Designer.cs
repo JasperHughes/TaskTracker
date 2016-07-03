@@ -460,6 +460,7 @@
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(380, 437);
             this.Name = "EditDeveloperForm";
             this.Text = "Add/Edit Developer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditDeveloperForm_FormClosing);
