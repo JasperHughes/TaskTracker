@@ -307,6 +307,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "TasksForm";
             this.Text = "Manage Tasks";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TaskForm_FormClosing);
             this.Load += new System.EventHandler(this.TaksForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
