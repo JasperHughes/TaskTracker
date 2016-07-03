@@ -332,8 +332,14 @@ namespace Task_Tracker
             IterationGraph g = new IterationGraph();
             if(IterationIDLabel.Text != "")
             {
-                g.iterationID = Int32.Parse(IterationIDLabel.Text);
-                g.Show();
+                if (IterationTasksList.Items.Count <= 0)
+                {
+                    MessageBox.Show("No Tasks assigned. This means there is no progress to show!");
+                }
+                else {
+                    g.iterationID = Int32.Parse(IterationIDLabel.Text);
+                    g.Show();
+                }
             }
         }
 

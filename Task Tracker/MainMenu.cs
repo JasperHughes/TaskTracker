@@ -43,8 +43,6 @@ namespace Task_Tracker
         {
             //Load Tasks form
             taskForm.Show();
-    
-
         }
 
         private void IterationsButton_Click(object sender, EventArgs e)
