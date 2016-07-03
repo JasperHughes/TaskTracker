@@ -51,8 +51,9 @@
             this.NewIterationButton = new System.Windows.Forms.Button();
             this.projectDropdown = new System.Windows.Forms.ComboBox();
             this.graphBtn = new System.Windows.Forms.Button();
-            this.reportButton = new System.Windows.Forms.Button();
+            this.printBtn = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
+            this.reportBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // projectIDTextBox
@@ -267,21 +268,21 @@
             this.graphBtn.Visible = false;
             this.graphBtn.Click += new System.EventHandler(this.graphBtn_Click);
             // 
-            // reportButton
+            // printBtn
             // 
-            this.reportButton.Enabled = false;
-            this.reportButton.Location = new System.Drawing.Point(744, 336);
-            this.reportButton.Name = "reportButton";
-            this.reportButton.Size = new System.Drawing.Size(99, 23);
-            this.reportButton.TabIndex = 22;
-            this.reportButton.Text = "Report";
-            this.reportButton.UseVisualStyleBackColor = true;
-            this.reportButton.Click += new System.EventHandler(this.button1_Click);
+            this.printBtn.Enabled = false;
+            this.printBtn.Location = new System.Drawing.Point(744, 336);
+            this.printBtn.Name = "printBtn";
+            this.printBtn.Size = new System.Drawing.Size(99, 23);
+            this.printBtn.TabIndex = 22;
+            this.printBtn.Text = "Print";
+            this.printBtn.UseVisualStyleBackColor = true;
+            this.printBtn.Click += new System.EventHandler(this.button1_Click);
             // 
             // deleteButton
             // 
             this.deleteButton.Enabled = false;
-            this.deleteButton.Location = new System.Drawing.Point(639, 336);
+            this.deleteButton.Location = new System.Drawing.Point(534, 336);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(99, 23);
             this.deleteButton.TabIndex = 23;
@@ -289,13 +290,25 @@
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
+            // reportBtn
+            // 
+            this.reportBtn.Enabled = false;
+            this.reportBtn.Location = new System.Drawing.Point(639, 336);
+            this.reportBtn.Name = "reportBtn";
+            this.reportBtn.Size = new System.Drawing.Size(99, 23);
+            this.reportBtn.TabIndex = 24;
+            this.reportBtn.Text = "Report";
+            this.reportBtn.UseVisualStyleBackColor = true;
+            this.reportBtn.Click += new System.EventHandler(this.reportBtn_Click);
+            // 
             // IterationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 399);
+            this.Controls.Add(this.reportBtn);
             this.Controls.Add(this.deleteButton);
-            this.Controls.Add(this.reportButton);
+            this.Controls.Add(this.printBtn);
             this.Controls.Add(this.graphBtn);
             this.Controls.Add(this.projectDropdown);
             this.Controls.Add(this.NewIterationButton);
@@ -347,7 +360,8 @@
         private System.Windows.Forms.Button NewIterationButton;
         private System.Windows.Forms.ComboBox projectDropdown;
         private System.Windows.Forms.Button graphBtn;
-        private System.Windows.Forms.Button reportButton;
+        private System.Windows.Forms.Button printBtn;
         private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button reportBtn;
     }
 }

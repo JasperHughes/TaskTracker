@@ -17,6 +17,7 @@ namespace Task_Tracker
         public TasksForm()
         {
             InitializeComponent();
+            CompletetionDateTextBox.Enabled = false;
 
         }
 
@@ -66,9 +67,9 @@ namespace Task_Tracker
                 Task task = new Task();
                 task.TaskName = TaskNameTextBox.Text;
                 task.Description = DescriptionTextBox.Text;
-                if (CompletetionDateTextBox.Checked)
+                if (CompletetionDateTextBox.Enabled == false)
                 {
-                    task.CompletionDate = CompletetionDateTextBox.Value;
+                    task.CompletionDate = null;
                 }
                 else
                 {
@@ -79,6 +80,8 @@ namespace Task_Tracker
                 DBInterface.Add(task);
                 ReloadData();
             }
+            TaskNameTextBox.Text = String.Empty;
+            DescriptionTextBox.Text = String.Empty;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

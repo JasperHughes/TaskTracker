@@ -138,7 +138,14 @@ namespace Task_Tracker
             Task toEdit = DBInterface.GetTask(currentTask.ID);
             toEdit.TaskName = TaskNameTextBox.Text;
             toEdit.Description = DescriptionTextBox.Text;
-            toEdit.CompletionDate = CompletetionDateTextBox.Value;
+            if (CompletetionDateTextBox.Checked)
+            {
+                toEdit.CompletionDate = CompletetionDateTextBox.Value;
+            }
+            else
+            {
+                toEdit.CompletionDate = DateTime.MinValue;
+            }
             toEdit.Priority = PriorityTextBox.Text;
             DBInterface.Update(toEdit);
             this.sender.ReloadData();
